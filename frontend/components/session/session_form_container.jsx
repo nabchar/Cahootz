@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { logIn, signUp} from '../../actions/session_actions';
 import { receiveErrors } from '../../actions/shared/error_actions';
 import { Link } from 'react-router';
+import SessionForm from './session_form'
 
 const mapStateToProps = (state, ownProps) => {
   let loggedIn = state.session.currentUser ? true : false;

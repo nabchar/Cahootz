@@ -1,6 +1,6 @@
 import React from 'react';
-import { logIn, signUp} from '../../action/session_actions';
-import { receiveErrors } from '../../action/shared/error_action';
+import { logIn, signUp} from '../../actions/session_actions';
+import { receiveErrors } from '../../actions/shared/error_actions';
 import { Link, hashHistory } from 'react-router';
 import ErrorList from '../shared/errors';
 

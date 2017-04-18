@@ -3,7 +3,7 @@ import SlashContainer from './splash/splash';
 
 const App = ({ children }) => (
   <div>
-    <h1>CAHOOTS</h1>
+    <h1>CAHOOTZ</h1>
   </div>
 );
 
