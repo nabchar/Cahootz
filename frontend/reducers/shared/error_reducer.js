@@ -1,6 +1,6 @@
 import {
     RECEIVE_ERRORS,
-    receiveErrors } from '../../actions/shared/errors_actions';
+    receiveErrors } from '../../actions/shared/error_actions';
 
 const _defaultState = Object.freeze({
   error: {}
