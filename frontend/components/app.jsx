@@ -1,10 +1,12 @@
 import React from 'react';
-import SlashContainer from './splash/splash';
 
-const App = ({ children }) => (
-  <div>
-    <h1>CAHOOTZ</h1>
-  </div>
-);
+const App = ({ children }) => {
+  
+  return (
+    <div>
+      {children}
+    </div>
+  );
+};
 
 export default App;

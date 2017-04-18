@@ -1,27 +1,34 @@
 import { connect } from 'react-redux';
-import { logIn, signUp} from '../../actions/session_actions';
+import { signIn, signUp} from '../../actions/session_actions';
 import { receiveErrors } from '../../actions/shared/error_actions';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import SessionForm from './session_form'
 
 const mapStateToProps = (state, ownProps) => {
-  let loggedIn = state.session.currentUser ? true : false;
-  let formType = (ownProps.location.pathname === '/login') ? 'LOGIN' : "SIGNUP";
+  let authMessage = 'Sign up for Cahoots';
+  let formType = 'Signup';
+  if (ownProps.location.pathname === '/signin') {
+    authMessage = 'Sign in to Cahoots';
+    formType = 'Signin';
+  }
   return {
-    loggedIn: loggedIn,
-    errors: state.session.errors,
-    formType: formType
+    errors: state.errors,
+    formType,
+    authMessage
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  let formType = (ownProps.location.pathname === '/login') ? logIn : signUp;
+  let authAction = signUp;
+  if (ownProps.location.pathname === '/signin') {
+    authAction = signIn;
+  }
   return {
-    processForm: (user) => dispatch(formType(user)),
+    authAction: (user) => dispatch(authAction(user)),
     clearErrors: () => dispatch(receiveErrors({}))
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps, mapDispatchToProps
-)(SessionForm);
+)(SessionForm));

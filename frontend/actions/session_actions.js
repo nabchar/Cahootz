@@ -10,18 +10,18 @@ export const receiveCurrentUser = currentUser => ({
 
 
 // thunk actions
-export const signup = user => dispatch => (
+export const signUp = user => dispatch => (
   APIUtil.signUp(user)
     .then(user => dispatch(receiveCurrentUser(user)),
       err => dispatch(receiveErrors(err.responseJSON)))
 );
 
-export const login = user => dispatch => (
-  APIUtil.logIn(user)
+export const signIn = user => dispatch => (
+  APIUtil.signIn(user)
     .then(user => dispatch(receiveCurrentUser(user)),
       err => dispatch(receiveErrors(err.responseJSON)))
 );
 
-export const logout = () => dispatch => (
+export const logOut = () => dispatch => (
   APIUtil.logOut().then(user => dispatch(receiveCurrentUser(null)))
 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { logIn, signUp} from '../../actions/session_actions';
+import { signIn, signUp} from '../../actions/session_actions';
 import { receiveErrors } from '../../actions/shared/error_actions';
 import { Link, hashHistory } from 'react-router';
 import ErrorList from '../shared/errors';
@@ -23,7 +23,7 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.processForm({user: this.state}).then( () => this.clearForm())
+    this.props.authAction({user: this.state}).then( () => this.clearForm())
       .then(() => this.props.router.push("/"));
   }
 
@@ -40,16 +40,18 @@ class SessionForm extends React.Component {
 
 
   render () {
-    let redirectionPath = (this.props.formType === "LOGIN") ? 'signup' : 'login';
-    const { errors, formType } = this.props;
+    let { formType, errors, authMessage } = this.props;
+    let newPath = (formType === "Signin") ? '/signup' : '/signin';
+
     return (
-      <div className='auth-form-container'>
+      <div className='auth-form-box'>
         <form className='auth-form' onSubmit={this.handleSubmit}>
-          <span>{formType}!</span>
+          <span>{authMessage}</span>
+          <span>Enter your username and password</span>
           <ErrorList errors={errors.base} />
           <label>
             <span>Username:</span>
-            <input className="auth-input" onChange={this.handleChange("username")}
+            <input className="auth-input" onChange={this.handleChange('username')}
                              value={this.state.username}/>
           </label>
 
@@ -57,13 +59,12 @@ class SessionForm extends React.Component {
 
           <label>
             <span>Password:</span>
-            <input className="auth-input" type="password"  onChange={this.handleChange("password")} value={this.state.password}/>
+            <input className="auth-input" type="password"  onChange={this.handleChange('password')} value={this.state.password}/>
           </label>
 
           <ErrorList errors={errors.password} />
 
           <input type="submit" value={formType} />
-          <Link to={"/" + redirectionPath} >{redirectionPath}</Link>
         </form>
       </div>
     );

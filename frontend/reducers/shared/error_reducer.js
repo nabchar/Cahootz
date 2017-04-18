@@ -2,9 +2,7 @@ import {
     RECEIVE_ERRORS,
     receiveErrors } from '../../actions/shared/error_actions';
 
-const _defaultState = Object.freeze({
-  error: {}
-});
+const _defaultState = {};
 
 const ErrorReducer = (oldState = _defaultState, action) => {
   Object.freeze(oldState)
