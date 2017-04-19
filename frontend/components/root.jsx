@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from './app';
 import SessionContainer from './session/session_container';
+import MainChannel from './channel/main_channel_container';
 
 export const Root = ({ store }) => (
 
@@ -14,6 +15,7 @@ export const Root = ({ store }) => (
   <Provider store={ store }>
     <Router history={ hashHistory }>
       <Route path="/" component={ App }>
+        <IndexRoute component={ MainChannel }/>
         <Route path="/signin" component={ SessionContainer } />
         <Route path="/signup" component={ SessionContainer }/>
       </Route>

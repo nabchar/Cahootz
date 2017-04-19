@@ -23,7 +23,7 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.authAction({user: this.state}).then( () => this.clearForm())
-      .then(() => this.props.router.push("/"));
+      .then(() => hashHistory.push("/"));
   }
 
   clearForm() {

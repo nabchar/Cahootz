@@ -4,8 +4,7 @@ const App = ({ children }) => {
 
   return (
     <div>
-      <MainChannel />
-      {children}
+      { children }
     </div>
   );
 };
