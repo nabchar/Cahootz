@@ -24,5 +24,8 @@ export const signIn = user => dispatch => (
 
 export const logOut = () => dispatch => {
   debugger
-  return APIUtil.logOut().then(user => dispatch(receiveCurrentUser(null)))
+  return APIUtil.logOut().then(res => {
+    debugger
+    return dispatch(receiveCurrentUser(null));
+  });
 };

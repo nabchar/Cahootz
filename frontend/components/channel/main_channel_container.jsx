@@ -1,6 +1,8 @@
 import React from 'react'
-import { logOut } from '../../util/session_api_util';
-import { hashHistory } from 'react-router'
+import { logOut } from '../../actions/session_actions';
+import { hashHistory } from 'react-router';
+import { connect } from 'react-redux';
+
 
 class MainChannel extends React.Component {
   constructor(props) {
@@ -9,7 +11,8 @@ class MainChannel extends React.Component {
   }
 
   handleClick() {
-    logOut().then(() => hashHistory.push('/signin'));
+    debugger
+    this.props.logOut()//.then(() => hashHistory.push('/signin'));
   }
 
   render(){
@@ -22,4 +25,7 @@ class MainChannel extends React.Component {
   }
 };
 
-export default MainChannel;
+export default connect(
+  null,
+  dispatch => ({ logOut: () => dispatch(logOut()) })
+)(MainChannel);

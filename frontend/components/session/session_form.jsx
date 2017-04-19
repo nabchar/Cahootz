@@ -23,7 +23,7 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.authAction({user: this.state}).then( () => this.clearForm())
-      .then(() => hashHistory.push("/"));
+      .then(() => hashHistory.push("/main"));
   }
 
   clearForm() {
@@ -43,29 +43,38 @@ class SessionForm extends React.Component {
     let newPath = (formType === "Signin") ? '/signup' : '/signin';
 
     return (
-      <div className='auth-form-box'>
-        <form className='auth-form' onSubmit={this.handleSubmit}>
-          <span>{authMessage}</span>
-          <span>Enter your username and password</span>
-          <ErrorList errors={errors.base} />
-          <label>
-            <span>Username:</span>
-            <input className="auth-input" onChange={this.handleChange('username')}
-                             value={this.state.username}/>
-          </label>
+      <section className='session-content'>
+        <form className='session-form' onSubmit={this.handleSubmit}>
+          <h1>{authMessage}</h1>
 
-          <ErrorList errors={errors.username} />
+          <section className='session'>
+            <p>Enter your username and password</p>
+            <p className='session-username'>
+                <input className='auth-input'
+                       onChange={this.handleChange('username')}
+                       value={this.state.username}
+                       placeholder='you@cahootz.com'/>
+            </p>
+            <ErrorList errors={errors.username} />
 
-          <label>
-            <span>Password:</span>
-            <input className="auth-input" type="password"  onChange={this.handleChange('password')} value={this.state.password}/>
-          </label>
+            <p className='session-password'>
+                <input className="auth-input"
+                       type="password"
+                       onChange={this.handleChange('password')}
+                       value={this.state.password}
+                       placeholder="password"/>
+            </p>
+            <ErrorList errors={errors.password} />
 
-          <ErrorList errors={errors.password} />
+            <ErrorList errors={errors.base} />
 
-          <input type="submit" value={formType} />
+            <p className='session-submit'>
+              <input type="submit" value={formType} />
+            </p>
+
+          </section>
         </form>
-      </div>
+      </section>
     );
   }
 

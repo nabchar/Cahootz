@@ -9,8 +9,7 @@ import Splash from './splash/splash';
 export const Root = ({ store }) => {
 
   function _redirectIfLoggedIn(nextState, replace) {
-    const loggedIn = store.getState().currentUser;
-    debugger
+    const loggedIn = Boolean(store.getState().currentUser.id);
     if (loggedIn) {
       replace('/main');
     }
@@ -20,7 +19,8 @@ export const Root = ({ store }) => {
     <Provider store={ store }>
       <Router history={ hashHistory }>
         <Route path='/' component={ App }>
-          <IndexRoute component={ Splash }/>
+          <IndexRoute component={ Splash }
+                      onEnter={_redirectIfLoggedIn} />
           <Route path='/signin'
                  component={ SessionContainer }
                  onEnter={_redirectIfLoggedIn} />

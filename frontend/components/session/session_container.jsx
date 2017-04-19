@@ -7,10 +7,10 @@ const SessionContainer = ({location}) => {
   let linkName = (linkPath === 'signin') ? 'Sign In' : 'Sign Up'
 
   return (
-    <main>
+    <div>
       <SessionHeader linkName={linkName} linkPath={linkPath}/>
       <SessionFormContainer />
-    </main>
+    </div>
   );
 };
 

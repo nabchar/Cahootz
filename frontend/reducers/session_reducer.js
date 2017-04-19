@@ -1,8 +1,6 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 
-const _nullUser = Object.freeze({
-  currentUser: null
-});
+const _nullUser = {};
 
 const SessionReducer = (state = _nullUser, action) => {
   Object.freeze(state)
@@ -11,7 +9,9 @@ const SessionReducer = (state = _nullUser, action) => {
     case RECEIVE_CURRENT_USER:
       const currentUser = action.currentUser;
       nextState = Object.assign({}, _nullUser);
-      return Object.assign({}, currentUser);
+      const finalnextState = Object.assign(nextState, currentUser);
+      debugger
+      return finalnextState;
     default:
       return state;
   }

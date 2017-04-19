@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
   return {
     authAction: (user) => dispatch(authAction(user)),
-    clearErrors: () => dispatch(receiveErrors({}))
+    clearErrors: () => dispatch(receiveErrors({})),
   };
 };
 
