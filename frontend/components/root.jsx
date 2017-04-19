@@ -15,6 +15,13 @@ export const Root = ({ store }) => {
     }
   }
 
+  function _redirectIfLoggedOut(nextState, replace) {
+    const loggedOut = Boolean(store.getState().currentUser.id);
+    if (!loggedOut) {
+      replace('/')
+    }
+  }
+
   return(
     <Provider store={ store }>
       <Router history={ hashHistory }>
@@ -27,7 +34,7 @@ export const Root = ({ store }) => {
           <Route path='/signup'
                  component={ SessionContainer }
                  onEnter={_redirectIfLoggedIn} />
-          <Route path='/main' component={ MainChannel } />
+               <Route path='/main' component={ MainChannel } onEnter={_redirectIfLoggedOut}/>
         </Route>
       </Router>
     </Provider>);

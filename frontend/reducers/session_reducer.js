@@ -9,9 +9,7 @@ const SessionReducer = (state = _nullUser, action) => {
     case RECEIVE_CURRENT_USER:
       const currentUser = action.currentUser;
       nextState = Object.assign({}, _nullUser);
-      const finalnextState = Object.assign(nextState, currentUser);
-      debugger
-      return finalnextState;
+      return Object.assign(nextState, currentUser);
     default:
       return state;
   }

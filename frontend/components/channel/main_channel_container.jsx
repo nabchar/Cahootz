@@ -11,8 +11,7 @@ class MainChannel extends React.Component {
   }
 
   handleClick() {
-    debugger
-    this.props.logOut()//.then(() => hashHistory.push('/signin'));
+    this.props.logOut().then(() => hashHistory.push('/signin'));
   }
 
   render(){
