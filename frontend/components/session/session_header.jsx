@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-export default function SessionHeader(props) {
+export default function SessionHeader({linkPath, linkName}) {
 
-  // <Link to={}>{}</Link>
   return (
     <header className="auth-header">
       <h1>CAHOOTZ</h1>
+      <Link to={linkPath}>{linkName}</Link>
     </header>);
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { signIn, signUp} from '../../actions/session_actions';
 import { receiveErrors } from '../../actions/shared/error_actions';
 import { Link, hashHistory } from 'react-router';
 import ErrorList from '../shared/errors';

@@ -22,6 +22,7 @@ export const signIn = user => dispatch => (
       err => dispatch(receiveErrors(err.responseJSON)))
 );
 
-export const logOut = () => dispatch => (
-  APIUtil.logOut().then(user => dispatch(receiveCurrentUser(null)))
-);
+export const logOut = () => dispatch => {
+  debugger
+  return APIUtil.logOut().then(user => dispatch(receiveCurrentUser(null)))
+};
