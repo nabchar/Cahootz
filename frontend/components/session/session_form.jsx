@@ -41,43 +41,57 @@ class SessionForm extends React.Component {
   render () {
     let { formType, errors, authMessage } = this.props;
     let newPath = (formType === "Signin") ? '/signup' : '/signin';
+    let linkName = (newPath === '/signin') ? 'Sign In' : 'Sign Up'
 
     return (
-      <section className='session-content'>
-        <form className='session-form' onSubmit={this.handleSubmit}>
-          <h1>{authMessage}</h1>
+      <div>
+        <header className="session-header">
+          <p>
+            <Link className="session-logo" to={'/'}>
+              <i className="fa fa-slack" aria-hidden="true"></i>
+              <strong>cahootz</strong>
+            </Link>
+          </p>
+          <p>
+            <Link className='session-header-link' to={newPath}>{linkName}</Link>
+          </p>
+        </header>
 
-          <section className='session'>
-            <p>Enter your username and password</p>
-            <p className='session-username'>
+        <section className='session-content'>
+          <form className='session-form' onSubmit={this.handleSubmit}>
+            <h1>{authMessage}</h1>
+
+            <section className='session'>
+              <p>Enter your username and password</p>
+              <p className='session-username'>
                 <input className='auth-input'
-                       onChange={this.handleChange('username')}
-                       value={this.state.username}
-                       placeholder='you@cahootz.com'/>
-            </p>
-            <ErrorList errors={errors.username} />
+                  onChange={this.handleChange('username')}
+                  value={this.state.username}
+                  placeholder='you@cahootz.com'/>
+              </p>
+              <ErrorList errors={errors.username} />
 
-            <p className='session-password'>
+              <p className='session-password'>
                 <input className="auth-input"
-                       type="password"
-                       onChange={this.handleChange('password')}
-                       value={this.state.password}
-                       placeholder="password"/>
-            </p>
-            <ErrorList errors={errors.password} />
+                  type="password"
+                  onChange={this.handleChange('password')}
+                  value={this.state.password}
+                  placeholder="password"/>
+              </p>
+              <ErrorList errors={errors.password} />
 
-            <ErrorList errors={errors.base} />
+              <ErrorList errors={errors.base} />
 
-            <p className='session-submit'>
-              <input type="submit" value={formType} />
-            </p>
+              <p className='session-submit'>
+                <input type="submit" value={formType} />
+              </p>
 
-          </section>
-        </form>
-      </section>
+            </section>
+          </form>
+        </section>
+      </div>
     );
   }
-
 }
 
 export default SessionForm;

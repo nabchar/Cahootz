@@ -1,0 +1,28 @@
+header.session-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: solid 1px lightgray;
+}
+
+
+a.session-header-link {
+    padding: 10px 30px 12px;
+    border-radius: 4px;
+    font-size: 12pt;
+    box-shadow: inset 0 0 0 2px #404B55;
+}
+
+a.session-logo {
+    display: flex;
+    justify-content: space-between;
+    width: 75px;
+  }
+
+strong {
+    font-size: 30px;
+}
+
+i.fa.fa-slack {
+    font-size: 30px;
+}
