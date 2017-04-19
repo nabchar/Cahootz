@@ -59,32 +59,40 @@ class SessionForm extends React.Component {
 
         <section className='session-content'>
           <form className='session-form' onSubmit={this.handleSubmit}>
-            <h1>{authMessage}</h1>
+            <h1 className='align-center'>{authMessage}</h1>
 
             <section className='session'>
-              <p>Enter your username and password</p>
-              <p className='session-username'>
-                <input className='auth-input'
-                  onChange={this.handleChange('username')}
-                  value={this.state.username}
-                  placeholder='you@cahootz.com'/>
+              <p className='auth-instructions'
+                 className='align-center'>
+                  Enter your
+                 <strong> username </strong>
+                 and
+                 <strong> password </strong>
+                 .
               </p>
+
+
+              <input className='auth-input'
+                type="text"
+                onChange={this.handleChange('username')}
+                value={this.state.username}
+                placeholder='you@cahootz.com'/>
+
               <ErrorList errors={errors.username} />
 
-              <p className='session-password'>
-                <input className="auth-input"
-                  type="password"
-                  onChange={this.handleChange('password')}
-                  value={this.state.password}
-                  placeholder="password"/>
-              </p>
-              <ErrorList errors={errors.password} />
 
+              <input className="auth-input"
+                type="password"
+                onChange={this.handleChange('password')}
+                value={this.state.password}
+                placeholder="password"/>
+
+              <ErrorList errors={errors.password} />
               <ErrorList errors={errors.base} />
 
-              <p className='session-submit'>
-                <input type="submit" value={formType} />
-              </p>
+
+              <input className="session-submit" type="submit" value={formType} />
+
 
             </section>
           </form>
