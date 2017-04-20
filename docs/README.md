@@ -2,7 +2,7 @@
 
 ### Quick Links:
 [Heroku][heroku]
-[Trello][trello] 
+[Trello][trello]
 
 [heroku]: https://cahootz.herokuapp.com
 [trello]: https://trello.com/b/nG73Ztn9/aa-fullstack-project
@@ -55,9 +55,22 @@ W8D2, W8D3
 - Style signup/signin components
 - Seed users
 
-### Phase 2: Messages (Model, Api, Components, Styles) (2 days)
+### Phase 2: Channels (Model, Api, Components, Styles) (2 days)
 
 W8D4, W8D5
+
+**Objective:** Channels can be created, read, edited and destroyed through the API and are sufficient styled.
+
+- Channel, subscription model
+- Channel controller CRUD
+- JBuilder views for channels
+- Channel search shows list of channel suggestions
+- Style channel components
+- Seed channels
+
+### Phase 3: Messages (Model, Api, Components, Styles) (2 days)
+
+W9D1, W9D2 (Peer Review)
 
 **Objective:** Messages can be created, read, edited and destroyed through the API, and are sufficiently styled.
 
@@ -74,11 +87,6 @@ W8D4, W8D5
  - Seed messages
  - Style Message Components
 
-### Phase 3: Channels (Model, Api, Components, Styles) (2 days)
-
-W9D1, W9D2 (Peer Review)
-
-**Objective:** Channels can be created, read, edited and destroyed through the API.
 
 ### Phase 4: Direct Messages (2 days)
 
