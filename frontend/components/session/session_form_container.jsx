@@ -6,10 +6,10 @@ import SessionForm from './session_form'
 
 const mapStateToProps = (state, ownProps) => {
   let authMessage = 'Sign up for Cahoots';
-  let formType = 'Signup';
+  let formType = 'Sign up';
   if (ownProps.location.pathname === '/signin') {
     authMessage = 'Sign in to Cahoots';
-    formType = 'Signin';
+    formType = 'Sign in';
   }
   return {
     errors: state.errors,

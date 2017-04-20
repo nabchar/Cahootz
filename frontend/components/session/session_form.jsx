@@ -40,11 +40,15 @@ class SessionForm extends React.Component {
 
   render () {
     let { formType, errors, authMessage } = this.props;
-    let newPath = (formType === "Signin") ? '/signup' : '/signin';
+    let newPath = (formType === "Sign in") ? '/signup' : '/signin';
     let linkName = (newPath === '/signin') ? 'Sign In' : 'Sign Up'
+    let guestAccountMessage = '';
+    if (formType === 'Sign up') {
+      guestAccountMessage = (<p className='guest-message align-center'>or give it a <Link to={'/main'}>try</Link>.</p>);
+    }
 
     return (
-      <div>
+      <div className="session-main">
         <header className="session-header">
           <p>
             <Link className="session-logo" to={'/'}>
@@ -62,15 +66,11 @@ class SessionForm extends React.Component {
             <h1 className='align-center'>{authMessage}</h1>
 
             <section className='session'>
-              <p className='auth-instructions'
-                 className='align-center'>
-                  Enter your
-                 <strong> username </strong>
-                 and
-                 <strong> password </strong>
-                 .
+              <p className='align-center auth-instructions'>
+                  Enter your <strong> username </strong> and <strong> password</strong>.
               </p>
 
+              <ErrorList errors={errors.base} />
 
               <input className='auth-input'
                 type="text"
@@ -88,15 +88,14 @@ class SessionForm extends React.Component {
                 placeholder="password"/>
 
               <ErrorList errors={errors.password} />
-              <ErrorList errors={errors.base} />
-
 
               <input className="session-submit" type="submit" value={formType} />
-
-
             </section>
+            {guestAccountMessage}
+
           </form>
         </section>
+        <footer className="session-footer"></footer>
       </div>
     );
   }

@@ -2,7 +2,6 @@ body {
   color: #555459;
   line-height: 1.5rem;
 }
-
 header.session-header {
   display: flex;
   justify-content: space-between;
@@ -11,38 +10,47 @@ header.session-header {
 }
 
 a.session-header-link {
-    padding: 10px 30px 12px;
-    border-radius: 4px;
-    font-size: 12pt;
-    box-shadow: inset 0 0 0 2px #404B55;
+  padding: 10px 30px 12px;
+  border-radius: 4px;
+  font-size: 12pt;
+  box-shadow: inset 0 0 0 2px #404B55;
 }
 
 a.session-logo {
-    display: flex;
-    justify-content: space-between;
-    width: 75px;
-  }
+  display: flex;
+  justify-content: space-between;
+  width: 75px;
+}
 
 a.session-logo strong {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 i.fa.fa-slack {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 section.session-content {
-    background: #F9F9F9;
-    height: 600px;
-    display: flex;
-    justify-content: center;
+  background: #F9F9F9;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-width: 800px;
+  height: 100vh;
 }
 
 form.session-form {
-    background-color: #FFF;
-    padding: 2rem 2rem 1rem;
-    border: 1px solid #E8E8E8;
-    width: 54.13%;
+  background-color: #FFF;
+  padding: 2rem 3rem 1rem;
+  border: 1px solid #E8E8E8;
+  width: 46.3%;
+  margin-top: 80px;
+  margin-bottom: 120px;
+  max-width: 635px;
+  border-radius: .25em;
+  box-shadow: 0 1px 0 rgba(0,0,0,.25);
+  max-height: 50vh;
 }
 
 section.session {
@@ -50,35 +58,54 @@ section.session {
   flex-direction: column;
 }
 
-
 input[type=text], input[type=password] {
-
-    font-size: 1.25rem;
-    line-height: normal;
-    padding: .75rem;
-    border: 1px solid #C5C5C5;
-    border-radius: .25rem;
-    color: #555459;
-    width: 100%;
-    font-family: Lato, sans-serif;
-    margin: 0 0 .5rem;
-    box-sizing: border-box;
+  font-size: 1.25rem;
+  line-height: normal;
+  padding: .75rem;
+  border: 1px solid #C5C5C5;
+  border-radius: .25rem;
+  color: #555459;
+  width: 100%;
+  font-family: Lato, sans-serif;
+  margin: 0 0 .5rem;
+  box-sizing: border-box;
 }
 
 input[type="submit"] {
-    background: #2ab27b;
-    color: #fff;
-    font-family: Lato, sans-serif;
-    line-height: 1.2rem;
-    font-weight: 900;
-    border-radius: .25rem;
-    width: 100%;
-    padding: 14px 32px 16px;
-    font-size: 20px;
-    border: none;
-    cursor: pointer;
+  background: #2ab27b;
+  color: #fff;
+  font-family: Lato, sans-serif;
+  line-height: 1.2rem;
+  font-weight: 900;
+  border-radius: .25rem;
+  width: 100%;
+  padding: 14px 32px 16px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 p.auth-instructions {
-  margin-bottom: 0 0 1rem;
+  margin-bottom: 8px;
+}
+
+p.guest-message {
+  margin-top: 8px;
+  width: 100;
+}
+
+p.guest-message a {
+  text-decoration: underline;
+}
+
+p.error-message {
+  color: red;
+  padding: 8px 0 8px 0;
+  width: 100%;
+  text-align: center;
+}
+
+div.session-main {
+  height: 100vh;
 }
