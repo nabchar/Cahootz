@@ -1,4 +1,4 @@
-class ChannelsController < ApplicationController
+class Api::ChannelsController < ApplicationController
   before_action :ensure_user!
 
   def index
