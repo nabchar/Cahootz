@@ -15,21 +15,34 @@ class MainChannel extends React.Component {
   }
 
   render(){
-    debugger
     let { currentUser } = this.props;
     return (
-      <div>
-        <div>
-          <h1>
-            Main Channel!
-          </h1>
-          <p>
-            Welcome {currentUser.username}!
-          </p>
-        </div>
-        <div>
-          <button onClick={this.handleClick}>Sign Out</button>
-        </div>
+      <div className='channel-main'>
+
+        <header className='header-main'>
+          <div className='user-nav'>
+            <p>Welcome {currentUser.username}!</p>
+            <button onClick={this.handleClick}>Sign Out</button>
+          </div>
+
+          <div className='channel-nav'>
+            <div className='channel-info'>Channel Info</div>
+            <div className='channel-util'>Channel Util</div>
+          </div>
+        </header>
+
+        <section className='main-section'>
+          <aside className='channel-nav'>Channel Nav</aside>
+          <section className='message-outer'>
+            <section className='messages-container'>
+              Messages Index Container
+            </section>
+            <div className='message-input-outer'>
+              Message Input
+            </div>
+          </section>
+        </section>
+
       </div>
     );
   }
