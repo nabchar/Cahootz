@@ -13,11 +13,11 @@
 #
 
 class Channel < ApplicationRecord
-  validates :name, presence: true
-  validates :private, presence: true
+  validates :name, :user_id, presence: true
+  validates :name, uniqueness: true
 
   belongs_to :creator,
-    foreign_key: user_id,
+    foreign_key: :user_id,
     class_name: 'User'
 
   has_many :subscriptions, dependent: :destroy

@@ -16,7 +16,6 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8, allow_nil: true }
 
   has_many :channels
-
   has_many :subscriptions
 
   has_many :subscribed_channels,
