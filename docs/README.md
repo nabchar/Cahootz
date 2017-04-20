@@ -28,11 +28,11 @@ sufficient CSS styling:
 * [React Components](components)
 * [View Wireframes](wireframes)
 
-[schema]: docs/schema.md
-[api-endpoints]: docs/api-endpoints.md
-[sample-state]: docs/sample-state.md
-[components]: docs/component-hierarchy.md
-[wireframes]: docs/wireframes
+[schema]: schema.md
+[api-endpoints]: api-endpoints.md
+[sample-state]: sample-state.md
+[components]: component-hierarchy.md
+[wireframes]: wireframes/
 
 ## Implementation Timeline
 
