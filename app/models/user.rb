@@ -15,11 +15,15 @@ class User < ApplicationRecord
   validates :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
 
+  has_many :channels
+
   has_many :subscriptions
-  
-  has_many :channels,
+
+  has_many :subscribed_channels,
     through: :subscriptions,
     source: :channel
+
+  has_many :messages, dependent: :destroy
 
   attr_reader :password
 

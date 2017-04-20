@@ -20,9 +20,10 @@ class Channel < ApplicationRecord
     foreign_key: user_id,
     class_name: 'User'
 
-  has_many :subscriptions
-
+  has_many :subscriptions, dependent: :destroy
   has_many :members,
     through: :subscriptions,
     source: :member
+
+  has_many :messages, dependent: :destroy
 end
