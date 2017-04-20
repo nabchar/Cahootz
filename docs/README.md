@@ -22,11 +22,11 @@ sufficient CSS styling:
 
 
 ## Design Docs
-* [DB schema](schema)
-* [API endpoints](api-endpoints)
-* [Sample State](sample-state)
-* [React Components](components)
-* [View Wireframes](wireframes)
+* [DB schema][schema]
+* [API endpoints][api-endpoints]
+* [Sample State][sample-state]
+* [React Components][components]
+* [View Wireframes][wireframes]
 
 [schema]: schema.md
 [api-endpoints]: api-endpoints.md
