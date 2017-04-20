@@ -2,9 +2,11 @@
 
 ## ApplicationContainer
 
-**AuthenticationContainer**
+**SplashContainer**
+
+**SessionFormContainer**
 - Header
-- AuthForm
+- SessionForm
 
 **MainHeader**
   - Channel Info Container
@@ -28,7 +30,7 @@
 - MessageFormContainer
   - MessageForm
 
-**NavContainer**
+**UserNavContainer**
   - User Information
   - ChannelIndexContainer
     - ChannelIndex
@@ -56,5 +58,7 @@
 
 |    Path                                 |      Component           |
 |-----------------------------------------|--------------------------|
-| "/sign-up"                              | "AuthFormContainer"      |
-| "/sign-in"                              | "AuthFormContainer"      |
+| "/splash"                               | "Splash"                 |
+| "/sign-up"                              | "SessionFormContainer"   |
+| "/sign-in"                              | "SessionFormContainer"   |
+| "/main"                                 | "SessionFormContainer"   |

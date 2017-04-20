@@ -1,8 +1,8 @@
 # Cahoots
 
-### Quick Links: ---- [Heroku][heroku] ---- [Trello][trello] ----
+### Quick Links: ---- [Heroku](heroku) ---- [Trello](trello) ----
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://cahootz.herokuapp.com
 [trello]: https://trello.com/b/nG73Ztn9/aa-fullstack-project
 
 ## Minimum Viable Product - MVP
@@ -20,12 +20,13 @@ sufficient CSS styling:
 * Teams or multi-person DM
 * Production README (replacing this README)
 
+
 ## Design Docs
-* [DB schema][schema]
-* [API endpoints][api-endpoints]
-* [Sample State][sample-state]
-* [React Components][components]
-* [View Wireframes][wireframes]
+* [DB schema](schema)
+* [API endpoints](api-endpoints)
+* [Sample State](sample-state)
+* [React Components](components)
+* [View Wireframes](wireframes)
 
 [schema]: docs/schema.md
 [api-endpoints]: docs/api-endpoints.md
@@ -35,7 +36,7 @@ sufficient CSS styling:
 
 ## Implementation Timeline
 
-### Phase 1: Backend setup and Front End User Authentication (2 days )
+### Phase 1: Setup, Backend and Frontend User Authentication (2 days )
 
 W8D2, W8D3
 
@@ -52,13 +53,26 @@ W8D2, W8D3
 - Style signup/signin components
 - Seed users
 
-### Phase 3: Messages Model, API, and components (2 days)
+### Phase 2: Messages (Model, Api, Components, Styles) (2 days)
 
 W8D4, W8D5
 
-**Objective:** Messages can be created, read, edited and destroyed through the API.
+**Objective:** Messages can be created, read, edited and destroyed through the API, and are sufficiently styled.
 
-### Phase 2: Channels (2 days)
+ - Build out Message model
+ - Make small amount of seeds
+ - Messages CRUD
+ - JBuilder View
+ - Test backend
+ - Setup Message Components and their Redux cycles
+   - MessagesIndex
+   - MessageIndexItem
+   - MessageForm
+ - Implement Websockets for live chat functionality
+ - Seed messages
+ - Style Message Components
+
+### Phase 3: Channels (Model, Api, Components, Styles) (2 days)
 
 W9D1, W9D2 (Peer Review)
 

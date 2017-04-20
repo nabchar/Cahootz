@@ -8,10 +8,25 @@
     username: 'nabchar'
   },
 
-  errors: [],
+  errors: {},
+
+  currentChannel: {
+    id: 1
+    name: 'general',
+    purpose: null,
+    description: 'General stuff',
+    members: [ {
+                  id: 1
+                  username: nabchar  
+                }, ...
+              ],
+    private: false,
+    created: "April 16, 2017"
+  }
 
   channels: {
     1: {
+      id: 1
       name: 'general',
       purpose: null,
       description: 'General stuff',

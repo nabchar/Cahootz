@@ -15,7 +15,7 @@
   - Messages
 
 
-## Channel
+## Channel - (Note: Direct Message will be a subset of Channel based on the 'private' attribute)
 
 | column      | type      | database-level validations | model-level validations |
 |-------------|-----------|----------------------------|-------------------------|
