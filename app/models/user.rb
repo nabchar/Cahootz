@@ -12,7 +12,14 @@
 
 class User < ApplicationRecord
   validates :username, :password_digest, :session_token, presence: true
+  validates :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
+
+  has_many :subscriptions
+  
+  has_many :channels,
+    through: :subscriptions,
+    source: :channel
 
   attr_reader :password
 
