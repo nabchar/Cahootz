@@ -31,9 +31,13 @@ class Api::ChannelsController < ApplicationController
   end
 
   def destroy
-    channel = Channel.find(params[:id])
-    channel.destroy
-    render json: {};
+    @channel = Channel.find(params[:id])
+    
+    if @channel.destroy
+      render "api/channels/show"
+    else
+      render json: @channel.errors.full_messages, status: 422
+    end
   end
 
   private
