@@ -1,0 +1,70 @@
+
+
+div.channel-main {
+  height: 100vh;
+}
+
+header.header-main {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0 18px 0;
+  border-bottom: solid 1px lightgray;
+}
+
+div.user-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+  min-width: 200px;
+  max-width: 200px;
+  border: solid 1px red;
+  padding: 0 5px 0 5px;
+
+}
+
+div.channel-nav {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  min-width: 550px;
+  padding-left: 20px;
+  border: solid 1px red;
+  padding: 0 5px 0 5px;
+}
+
+section.main-section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+}
+
+aside.channel-nav {
+  width: 20%;
+  min-width: 200px;
+  border: solid 1px red;
+  max-width: 200px;
+}
+
+section.message-outer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 80%;
+  min-width: 550px;
+  padding-left: 20px;
+  border: solid 1px red;
+  padding: 0 5px 0 5px;
+}
+
+div.message-input-outer {
+  min-height: 64px;
+  max-height: 14%;
+  border: solid 1px red;
+
+}
+
+section.messages-container {
+  border: solid 1px red;
+  height: 86%;
+}
