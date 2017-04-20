@@ -2,20 +2,20 @@ class Api::ChannelsController < ApplicationController
   before_action :ensure_user!
 
   def index
-    @channels = Channel.all
-    render "api/channel/index"
+    @channels = Channel.includes(:members).includes(:creator).all
+    render "api/channels/index"
   end
 
   def show
-    @channel = Channel.find(params[:id])
-    render "api/channel/show"
+    @channel = Channel.includes(:members).find(params[:id])
+    render "api/channels/show"
   end
 
   def create
     @channel = Channel.new(channel_params)
 
     if @channel.save
-      render "api/channel/show"
+      render "api/channels/show"
     else
       render json: @channel.errors, status: 422
     end
@@ -24,7 +24,7 @@ class Api::ChannelsController < ApplicationController
   def update
     @channel.find_by(params[:id])
     if @channel.update(channel_params)
-      render "api/channel/show"
+      render "api/channels/show"
     else
       render json: @channel.errors, status: 422
     end

@@ -17,6 +17,7 @@ class Channel < ApplicationRecord
   validates :name, uniqueness: true
 
   belongs_to :creator,
+    primary_key: :id,
     foreign_key: :user_id,
     class_name: 'User'
 
