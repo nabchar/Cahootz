@@ -1,6 +1,7 @@
 # Cahoots
 
-### Quick Links: ---- [Heroku][heroku] ---- [Trello][trello] ----
+### Quick Links:
+[Heroku][heroku] ---- [Trello][trello] ----
 
 [heroku]: https://cahootz.herokuapp.com
 [trello]: https://trello.com/b/nG73Ztn9/aa-fullstack-project
