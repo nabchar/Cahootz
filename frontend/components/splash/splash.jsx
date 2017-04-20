@@ -1,19 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
-const Splash = ()=> {
+const Splash = () => {
+
   return(
     <div className='splash-main'>
-      <header className='splash-header'>
-        <h3>Cahootz</h3>
-        <p><Link to={'/signin'}>Sign In</Link></p>
+      <header className="splash-header">
+        <div>
+          <Link className="splash-logo" to={'/'}>
+            <i className="fa fa-slack" aria-hidden="true"></i>
+            <strong>cahootz</strong>
+          </Link>
+        </div>
+        <div>
+          <Link className='splash-header-link' to={'/signin'}>Sign In</Link>
+        </div>
       </header>
 
       <section className='splash-outer'>
-        <figure className='splash-image'>
-
-        </figure>
-
         <section className='splash-content'>
           <div className='splash-tagline-wrapper'>
             <h1 className='splash-tagline'>Hatch your next plan</h1>
@@ -22,23 +26,29 @@ const Splash = ()=> {
           <div className='splash-subtag-wrapper'>
 
             <p className='splash-subtag'>
-              For every scheme, Cahootz brings all the pieces and people you need together.
+              For every scheme, Cahootz brings all the pieces
+              <br></br>
+              and people you need together.
             </p>
 
             <div className='splash-signup'>
 
-              <button>
-                <Link to={'/signup'}>Get Started</Link>
+              <button className='guest-button'>
+                Get Started
               </button>
 
-              <span>
-                Already a member of Cahootz?
-                <Link to={'/signin'}>Sign in</Link>
-              </span>
+              <p className='signin-text'>
+                Already a member of Cahootz?  <Link to={'/signin'}>Sign in</Link>
+              </p>
 
             </div>
           </div>
         </section>
+
+        <figure className='splash-image'>
+
+        </figure>
+
       </section>
 
       <footer>

@@ -1,0 +1,76 @@
+header.splash-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: solid 1px lightgray;
+    background: white;
+}
+
+a.splash-logo strong {
+  font-size: 30px;
+}
+
+a.splash-header-link {
+  padding: 10px 30px 12px;
+  border-radius: 4px;
+  font-size: 12pt;
+  box-shadow: inset 0 0 0 2px #404B55;
+}
+
+section.splash-outer {
+  background: #E3E4E5;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+section.splash-content {
+  margin-top: 125px;
+}
+
+p.splash-subtag {
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+p.signin-text {
+  font-size: 14px;
+  color: #70787D;
+  margin-top: 8px;
+
+}
+
+p.signin-text a {
+  text-decoration: underline;
+  padding-left: 3px;
+}
+
+figure.splash-image {
+  width: 33%;
+  // border: solid 1px red;
+}
+
+button.guest-button {
+  border: 0;
+  margin: 0;
+  border-radius: 4px;
+  padding: 14px 60px;
+  cursor: pointer;
+  height: 53px;
+  display: inline-block;
+  font-size: 17px;
+  font-family: Lato, sans-serif;
+  font-weight: 700;
+  background-color: #42c299;
+  color: #fff;
+  text-shadow: none;
+  position: relative;
+}
+
+h1.splash-tagline {
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 900;
+}
