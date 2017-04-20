@@ -15,16 +15,34 @@ class MainChannel extends React.Component {
   }
 
   render(){
+    debugger
+    let { currentUser } = this.props;
     return (
       <div>
-        Main Channel! Hatch your next plan
-        <button onClick={this.handleClick}>Sign Out</button>
+        <div>
+          <h1>
+            Main Channel!
+          </h1>
+          <p>
+            Welcome {currentUser.username}!
+          </p>
+        </div>
+        <div>
+          <button onClick={this.handleClick}>Sign Out</button>
+        </div>
       </div>
     );
   }
 };
 
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   dispatch => ({ logOut: () => dispatch(logOut()) })
 )(MainChannel);

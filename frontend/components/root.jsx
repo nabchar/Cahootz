@@ -34,7 +34,7 @@ export const Root = ({ store }) => {
           <Route path='/signup'
                  component={ SessionFormContainer }
                  onEnter={_redirectIfLoggedIn} />
-               <Route path='/main' component={ MainChannel } onEnter={_redirectIfLoggedOut}/>
+          <Route path='/main' component={ MainChannel } onEnter={_redirectIfLoggedOut}/>
         </Route>
       </Router>
     </Provider>);

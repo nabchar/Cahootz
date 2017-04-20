@@ -50,7 +50,8 @@ form.session-form {
   max-width: 635px;
   border-radius: .25em;
   box-shadow: 0 1px 0 rgba(0,0,0,.25);
-  max-height: 50vh;
+  min-height: 400px;
+  max-height: 450px;
 }
 
 section.session {
@@ -95,8 +96,9 @@ p.guest-message {
   width: 100;
 }
 
-p.guest-message a {
+p.guest-message span {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 p.error-message {
@@ -104,6 +106,8 @@ p.error-message {
   padding: 8px 0 8px 0;
   width: 100%;
   text-align: center;
+  border: solid 1px red;
+  margin-bottom: 8px;
 }
 
 div.session-main {

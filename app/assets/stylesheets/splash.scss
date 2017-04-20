@@ -6,6 +6,12 @@ header.splash-header {
     background: white;
 }
 
+a.splash-logo {
+  display: flex;
+  justify-content: space-between;
+  width: 75px;
+}
+
 a.splash-logo strong {
   font-size: 30px;
 }

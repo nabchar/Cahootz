@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     authAction: (user) => dispatch(authAction(user)),
     clearErrors: () => dispatch(receiveErrors({})),
+    signInGuest: () => dispatch(signIn({user: {username: 'guest', password: 'password' }}))
   };
 };
 

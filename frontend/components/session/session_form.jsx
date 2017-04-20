@@ -12,12 +12,17 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.clearForm = this.clearForm.bind(this);
+    this.handleGuest = this.handleGuest.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props.formType !== newProps.formType) {
       this.props.clearErrors();
     }
+  }
+
+  handleGuest() {
+    this.props.signInGuest().then(() => hashHistory.push('/main'))
   }
 
   handleSubmit(e) {
@@ -44,7 +49,7 @@ class SessionForm extends React.Component {
     let linkName = (newPath === '/signin') ? 'Sign In' : 'Sign Up'
     let guestAccountMessage = '';
     if (formType === 'Sign up') {
-      guestAccountMessage = (<p className='guest-message align-center'>or give it a <Link to={'/main'}>try</Link>.</p>);
+      guestAccountMessage = (<p className='guest-message align-center'>or give it a <span onClick={this.handleGuest}>try</span>.</p>);
     }
 
     return (

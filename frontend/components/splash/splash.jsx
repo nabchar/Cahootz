@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
 
+
+const handleClick = () => {
+  return hashHistory.push('/signup')
+};
+
 const Splash = () => {
 
   return(
@@ -33,7 +38,7 @@ const Splash = () => {
 
             <div className='splash-signup'>
 
-              <button className='guest-button'>
+              <button className='guest-button' onClick={handleClick}>
                 Get Started
               </button>
 
