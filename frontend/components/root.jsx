@@ -5,18 +5,19 @@ import App from './app';
 import SessionFormContainer from './session/session_form_container';
 import MainChannel from './channel/main_channel_container';
 import Splash from './splash/splash';
-import ChannelSearchContainer from './channel/channel_search_container';
 
 export const Root = ({ store }) => {
 
   function _redirectIfLoggedIn(nextState, replace) {
+    debugger
     const loggedIn = Boolean(store.getState().currentUser.id);
     if (loggedIn) {
-      replace('/main');
+      replace('/messages');
     }
   }
 
   function _redirectIfLoggedOut(nextState, replace) {
+    debugger
     const loggedOut = Boolean(store.getState().currentUser.id);
     if (!loggedOut) {
       replace('/')
@@ -35,9 +36,12 @@ export const Root = ({ store }) => {
           <Route path='/signup'
                  component={ SessionFormContainer }
                  onEnter={_redirectIfLoggedIn} />
-          <Route path='/main' component={ MainChannel } onEnter={_redirectIfLoggedOut}/>
-            <Route path='/search' component={ChannelSearchContainer}>
-
+          <Route path='/messages'
+                 component={ MainChannel }
+                 onEnter={_redirectIfLoggedOut}>
+            <Route path=':channelId'
+                   component={ MainChannel}
+                   onEnter={_redirectIfLoggedOut}/>
           </Route>
         </Route>
       </Router>
