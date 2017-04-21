@@ -24,7 +24,7 @@ class ChannelSearch extends React.Component {
         <header className='browse-header'>
           <div></div>
           <div>
-            <Link to={'/main'}>esc</Link>
+            <Link to={'/messages'}>esc</Link>
           </div>
         </header>
 

@@ -26,3 +26,5 @@ const ChannelDetail = ({channel}) => {
     </div>
   );
 };
+
+export default ChannelDetail;
