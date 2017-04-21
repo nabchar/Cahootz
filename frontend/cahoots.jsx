@@ -5,6 +5,7 @@ import { Root } from './components/root';
 
 //TEST
 import {logOut} from './actions/session_actions';
+import * as ChannelApiUtil from './util/channel_api_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Todo: Remove from window
   window.store = store;
   window.logOut = logOut;
+  window.ChannelApiUtil = ChannelApiUtil;
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store }/>, root);

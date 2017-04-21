@@ -5,6 +5,7 @@ import App from './app';
 import SessionFormContainer from './session/session_form_container';
 import MainChannel from './channel/main_channel_container';
 import Splash from './splash/splash';
+import ChannelSearchContainer from './channel/channel_search_container';
 
 export const Root = ({ store }) => {
 
@@ -35,6 +36,9 @@ export const Root = ({ store }) => {
                  component={ SessionFormContainer }
                  onEnter={_redirectIfLoggedIn} />
           <Route path='/main' component={ MainChannel } onEnter={_redirectIfLoggedOut}/>
+            <Route path='/search' component={ChannelSearchContainer}>
+
+          </Route>
         </Route>
       </Router>
     </Provider>);
