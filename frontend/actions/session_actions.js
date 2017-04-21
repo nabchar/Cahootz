@@ -3,9 +3,9 @@ import { receiveErrors } from './shared/error_actions';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 
-export const receiveCurrentUser = currentUser => ({
+export const receiveCurrentUser = user => ({
   type: RECEIVE_CURRENT_USER,
-  currentUser
+  user
 });
 
 
@@ -24,6 +24,6 @@ export const signIn = user => dispatch => (
 
 export const logOut = () => dispatch => {
   return APIUtil.logOut().then(res => {
-    return dispatch(receiveCurrentUser(null));
+    return dispatch(receiveCurrentUser({}));
   });
 };

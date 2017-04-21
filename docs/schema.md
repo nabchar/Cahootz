@@ -7,6 +7,7 @@
 | username        | `string` |    `null-false`            |   `unique` `presence`   |
 | password_digest | `string` |    `null-false`            |   `unique` `presence`   |
 | session_token   | `string` |    `null-false`            |   `unique` `presence`   |
+| last_channel_id    | `integer` |    `null-false`            |   `unique` `presence`   |
 
 *User Model Associations:*
 - **Has Many**

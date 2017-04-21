@@ -22,13 +22,13 @@ class SessionForm extends React.Component {
   }
 
   handleGuest() {
-    this.props.signInGuest().then(() => hashHistory.push('/messages'))
+    this.props.signInGuest().then(() => hashHistory.push('/messages/3'))
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.authAction({user: this.state}).then( () => this.clearForm())
-      .then(() => hashHistory.push("/messages"));
+      .then(() => hashHistory.push("/messages/3"));
   }
 
   clearForm() {

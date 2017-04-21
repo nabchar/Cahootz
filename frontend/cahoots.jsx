@@ -10,7 +10,7 @@ import * as ChannelApiUtil from './util/channel_api_util';
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {
-    const preloadedState = {currentUser: window.currentUser, errors: {}};
+    const preloadedState = {session: window.currentUser , errors: {} };
     store = configureStore(preloadedState);
   } else {
     store = configureStore();

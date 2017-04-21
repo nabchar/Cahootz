@@ -4,7 +4,7 @@ import ErrorReducer from './shared/error_reducer';
 import ChannelsReducer from './channels_reducer';
 
 const RootReducer = combineReducers({
-  currentUser: SessionReducer,
+  session: SessionReducer,
   channels: ChannelsReducer,
   errors: ErrorReducer
 });
