@@ -1,70 +1,98 @@
 
-
 div.channel-main {
   height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
-header.header-main {
+div.channel-index-outer {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  max-width: 220px;
+  border: solid 1px red;
+}
+
+aside.channel-list {
+  border: solid 1px red;
+  height: 100%;
+}
+
+div.user-nav {
+  padding: 20px 0 18px 0;
+  border: solid 1px red;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+div.current-channel {
+  height: 100vh;
+  border: solid 1px red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+}
+
+header.messages-header {
   display: flex;
   justify-content: space-between;
   padding: 20px 0 18px 0;
   border-bottom: solid 1px lightgray;
-}
-
-div.user-nav {
-  display: flex;
-  justify-content: space-between;
-  width: 20%;
-  min-width: 200px;
-  max-width: 200px;
   border: solid 1px red;
-  padding: 0 5px 0 5px;
-
 }
 
 div.channel-nav {
   display: flex;
   justify-content: space-between;
-  width: 80%;
-  min-width: 550px;
-  padding-left: 20px;
-  border: solid 1px red;
-  padding: 0 5px 0 5px;
-}
-
-section.main-section {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
-  height: 100vh;
 }
 
-aside.channel-nav {
-  width: 20%;
-  min-width: 200px;
-  border: solid 1px red;
-  max-width: 200px;
-}
-
-section.message-outer {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  width: 80%;
-  min-width: 550px;
-  padding-left: 20px;
-  border: solid 1px red;
-  padding: 0 5px 0 5px;
-}
-
-div.message-input-outer {
-  min-height: 64px;
-  max-height: 14%;
-  border: solid 1px red;
-
+div.message-outer {
+  height: 100%;
 }
 
 section.messages-container {
-  border: solid 1px red;
-  height: 86%;
+  display: flex;
+  flex-direction: column;
 }
+
+footer.message-input-outer {
+  min-height: 65px;
+  max-height: 65px;
+  border: solid 1px red;
+}
+
+//
+// section.main-section {
+//   display: flex;
+//   justify-content: space-between;
+//   width: 100%;
+//   height: 100vh;
+// }
+//
+//
+// section.message-outer {
+//   display: flex;
+//   justify-content: space-between;
+//   flex-direction: column;
+//   width: 80%;
+//   min-width: 550px;
+//   padding-left: 20px;
+//   border: solid 1px red;
+//   padding: 0 5px 0 5px;
+// }
+//
+// div.message-input-outer {
+//   min-height: 64px;
+//   max-height: 14%;
+//   border: solid 1px red;
+//
+// }
+//
+// section.messages-container {
+//   border: solid 1px red;
+//   height: 86%;
+// }

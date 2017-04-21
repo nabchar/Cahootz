@@ -18,30 +18,54 @@ class MainChannel extends React.Component {
     let { currentUser } = this.props;
     return (
       <div className='channel-main'>
-
-        <header className='header-main'>
+        <div className='channel-index-outer'>
           <div className='user-nav'>
             <p>Welcome {currentUser.username}!</p>
             <button onClick={this.handleClick}>Sign Out</button>
           </div>
+          <aside className='channel-index'>
+            Channel Nav
+            <div className='channel-list-outer'>
+              <p>Channels</p>
+              <ul className='channel-list'>
+                <li className='list-item'>ch 1</li>
+                <li className='list-item'>ch 2</li>
+                <li className='list-item'>ch 3</li>
+              </ul>
+            </div>
+            <div className='dm-list-outer'>
+              <p>Direct Messages</p>
+              <ul className='dm-list'>
+                <li className='list-item'>dm 1</li>
+                <li className='list-item'>dm 2</li>
+                <li className='list-item'>dm 3</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
 
-          <div className='channel-nav'>
-            <div className='channel-info'>Channel Info</div>
-            <div className='channel-util'>Channel Util</div>
-          </div>
-        </header>
+        <div className='current-channel'>
+          <header className='messages-header'>
+            <div className='channel-nav'>
+              <div className='channel-info'>Channel Info</div>
+              <div className='channel-util'>Channel Util</div>
+            </div>
+          </header>
 
-        <section className='main-section'>
-          <aside className='channel-nav'>Channel Nav</aside>
-          <section className='message-outer'>
+          <div className='message-outer'>
             <section className='messages-container'>
               Messages Index Container
+              <div>message</div>
+              <div>message</div>
             </section>
-            <div className='message-input-outer'>
+          </div>
+
+          <footer className='message-input-outer'>
+            <div className='message-input-inner'>
               Message Input
             </div>
-          </section>
-        </section>
+          </footer>
+        </div>
 
       </div>
     );
