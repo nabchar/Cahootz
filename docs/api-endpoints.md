@@ -28,8 +28,10 @@
 * `PATCH /api/channels/:id`
 * `DELETE /api/channels/:id`
 
-* `POST /api/channels/:id/subscriptions`
-* `DELETE /api/channels/:id/subscriptions`
+* `POST /api/channels/:id/subscriptions` to 'api/channels#subscribe'
+* `DELETE /api/channels/:id/subscriptions` to 'api/channels#unsubscribe'
+
+* `GET /api/subscriptions` to 'api/channels#subscriptions' (get subscribed channels of current User);
 
 ### Messages
 
