@@ -35,3 +35,24 @@ export const deleteChannel = id => (
     method: 'DELETE'
   })
 );
+
+export const fetchSubscribedChannels = () => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/subscriptions'
+  })
+);
+
+export const subscribeToChannel = channelId => (
+  $.ajax({
+    url: `api/channels/${id}`,
+    method: 'POST'
+  })
+);
+
+export const unsubscribeFromChannel = channelId => (
+  $.ajax({
+    url: `api/subscriptons/${id}`,
+    method: 'DELETE'
+  })
+);

@@ -6,7 +6,7 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def create
-    @channel = Channel.find(param[:id])
+    @channel = Channel.find(param[:channelId])
     current_user.subscribed_channels = @channel
 
     @subscribed_channels = current_user.subscribed_channels
@@ -14,7 +14,7 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @channel = Channel.find(params[:id])
+    @channel = Channel.find(params[:channelId])
     @channel.members.delete(current_user)
 
     @subscribed_channels = current_user.subscribed_channels

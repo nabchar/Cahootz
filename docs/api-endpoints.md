@@ -33,12 +33,6 @@
 * `POST /api/subscriptions/:channelId`
 * `DELETE /api/subscriptions/:channelId`
 
-<!-- * `POST /api/channels/:id/subscriptions` to 'api/channels#subscribe'
-* `DELETE /api/channels/:id/subscriptions` to 'api/channels#unsubscribe' -->
-
-
-
-* `GET /api/subscriptions` to 'api/channels#subscriptions' (get subscribed channels of current User);
 
 ### Messages
 
