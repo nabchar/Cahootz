@@ -20,8 +20,11 @@ class MainChannel extends React.Component {
       <div className='channel-main'>
         <div className='channel-index-outer'>
           <div className='user-nav'>
-            <p>Welcome {currentUser.username}!</p>
-            <button onClick={this.handleClick}>Sign Out</button>
+            <div>
+              <p>Cahootz</p>
+              <p>Welcome {currentUser.username}!</p>
+              <button onClick={this.handleClick}>Sign Out</button>
+            </div>
           </div>
           <aside className='channel-index'>
             Channel Nav
