@@ -9,7 +9,6 @@ import Splash from './splash/splash';
 export const Root = ({ store }) => {
 
   function _redirectIfLoggedIn(nextState, replace) {
-    debugger
     const loggedIn = Boolean(store.getState().currentUser.id);
     if (loggedIn) {
       replace('/messages');
