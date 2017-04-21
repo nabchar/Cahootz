@@ -1,25 +1,23 @@
 class Api::SubscriptionsController < ApplicationController
   before_action :ensure_user!
 
-  def create
-    @subscription = Subscription.new(subscription_params)
+  def index
+    @subscribed_channels = current_user.subscribed_channels
+  end
 
-    if @subscription.save
-      channel = @subscription.channel
-      render "api/channel/show"
-    else
-      render json @subscription.errors, status: 422
-    end
+  def create
+    @channel = Channel.find(param[:id])
+    current_user.subscribed_channels = @channel
+
+    @subscribed_channels = current_user.subscribed_channels
+    render :index
   end
 
   def destroy
-    subscription = Subscription.find(params[:id])
-    subscription.destroy
-    render json: {}
-  end
+    @channel = Channel.find(params[:id])
+    @channel.members.delete(current_user)
 
-  private
-  def subscription_params
-    params.require(:subscription).permit(:user_id, :channel_id)
+    @subscribed_channels = current_user.subscribed_channels
+    render :index
   end
 end

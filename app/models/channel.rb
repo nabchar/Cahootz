@@ -22,9 +22,10 @@ class Channel < ApplicationRecord
     class_name: 'User'
 
   has_many :subscriptions, dependent: :destroy
+  has_many :messages, dependent: :destroy
+
   has_many :members,
     through: :subscriptions,
     source: :member
 
-  has_many :messages, dependent: :destroy
 end

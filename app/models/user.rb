@@ -17,12 +17,12 @@ class User < ApplicationRecord
 
   has_many :channels
   has_many :subscriptions
+  has_many :messages, dependent: :destroy
 
   has_many :subscribed_channels,
     through: :subscriptions,
     source: :channel
 
-  has_many :messages, dependent: :destroy
 
   attr_reader :password
 

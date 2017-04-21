@@ -3,19 +3,17 @@ class Api::ChannelsController < ApplicationController
 
   def index
     @channels = Channel.includes(:members).includes(:creator).all
-    render "api/channels/index"
   end
 
   def show
     @channel = Channel.includes(:members).find(params[:id])
-    render "api/channels/show"
   end
 
   def create
     @channel = Channel.new(channel_params)
 
     if @channel.save
-      render "api/channels/show"
+      render :show
     else
       render json: @channel.errors, status: 422
     end
@@ -24,7 +22,7 @@ class Api::ChannelsController < ApplicationController
   def update
     @channel.find_by(params[:id])
     if @channel.update(channel_params)
-      render "api/channels/show"
+      render :show
     else
       render json: @channel.errors, status: 422
     end
@@ -32,9 +30,9 @@ class Api::ChannelsController < ApplicationController
 
   def destroy
     @channel = Channel.find(params[:id])
-    
+
     if @channel.destroy
-      render "api/channels/show"
+      render :show
     else
       render json: @channel.errors.full_messages, status: 422
     end
