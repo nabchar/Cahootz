@@ -7,6 +7,11 @@ import { hashHistory } from 'react-router';
 
 
 const UserNav = ({ currentUser }) => {
+  let userHandle;
+  if (currentUser) {
+    userHandle = currentUser.username;
+  }
+
   return (
     <div className="user-nav">
       <div className="nav-header">
@@ -17,7 +22,7 @@ const UserNav = ({ currentUser }) => {
       </div>
       <div className="username">
         <div className="status"></div>
-        <span>{ currentUser.username }</span>
+        <span>{ userHandle }</span>
       </div>
     </div>
   );

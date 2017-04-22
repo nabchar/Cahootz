@@ -9,13 +9,10 @@ const ChannelList = (props) => {
   const userChannelList = userChannels.map(channel => {
       let channelType = (channel.id === parseInt(channelId)) ?
                         'current' : 'non-current';
-      debugger
       return (
         <li className={channelType}
             key={ channel.id }>
-            <p>
-              <i># <span>{ channel.name }</span></i>
-            </p>
+            <p><i># <span>{ channel.name }</span></i></p>
         </li>
       );
     });
@@ -41,25 +38,13 @@ const ChannelList = (props) => {
 
         <ul className='dm-list'>
           <li className='list-item'>
-            <p>
-              <i><div className='status'></div>
-                <span>nabchar (you)</span>
-              </i>
-            </p>
+            <p><i><div className='status'></div><span>nabchar (you)</span></i></p>
           </li>
           <li className='list-item'>
-            <p>
-              <i><div className='status'></div>
-                <span>rona</span>
-              </i>
-            </p>
+            <p><i><div className='status'></div><span>rona</span></i></p>
           </li>
           <li className='list-item'>
-            <p>
-              <i><div className='status'></div>
-                <span>mbones</span>
-              </i>
-            </p>
+            <p><i><div className='status'></div><span>mbones</span></i></p>
           </li>
         </ul>
       </div>

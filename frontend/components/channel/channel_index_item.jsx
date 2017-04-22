@@ -2,7 +2,6 @@ import React from 'react';
 
 
 export default function ChannelIndexItem ( {channel} ) {
-  debugger
   if (channel) {
     let {name, id} = channel;
     return (
