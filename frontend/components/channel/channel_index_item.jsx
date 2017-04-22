@@ -2,14 +2,15 @@ import React from 'react';
 
 
 export default function ChannelIndexItem ( {channel} ) {
+  debugger
   if (channel) {
-    let {channelName, id} = channel;
+    let {name, id} = channel;
     return (
       <li key={id} className='list-item'>
-        { channelName }
+        { name }
       </li>
     );
   } else {
-    return
+    return ;
   }
 }

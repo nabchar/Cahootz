@@ -13,7 +13,16 @@ class ChannelIndex extends React.Component {
 
 
   render () {
-    let {currentChannel, numChannels} = this.props;
+    let {channels, subscribedChannels} = this.props;
+    let { channelId } = this.props.params;
+    debugger
+
+    let ChannelList = subscribedChannels.map((channel) => {
+      debugger
+      return (
+        <ChannelIndexItem channel={channel}/>
+      );
+    });
 
     debugger
 
@@ -21,12 +30,9 @@ class ChannelIndex extends React.Component {
       <aside className='channel-index'>
         Channel Nav
         <div className='channel-list-outer'>
-          <p>Channels </p>
+          <p>Channels () </p>
           <ul className='channel-list'>
-            //   this.props.channels.map(
-            //
-            //     //stuff
-            //   )
+            {ChannelList}
           </ul>
         </div>
 

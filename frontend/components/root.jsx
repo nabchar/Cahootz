@@ -19,7 +19,7 @@ export const Root = ({ store }) => {
   function _redirectIfLoggedOut(nextState, replace) {
     const loggedOut = Boolean(store.getState().session.currentUser);
     if (!loggedOut) {
-      replace('/')
+      replace('/');
     }
   }
 

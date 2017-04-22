@@ -22,12 +22,14 @@ class SessionForm extends React.Component {
   }
 
   handleGuest() {
-    this.props.signInGuest().then(() => hashHistory.push('/messages/3'))
+    this.props.signInGuest().then(() => this.props.fetchAllChannels())
+      .then(() => hashHistory.push('/messages/3'));
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.authAction({user: this.state}).then( () => this.clearForm())
+      .then(() => this.props.fetchAllChannels())
       .then(() => hashHistory.push("/messages/3"));
   }
 
@@ -46,10 +48,11 @@ class SessionForm extends React.Component {
   render () {
     let { formType, errors, authMessage } = this.props;
     let newPath = (formType === "Sign in") ? '/signup' : '/signin';
-    let linkName = (newPath === '/signin') ? 'Sign In' : 'Sign Up'
+    let linkName = (newPath === '/signin') ? 'Sign In' : 'Sign Up';
     let guestAccountMessage = '';
     if (formType === 'Sign up') {
-      guestAccountMessage = (<p className='guest-message align-center'>or give it a <span onClick={this.handleGuest}>try</span>.</p>);
+      guestAccountMessage =
+      (<p className='guest-message align-center'>or give it a <span onClick={this.handleGuest}>try</span>.</p>);
     }
 
     return (
