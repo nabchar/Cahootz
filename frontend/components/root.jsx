@@ -41,4 +41,4 @@ export const Root = ({ store }) => {
         </Route>
       </Router>
     </Provider>);
-}
+};

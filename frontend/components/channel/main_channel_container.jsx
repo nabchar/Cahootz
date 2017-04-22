@@ -1,12 +1,14 @@
 import React from 'react';
-import { logOut } from '../../actions/session_actions';
-import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import {fetchAllChannels} from '../../actions/channel_actions';
 import ChannelIndexContainer from './channel_index_container';
+import { logOut } from '../../actions/session_actions';
 
 
-class MainChannel extends React.Component {
+
+
+class MainChatroom extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

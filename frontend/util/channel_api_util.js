@@ -6,25 +6,10 @@ export const fetchAllChannels = () => (
   })
 );
 
-export const fetchSingleChannel = id => (
-  $.ajax({
-    method: 'GET',
-    url: `api/channels/${id}`
-  })
-);
-
 export const createChannel = channel => (
   $.ajax({
     url: 'api/channels',
     method: 'POST',
-    data: { channel }
-  })
-);
-
-export const updateChannel = channel => (
-  $.ajax({
-    url: `api/channels/${channel.id}`,
-    method: 'PATCH',
     data: { channel }
   })
 );
@@ -36,6 +21,23 @@ export const deleteChannel = id => (
   })
 );
 
+export const fetchSingleChannel = id => (
+  $.ajax({
+    method: 'GET',
+    url: `api/channels/${id}`
+  })
+);
+
+
+export const updateChannel = channel => (
+  $.ajax({
+    url: `api/channels/${channel.id}`,
+    method: 'PATCH',
+    data: { channel }
+  })
+);
+
+
 export const fetchSubscribedChannels = () => (
   $.ajax({
     method: 'GET',
@@ -45,14 +47,14 @@ export const fetchSubscribedChannels = () => (
 
 export const subscribeToChannel = channelId => (
   $.ajax({
-    url: `api/channels/${id}`,
+    url: `api/channels/${channelId}`,
     method: 'POST'
   })
 );
 
 export const unsubscribeFromChannel = channelId => (
   $.ajax({
-    url: `api/subscriptons/${id}`,
+    url: `api/subscriptons/${channelId}`,
     method: 'DELETE'
   })
 );

@@ -4,6 +4,8 @@ import * as ChannelApiUtil from '../util/channel_api_util';
 export const RECEIVE_ALL_CHANNELS = "RECEIVE_ALL_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
+export const FETCH_CHANNELS = "REQUEST_CHANNELS";
+
 
 //ACTIONS
 const receiveAllChannels = channels => ({
@@ -21,28 +23,25 @@ const removeChannel = channel => ({
   channel
 });
 
-//THUNK ACTIONS
-export const fetchAllChannels = () => dispatch => (
-  ChannelApiUtil.fetchAllChannels()
-    .then(channels => dispatch(receiveAllChannels(channels)))
-);
 
-export const fetchSingleChannel = id => dispatch => (
-  ChannelApiUtil.fetchSingleChannel(id)
-    .then(channel => dispatch(receiveChannel(channel)))
-);
+//THUNK ACTIONS
+export const fetchChannels = () => dispatch => {
+  dispatch({type: FETCH_CHANNELS});
+  return ChannelApiUtil.fetchAllChannels()
+    .then(res => dispatch(receiveAllChannels(res)));
+};
 
 export const createChannel = channel => dispatch => (
   ChannelApiUtil.createChannel(channel)
-    .then(channel => dispatch(receiveChannel(channel)))
+    .then(res => dispatch(receiveChannel(res)))
 );
 
 export const updateChannel = channel => dispatch => (
   ChannelApiUtil.updateChannel(channel)
-    .then(channel => dispatch(receiveChannel(channel)))
+    .then(res => dispatch(receiveChannel(res)))
 );
 
 export const deleteChannel = id => dispatch => (
   ChannelApiUtil.deleteChannel(id)
-    .then(channel => dispatch(removeChannel(channel)))
+    .then(res => dispatch(removeChannel(res)))
 );
