@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from './app';
 import SessionFormContainer from './session/session_form_container';
-import MainChannel from './channel/main_channel_container';
+import MainChat from './channel/main_chat';
 import Splash from './splash/splash';
 import ChannelIndexContainer from './channel/channel_index_container';
 
@@ -36,7 +36,7 @@ export const Root = ({ store }) => {
                  component={ SessionFormContainer }
                  onEnter={_redirectIfLoggedIn} />
           <Route path='/messages/:channelId'
-                 component={ MainChannel }
+                 component={ MainChat }
                  onEnter={_redirectIfLoggedOut} />
         </Route>
       </Router>

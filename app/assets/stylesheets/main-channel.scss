@@ -1,3 +1,9 @@
+$hover-item: #3E313C;
+$column-bg: #4D394B;
+$active-item: #4C9689;
+$active-presence: #38978D;
+$active-item-text: #FFFFFF;
+
 
 div.channel-main {
   height: 100vh;
@@ -11,7 +17,6 @@ div.channel-index-outer {
   flex-direction: column;
   min-width: 220px;
   max-width: 220px;
-  border: solid 1px red;
   color: #AB9BA9;
   background-color: #4D394B;
 }
@@ -21,22 +26,140 @@ aside.channel-list {
   height: 100%;
 }
 
-div.user-nav {
-  padding: 20px 0 18px 0;
-  border: solid 1px red;
-  display: flex;
-  justify-content: space-between;
+
+// USER NAV
+div.user-nav:hover {
+  background: $hover-item;
 }
 
-
-div.current-channel {
-  height: 100vh;
-  border: solid 1px red;
+div.user-nav {
+  padding: 8px 0 8px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 80%;
 }
+
+div.nav-header p  {
+  color: white;
+  span {
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+    margin-left: 5px;
+  }
+
+  i.fa-slack {
+    font-size: 1.125rem;
+  }
+}
+
+.username {
+
+}
+
+.status {
+        margin-right: 4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 10px;
+        background-color: #4C9689;
+        display: inline-block;
+      }
+
+// CHANNEL LIST
+
+div.channel-list-outer {
+  p.list-header {
+    padding-left: 20px;
+    display: flex;
+  }
+
+  p.list-header:hover {
+    color: $active-item-text;
+  }
+}
+
+i.add-channel {
+  color: #AB9BA9;
+  font-size: 1rem;
+  position: absolute;
+  top: 70px;
+  left: 180px;
+}
+
+.add-channel:hover {
+  color: $active-item-text;
+}
+
+
+ul.channel-list {
+
+  li {
+    margin-right: 18px;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+
+    p {
+      padding-left: 20px;
+    }
+  }
+
+  li.current {
+    background-color: $active-item;
+    color: $active-item-text;
+  }
+
+  li.non-current {
+    font-weight: lighter;
+  }
+
+  li.non-current:hover {
+    background: $hover-item;
+  }
+
+}
+
+div.dm-list-outer {
+  margin-top: 40px;
+
+  p.dm-header {
+    padding-left: 20px;
+  }
+  p.dm-header:hover {
+    color: $active-item-text;
+  }
+}
+
+i.add-dm {
+  color: #AB9BA9;
+  font-size: 1rem;
+  position: absolute;
+  top: 180px;
+  left: 180px;
+}
+
+i.add-channel:hover {
+  color: $active-item-text;
+}
+
+ul.dm-list {
+  li {
+    margin-right: 18px;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+
+    p {
+      padding-left: 20px;
+    }
+  }
+
+  li:hover {
+    background: $hover-item;
+  }
+}
+
+
+
+// MESSAGES
+
 
 header.messages-header {
   display: flex;

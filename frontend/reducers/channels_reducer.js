@@ -3,7 +3,7 @@ import { RECEIVE_ALL_CHANNELS,
         REMOVE_CHANNEL } from '../actions/channel_actions';
 
 const _defaultState = {
-  isFetching: false
+  isFetching: true
 };
 
 const ChannelsReducer = (oldState = _defaultState, action) => {
