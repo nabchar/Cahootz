@@ -10,12 +10,11 @@ import { subscribeToChannel } from '../../actions/channel_actions';
 import UserNav from './user_nav';
 import ChannelList from './channel_list';
 import ChannelForm from '../modals/channel_form';
-import ChannelSearch from '../modals/channel_search'
+import ChannelSearch from '../modals/channel_search';
 
 const mapStateToProps = ({session, channels}) => {
   // channels user is subscribed
   const userChannels = session.subscriptions.map( sub => channels[sub.id]);
-
   return {
     session,
     channels: Object.values(channels),
@@ -32,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-class ChannelIndex extends React.Component {
+class ChannelSidebar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -70,13 +69,16 @@ class ChannelIndex extends React.Component {
   }
 
   closeModal() {
-
     this.setState({ showModal: false });
   }
 
   componentWillMount() {
     Modal.setAppElement('body');
  }
+
+  componentWillReceiveNewProps(newProps) {
+    debugger
+  }
 
   openChannelForm() {
     this.setState({
@@ -111,13 +113,15 @@ class ChannelIndex extends React.Component {
   render () {
     let { currentUser } = this.props.session;
     let { userChannels } = this.props;
+    debugger
 
     return (
       <div className='channel-index-outer'>
         <UserNav currentUser={currentUser}/>
         <ChannelList userChannels={userChannels}
                      openChannelForm={this.openChannelForm}
-                     openChannelSearch={this.openChannelSearch}/>
+                     openChannelSearch={this.openChannelSearch}
+                     currentUser={currentUser}/>
 
 
         <Modal
@@ -142,4 +146,4 @@ class ChannelIndex extends React.Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ChannelIndex);
+)(ChannelSidebar);

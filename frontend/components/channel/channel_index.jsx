@@ -3,14 +3,9 @@ import ChannelIndexItem from './channel_index_item';
 
 class ChannelIndex extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
   }
-
-  componentDidMount() {
-    //fetch user subscribed channels
-  }
-
 
   render () {
     let {channels, subscribedChannels} = this.props;
@@ -44,6 +39,6 @@ class ChannelIndex extends React.Component {
       </aside>
     );
   }
-};
+}
 
 export default ChannelIndex;

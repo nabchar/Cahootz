@@ -3,7 +3,7 @@ import { Link, withRouter, hashHistory } from 'react-router';
 
 
 const ChannelList = (props) => {
-  let { userChannels, openChannelForm, openChannelSearch } = props;
+  let { userChannels, openChannelForm, openChannelSearch, currentUser } = props;
   let { channelId } = props.params;
 
   const userChannelList = userChannels.map(channel => {
@@ -45,7 +45,7 @@ const ChannelList = (props) => {
 
         <ul className='dm-list'>
           <li className='list-item'>
-            <p><i><div className='status'></div><span>nabchar (you)</span></i></p>
+            <p><i><div className='status'></div><span>currentUser (you)</span></i></p>
           </li>
           <li className='list-item'>
             <p><i><div className='status'></div><span>rona</span></i></p>

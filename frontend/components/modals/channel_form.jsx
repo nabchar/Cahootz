@@ -23,11 +23,9 @@ class ChannelForm extends React.Component {
     this.props.createChannel(channel)
       .then((res) => {
         url = '/messages/' + res.channel.id;
-        debugger
         subscribeToChannel(res.channel.id);
       })
       .then((res) => {
-        debugger
         hashHistory.push(url);
       }).then(() => this.props.closeModal());
   }
