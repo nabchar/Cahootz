@@ -15,16 +15,13 @@ class ChannelIndex extends React.Component {
   render () {
     let {channels, subscribedChannels} = this.props;
     let { channelId } = this.props.params;
-    debugger
 
     let ChannelList = subscribedChannels.map((channel) => {
-      debugger
       return (
         <ChannelIndexItem channel={channel}/>
       );
     });
 
-    debugger
 
     return (
       <aside className='channel-index'>

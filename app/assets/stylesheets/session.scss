@@ -58,7 +58,7 @@ section.session {
   flex-direction: column;
 }
 
-input[type=text], input[type=password] {
+input[type=text], textarea, input[type=password] {
   font-size: 1.25rem;
   line-height: normal;
   padding: .75rem;
@@ -84,6 +84,7 @@ input[type="submit"] {
   border: none;
   cursor: pointer;
   margin-top: 10px;
+  text-shadow: 0 1px 1px rgba(0,0,0,.1);
 }
 
 p.auth-instructions {

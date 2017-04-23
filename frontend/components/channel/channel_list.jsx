@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router';
 
 
 const ChannelList = (props) => {
-  let { userChannels } = props;
+  let { userChannels, openChannelForm } = props;
   let { channelId } = props.params;
 
   const userChannelList = userChannels.map(channel => {
@@ -22,7 +22,9 @@ const ChannelList = (props) => {
       <div className='channel-list-outer'>
         <p className='list-header'>
           <span>Channels</span>
-          <i className="fa fa-plus-circle add-channel" aria-hidden="true"></i>
+          <i className="fa fa-plus-circle add-channel"
+             aria-hidden="true"
+             onClick={openChannelForm}></i>
         </p>
 
         <ul className='channel-list'>

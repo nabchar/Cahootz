@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {withRouter} from 'react-router';
+import {withRouter, hashHistory} from 'react-router';
 import { logOut } from '../../actions/session_actions';
-import { hashHistory } from 'react-router';
+import { createChannel } from '../../actions/channel_actions';
+import Modal from 'react-modal';
+
 import UserNav from './user_nav';
 import ChannelList from './channel_list';
+import ChannelForm from '../modals/channel_form';
 
 const mapStateToProps = ({session, channels}) => {
   // channels user is subscribed
@@ -19,7 +22,8 @@ const mapStateToProps = ({session, channels}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logOut: () => dispatch(logOut())
+    logOut: () => dispatch(logOut()),
+    createChannel: (channel) => dispatch(createChannel(channel))
   };
 };
 
@@ -27,7 +31,58 @@ const mapDispatchToProps = (dispatch) => {
 class ChannelIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+
+    this.state = {
+      showModal: false,
+      modalContent: <div></div>
+    };
+
+    this.modalStyle = {
+      overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: '#FFF',
+        zIndex: 10
+      },
+      content: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: '100vh',
+        padding: '20px',
+        zIndex: 11
+      },
+    };
+
+    this.closeModal = this.closeModal.bind(this);
+    this.openChannelForm = this.openChannelForm.bind(this);
+    this.handleClick = this.handleClick.bind(this); // to remove
+  }
+
+  closeModal() {
+
+    this.setState({ showModal: false });
+  }
+
+  componentWillMount() {
+    Modal.setAppElement('body');
+ }
+
+  openChannelForm() {
+    this.setState({
+      showModal: true,
+      modalContent: (
+        <ChannelForm
+          createChannel={this.props.createChannel}
+          closeModal={this.closeModal}
+          currentUser={this.props.session.currentUser} />
+      ),
+    });
   }
 
   handleClick () {
@@ -41,13 +96,28 @@ class ChannelIndex extends React.Component {
     return (
       <div className='channel-index-outer'>
         <UserNav currentUser={currentUser}/>
-        <ChannelList userChannels={userChannels}/>
+        <ChannelList userChannels={userChannels}
+                     openChannelForm={this.openChannelForm}/>
+
+
+        <Modal
+          isOpen={this.state.showModal}
+          onRequestClose={this.closeModal}
+          style={this.modalStyle}
+          contentLabel='channelModal'>
+
+          {this.state.modalContent}
+          <button
+            className="modal-close"
+            onClick={this.closeModal}>
+            <span className="modal-close-icon">✕</span>
+            <span className="modal-close-text">esc</span>
+          </button>
+        </Modal>
       </div>
     );
   }
 }
-
-
 
 export default connect(
   mapStateToProps,

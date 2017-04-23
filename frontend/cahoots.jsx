@@ -6,6 +6,7 @@ import { Root } from './components/root';
 //TEST
 import {logOut} from './actions/session_actions';
 import * as ChannelApiUtil from './util/channel_api_util';
+import { createChannel } from './actions/channel_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   window.logOut = logOut;
   window.ChannelApiUtil = ChannelApiUtil;
+  window.createChannel = createChannel;
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={ store }/>, root);
