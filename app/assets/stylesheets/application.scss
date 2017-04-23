@@ -13,13 +13,14 @@
  *= require_self
  */
 
- @import "reset.scss";
- @import "session.scss";
- @import "splash.scss";
+ @import "reset";
+ @import "session";
+ @import "splash";
  @import "font-awesome-sprockets";
  @import "font-awesome";
  @import "main-channel";
- 
+ @import "channel_form";
+
 body {
   font-family: Lato, sans-serif;
 }

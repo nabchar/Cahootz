@@ -2,6 +2,7 @@ div.channel-form-main {
   display: flex;
   justify-content: center;
   margin-top: 150px;
+  min-width: 575px;
 }
 
 section.channel-form {
@@ -27,9 +28,14 @@ section.channel-form {
       font-size: 16px;
     }
 
-    .channel-form-info {
+    p.form-info {
       color: #717274;
       font-size: .8rem;
+    }
+
+    div.channel-form-buttons {
+      display: flex;
+      justify-content: flex-end;
     }
 
     input[type=submit] {
@@ -64,5 +70,31 @@ section.channel-form {
       text-align: center;
       color: #555459;
     }
+  }
+}
+
+.modal-close {
+  color: #9e9ea6;
+  background: white;
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  border-width: 0;
+
+  .modal-close-icon {
+    display: block;
+    font-size: 24px;
+  }
+
+  .modal-close-text {
+    font-size: 12px;
+  }
+
+  &:hover {
+    color: #555459;
+    background: #e8e8e8;
   }
 }
