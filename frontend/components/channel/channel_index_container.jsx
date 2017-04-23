@@ -76,10 +76,6 @@ class ChannelSidebar extends React.Component {
     Modal.setAppElement('body');
  }
 
-  componentWillReceiveNewProps(newProps) {
-    debugger
-  }
-
   openChannelForm() {
     this.setState({
       showModal: true,
@@ -113,11 +109,11 @@ class ChannelSidebar extends React.Component {
   render () {
     let { currentUser } = this.props.session;
     let { userChannels } = this.props;
-    debugger
 
     return (
       <div className='channel-index-outer'>
-        <UserNav currentUser={currentUser}/>
+        <UserNav currentUser={currentUser}
+                 logOut={this.props.logOut}/>
         <ChannelList userChannels={userChannels}
                      openChannelForm={this.openChannelForm}
                      openChannelSearch={this.openChannelSearch}
