@@ -30,7 +30,6 @@ export const fetchSingleChannel = id => (
 
 
 export const updateChannel = channel => {
-  debugger
   return $.ajax({
     url: `api/channels/${channel.id}`,
     method: 'PATCH',
@@ -49,8 +48,9 @@ export const fetchSubscribedChannels = () => (
 export const subscribeToChannel = channelId => {
   debugger
   return $.ajax({
-    url: `api/channels/${channelId}`,
-    method: 'POST'
+    url: `api/subscriptions`,
+    method: 'POST',
+    data: {channelId}
   });
 };
 

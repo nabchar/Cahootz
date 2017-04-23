@@ -11,6 +11,7 @@ class Api::ChannelsController < ApplicationController
 
   def create
     @channel = Channel.new(channel_params)
+    @subscription.create(user_id: current_user.id, channel_id: channel.id)
 
     if @channel.save
       render :show

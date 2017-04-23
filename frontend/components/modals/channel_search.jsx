@@ -1,60 +1,39 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
+import ChannelSearchItem from './channel_search_item';
 
 
 class ChannelSearch extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {query: ""};
   }
 
-  componenDidMount() {
-    this.props.fetchAllChannels();
-  }
+  render () {
+    let {allChannels, subscribeToChannel, subscribedChannels, closeModal} = this.props;
 
-  render() {
-    const { channels } = this.props;
-    const searchItems = tweets.map(channel => {
-      return <ChannelSearchItem key = { channel.id } channel={channel}/>;
-    });
+    const channelSearchItems = allChannels.map((channel) => {
+      return (
+        <ChannelSearchItem
+          key={channel.id}
+          channel={channel}
+          subscribeToChannel={subscribeToChannel}
+          closeModal={closeModal}
+          subscribedChannels={subscribedChannels}/>
+        );
+      });
 
     return(
-      <div className='browse-main'>
-        <header className='browse-header'>
-          <div></div>
-          <div>
-            <Link to={'/messages'}>esc</Link>
-          </div>
-        </header>
-
-        <div className='channel-browse'>
-          <div className='channel-browse-title'>
-            <h1>Browse all channels</h1>
-            <Link to={'/'}></Link>
-          </div>
-          <div className='search-bar-outer'>
-            <div className='browse-filter-outer'>
-              Search input
-            </div>
-            <div className='browse-sort-outer'>
-              Sort channels
-            </div>
-          </div>
-          <div className='channel-list-outer'>
-            <div className='channel-sub-head'>
-              Channels you can join
-            </div>
-            <div className='channel-list'>
-              Channel List
-              <div className='channel-list-item'>
-                Channel List Item
-              </div>
-            </div>
-          </div>
+        <div className="channel-search-main">
+          <section className="channel-search">
+            <h2>Browse all channels</h2>
+            <ul>
+              {channelSearchItems}
+            </ul>
+          </section>
         </div>
-      </div>
     );
-  };
+  }
 
 }
+
+export default ChannelSearch;

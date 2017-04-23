@@ -6,11 +6,15 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def create
-    @channel = Channel.find(param[:channelId])
-    current_user.subscribed_channels = @channel
-
-    @subscribed_channels = current_user.subscribed_channels
-    render :index
+    @channel = Channel.find(params[:channelId])
+    @subscription = Subscription.create(user_id: current_user.id, channel_id: @channel.id)
+    if @subscription
+      #should render current user again
+      @user = current_user
+      render 'api/users/show'
+    else
+      render json: @subscription.errors
+    end
   end
 
   def destroy

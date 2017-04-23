@@ -1,4 +1,4 @@
 
-export function allChannels({ channels }) {
+export function allChannels( channels ) {
   return Object.values(channels);
 }

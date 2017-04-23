@@ -2,12 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter, hashHistory} from 'react-router';
 import { logOut } from '../../actions/session_actions';
-import { createChannel } from '../../actions/channel_actions';
+import { createChannel,  } from '../../actions/channel_actions';
 import Modal from 'react-modal';
+import { allChannels } from '../../reducers/selectors';
+import { subscribeToChannel } from '../../actions/channel_actions';
 
 import UserNav from './user_nav';
 import ChannelList from './channel_list';
 import ChannelForm from '../modals/channel_form';
+import ChannelSearch from '../modals/channel_search'
 
 const mapStateToProps = ({session, channels}) => {
   // channels user is subscribed
@@ -15,7 +18,7 @@ const mapStateToProps = ({session, channels}) => {
 
   return {
     session,
-    channels,
+    channels: Object.values(channels),
     userChannels
   };
 };
@@ -23,7 +26,8 @@ const mapStateToProps = ({session, channels}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     logOut: () => dispatch(logOut()),
-    createChannel: (channel) => dispatch(createChannel(channel))
+    createChannel: (channel) => dispatch(createChannel(channel)),
+    subscribeToChannel: (channelId) => dispatch(subscribeToChannel(channelId))
   };
 };
 
@@ -61,6 +65,7 @@ class ChannelIndex extends React.Component {
 
     this.closeModal = this.closeModal.bind(this);
     this.openChannelForm = this.openChannelForm.bind(this);
+    this.openChannelSearch = this.openChannelSearch.bind(this);
     this.handleClick = this.handleClick.bind(this); // to remove
   }
 
@@ -85,6 +90,19 @@ class ChannelIndex extends React.Component {
     });
   }
 
+  openChannelSearch() {
+    this.setState({
+      showModal: true,
+      modalContent: (
+        <ChannelSearch
+          subscribedChannels={this.props.session.subscriptions}
+          allChannels={this.props.channels}
+          subscribeToChannel={this.props.subscribeToChannel}
+          closeModal={this.closeModal} />
+      ),
+    });
+  }
+
   handleClick () {
     this.props.logOut().then(() => hashHistory.push('/signin'));
   }
@@ -97,7 +115,8 @@ class ChannelIndex extends React.Component {
       <div className='channel-index-outer'>
         <UserNav currentUser={currentUser}/>
         <ChannelList userChannels={userChannels}
-                     openChannelForm={this.openChannelForm}/>
+                     openChannelForm={this.openChannelForm}
+                     openChannelSearch={this.openChannelSearch}/>
 
 
         <Modal
