@@ -85,7 +85,8 @@ class ChannelIndex extends React.Component {
         <ChannelForm
           createChannel={this.props.createChannel}
           closeModal={this.closeModal}
-          currentUser={this.props.session.currentUser} />
+          currentUser={this.props.session.currentUser}
+          subscribeToChannel={this.props.subscribeToChannel} />
       ),
     });
   }

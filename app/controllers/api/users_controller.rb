@@ -9,7 +9,12 @@ class Api::UsersController < ApplicationController
 
 		if @user.save
 			login(@user)
-      @user.previous_channel_id = Channel.first.id
+
+      default_channel = Channel.first.id
+      @user.previous_channel_id = default_channel
+      Subscription.create(user_id: @user.id, channel_id: default_channel)
+      @user.save
+
 			render "api/users/show"
 		else
 			render json: @user.errors, status: 422

@@ -1,4 +1,5 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 
 class ChannelForm extends React.Component {
   constructor(props) {
@@ -16,9 +17,19 @@ class ChannelForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    let url;
     const channel = this.state;
-    this.props.createChannel(channel);
-    this.props.closeModal();
+    const { currentUser, subscribeToChannel } = this.props;
+    this.props.createChannel(channel)
+      .then((res) => {
+        url = '/messages/' + res.channel.id;
+        debugger
+        subscribeToChannel(res.channel.id);
+      })
+      .then((res) => {
+        debugger
+        hashHistory.push(url);
+      }).then(() => this.props.closeModal());
   }
 
   handleClick(e) {

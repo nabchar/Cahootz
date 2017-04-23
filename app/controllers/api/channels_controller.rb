@@ -11,9 +11,10 @@ class Api::ChannelsController < ApplicationController
 
   def create
     @channel = Channel.new(channel_params)
-    @subscription.create(user_id: current_user.id, channel_id: channel.id)
 
     if @channel.save
+      # Subscription.create!(user_id: current_user.id, channel_id: @channel.id)
+
       render :show
     else
       render json: @channel.errors, status: 422
