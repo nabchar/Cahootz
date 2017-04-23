@@ -9,6 +9,7 @@ class Api::UsersController < ApplicationController
 
 		if @user.save
 			login(@user)
+      @user.previous_channel_id = Channel.first.id
 			render "api/users/show"
 		else
 			render json: @user.errors, status: 422

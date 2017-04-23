@@ -1,5 +1,5 @@
 json.currentUser do
-  json.extract! user, :id, :username
+  json.extract! user, :id, :username, :previous_channel_id
 end
 
 json.subscriptions do

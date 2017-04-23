@@ -6,7 +6,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    @channel = Channel.includes(:members).find(params[:id])
+    @channel = Channel.includes(:members).includes(:creator).find(params[:id])
   end
 
   def create

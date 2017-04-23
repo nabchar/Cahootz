@@ -28,3 +28,9 @@ channels.each do |channel|
     Subscription.create!(user_id: user.id, channel_id: channel.id)
   end
 end
+
+generalChannel = Channel.first.id
+users.each do |user|
+  user.previous_channel_id = generalChannel;
+  user.save!
+end
