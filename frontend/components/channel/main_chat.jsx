@@ -7,6 +7,7 @@ import ChannelSidebar from './channel_index_container';
 import { logOut } from '../../actions/session_actions';
 import ChannelNav from './channel_nav';
 import MessageIndex from '../messages/message_index';
+import MessageForm from '../messages/message_form';
 
 const mapStateToProps = ( {channels, messages} ) => {
   return {
@@ -33,7 +34,6 @@ class MainChat extends React.Component {
     let { channelId } = this.props.params;
     channelId = parseInt(channelId);
 
-    debugger
     this.props.fetchChannels()
       .then(() => this.props.fetchMessages(channelId));
   }
@@ -59,6 +59,7 @@ class MainChat extends React.Component {
                 currentChannel={currentChannel}/>
             </header>
               <MessageIndex />
+              <MessageForm currentChannelId={currentChannel}/>
           </div>
         </div>
       );

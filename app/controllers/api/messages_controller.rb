@@ -9,6 +9,8 @@ class Api::MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     @message.channel_id = params[:channel_id]
+    @message.user_id = current_user.id
+
     if @message.save
       render :show
     else

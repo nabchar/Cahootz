@@ -32,10 +32,12 @@ export const fetchMessages = (channelId) => dispatch => {
     .then(res => dispatch(receiveMessages(res)));
 };
 
-export const createMessage = (message) => dispatch => (
-  MessageApiUtil.createMessage(message)
-    .then(res => dispatch(receiveMessage(res)),
-      err => dispatch(receiveErrors(err.responseJSON)))
+export const createMessage = (message, channelId) => dispatch => (
+  MessageApiUtil.createMessage(message, channelId)
+    .then(res => {
+      debugger
+      return dispatch(receiveMessage(res));
+    }, err => dispatch(receiveErrors(err.responseJSON)))
 );
 
 export const updateMessage = (message) => dispatch => (

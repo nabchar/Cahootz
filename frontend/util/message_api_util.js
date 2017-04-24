@@ -5,7 +5,7 @@ export const fetchMessages = (channelId) => {
   });
 };
 
-export const createChannel = (message, channelId) => {
+export const createMessage = (message, channelId) => {
   return $.ajax({
     url: `api/channels/${channelId}/messages`,
     method: 'POST',
@@ -13,7 +13,7 @@ export const createChannel = (message, channelId) => {
   });
 };
 
-export const updateChannel = message => {
+export const updateMessage = message => {
   return $.ajax({
     url: `api/messages/${message.id}`,
     method: 'PATCH',
@@ -21,7 +21,7 @@ export const updateChannel = message => {
   });
 };
 
-export const deleteChannel = id => (
+export const deleteMessage = id => (
   $.ajax({
     url: `api/messages/${id}`,
     method: 'DELETE'
