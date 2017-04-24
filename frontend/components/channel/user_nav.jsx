@@ -27,8 +27,8 @@ class UserNav extends React.Component {
         position: 'absolute',
         top: 56,
         left: 10,
-        width: 270,
-        height: 120,
+        width: 250,
+        height: 90,
         zIndex: 11,
         borderRadius: 6,
         border: '1px solid rgba(0,0,0,.15)',
@@ -78,12 +78,18 @@ class UserNav extends React.Component {
         <Modal
           isOpen={this.state.showModal}
           onRequestClose={this.closeDropdown}
-          style={this.style}>
+          style={this.style}
+          contentLabel='userNav'>
+
           <section className="sidebar-dropdown">
-            <h2>{userHandle}</h2>
-            <h3>@{userHandle}</h3>
             <div>
-              <button onClick={this.handleClick}>Sign out</button>
+              <h2>{userHandle}</h2>
+              <h3>@{userHandle}</h3>
+            </div>
+            <div className='signout'
+                 onClick={this.handleClick}>
+              <span>Sign out</span>
+              <i className="fa fa-sign-out" aria-hidden="true"></i>
             </div>
           </section>
         </Modal>

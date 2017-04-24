@@ -32,10 +32,14 @@ export const fetchChannels = () => dispatch => {
     .then(res => dispatch(receiveAllChannels(res)));
 };
 
+export const fetchChannel = id => dispatch => (
+  ChannelApiUtil.fetchSingleChannel(id)
+    .then(res => dispatch(receiveChannel(res)))
+);
+
 export const createChannel = channel => dispatch => (
   ChannelApiUtil.createChannel(channel)
-    .then(res => dispatch(receiveChannel(res)),
-          (err => console.log(err)))
+    .then(res => dispatch(receiveChannel(res)))
 );
 
 export const updateChannel = channel => dispatch => (

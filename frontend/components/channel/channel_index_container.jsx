@@ -5,7 +5,7 @@ import { logOut } from '../../actions/session_actions';
 import { createChannel,  } from '../../actions/channel_actions';
 import Modal from 'react-modal';
 import { allChannels } from '../../reducers/selectors';
-import { subscribeToChannel } from '../../actions/channel_actions';
+import { subscribeToChannel, fetchChannel } from '../../actions/channel_actions';
 
 import UserNav from './user_nav';
 import ChannelList from './channel_list';
@@ -26,7 +26,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logOut: () => dispatch(logOut()),
     createChannel: (channel) => dispatch(createChannel(channel)),
-    subscribeToChannel: (channelId) => dispatch(subscribeToChannel(channelId))
+    subscribeToChannel: (channelId) => dispatch(subscribeToChannel(channelId)),
+    fetchChannel: (id) => dispatch(fetchChannel(id))
   };
 };
 
@@ -84,7 +85,8 @@ class ChannelSidebar extends React.Component {
           createChannel={this.props.createChannel}
           closeModal={this.closeModal}
           currentUser={this.props.session.currentUser}
-          subscribeToChannel={this.props.subscribeToChannel} />
+          subscribeToChannel={this.props.subscribeToChannel}
+          fetchChannel={this.props.fetchChannel}/>
       ),
     });
   }

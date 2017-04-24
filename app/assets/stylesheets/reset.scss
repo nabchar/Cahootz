@@ -52,3 +52,17 @@ table {
 .align-center {
   text-align: center;
 }
+
+ul {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 8px;  /* remove scrollbar space */
+    background: transparent;
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: lightgray;
+    border-radius: .25rem;
+}

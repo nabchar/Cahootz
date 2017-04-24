@@ -5,6 +5,9 @@ $active-presence: #38978D;
 $active-item-text: #FFFFFF;
 
 
+$hover-text: #F9F9F9;
+
+
 div.channel-main {
   height: 100vh;
   display: flex;
@@ -156,18 +159,178 @@ ul.dm-list {
   }
 }
 
+// CHANNEL SEARCH
+div.channel-search-main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+  min-width: 800px;
+
+  section.channel-search {
+    min-width: 675px;
+    h1 {
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+
+    ul {
+      height: auto;
+      // overflow: hidden;
+      // overflow-y: scroll;
+
+      ::-webkit-scrollbar {
+        width: 2em;
+        height: 2em
+      }
+
+      li:hover {
+        background: #edf7fd;
+        border: 1px solid #d3ecfa;
+        border-radius: 6px;
+      }
+
+      li {
+        border-top: 1px solid lightgray;
+        padding: 12px 0;
+        padding-right: 20px;
+        min-height: 80px;
+        padding-left: 10px;
+        cursor: pointer;
+
+        div.channel-search-header {
+          display: flex;
+          justify-content: space-between;
+          font-size: 16px;
+          i.fa-user-o {
+            padding-right: 5px;
+            font-size: 14px;
+          }
+        }
+
+        div.member-count {
+          padding-right: 10px;
+
+        }
+        // div.member-count:hover {
+        //   display: none;
+        // }
+
+        div.hover-message {
+          display:none;
+
+        }
+
+        div.hover-message:hover {
+          display: flex;
+          flex-direction: column;
+          background: #edf7fd;
+          color: #d3ecfa;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+
+        span.channel-search-info {
+          font-style: italic;
+          font-weight: lighter;
+          font-size: 14px;
+          color: #717274;
+          line-height: 1.4;
+        }
+
+        p.channel-purpose {
+          font-size: 14px;
+          color: #717274;
+          font-weight: lighter;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+}
+
+// USER Nav
+section.sidebar-dropdown {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  h2 {
+    font-weight: bold;
+    line-height: 1.4;
+  }
+  h3 {
+    color: silver;
+    font-weight: lighter;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  div.signout {
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: .25rem;
+    padding: 10px;
+    span {
+      padding-right: 5px;
+    }
+  }
+  div.signout:hover {
+    background: #F9F9F9;
+  }
+}
+
+
 
 
 // MESSAGES
-
+div.messages-main {
+  width: 100%;
+}
 
 header.messages-header {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0 18px 0;
   border-bottom: solid 1px lightgray;
-  border: solid 1px red;
+
+  div.channel-info {
+    padding: 8px 0 7px 20px;
+    width: 100%;
+    h2 {
+      font-size: 1.125rem;
+      font-weight: bold;
+    }
+    span {
+      color: #717274;
+      font-size: 12px;
+      font-weight: normal;
+
+    }
+    span.member-count {
+      border-right: solid 1px #717274;
+      padding-right: 5px;
+    }
+
+    span.purpose {
+      padding-left: 5px;
+    }
+
+    i.fa-user-o {
+      font-size: 12px;
+      padding-right: 5px;
+    }
+  }
+
+  div.channel-util {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+  }
 }
+
+
 
 div.channel-nav {
   display: flex;
@@ -189,6 +352,8 @@ footer.message-input-outer {
   max-height: 65px;
   border: solid 1px red;
 }
+
+
 
 //
 // section.main-section {

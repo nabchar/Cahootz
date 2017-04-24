@@ -25,7 +25,7 @@ class ChannelSearch extends React.Component {
     return(
         <div className="channel-search-main">
           <section className="channel-search">
-            <h2>Browse all channels</h2>
+            <h1>Browse all channels</h1>
             <ul>
               {channelSearchItems}
             </ul>

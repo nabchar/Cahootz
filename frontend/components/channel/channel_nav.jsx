@@ -29,16 +29,15 @@ class ChannelNav extends React.Component {
     return (
       <div className='channel-nav'>
         <div className='channel-info'>
-          <h2>{currentChannel.name}</h2>
+          <h2># {currentChannel.name}</h2>
           <p>
-            <i class="fa fa-user" aria-hidden="true"></i>
-            <span>{currentChannel.memberCount}</span>
-            <span>Purpose: {currentChannel.purpose}</span>
+            <i className="fa fa-user-o" aria-hidden="true"></i>
+            <span className='member-count'>{currentChannel.memberCount}</span>
+            <span className='purpose'> {currentChannel.purpose}</span>
           </p>
         </div>
         <div className='channel-util'>
-          <div className='util-icon'><i class="fa fa-cog" aria-hidden="true"></i></div>
-          <div className='util-icon'><i class="fa fa-info" aria-hidden="true"></i></div>
+          
         </div>
       </div>
     );

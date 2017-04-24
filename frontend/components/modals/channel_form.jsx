@@ -18,14 +18,20 @@ class ChannelForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let url;
+    let channelId;
     const channel = this.state;
-    const { currentUser, subscribeToChannel } = this.props;
+    const { currentUser, subscribeToChannel, fetchChannel } = this.props;
+
     this.props.createChannel(channel)
-      .then((res) => {
-        url = '/messages/' + res.channel.id;
-        subscribeToChannel(res.channel.id);
+      .then(res => {
+        channelId = res.channel.id;
+        url = '/messages/' + channelId;
+        return subscribeToChannel(channelId);
+      }).then(res => {
+        debugger
+        return fetchChannel(channelId);
       })
-      .then((res) => {
+      .then(res => {
         hashHistory.push(url);
       }).then(() => this.props.closeModal());
   }
@@ -39,7 +45,7 @@ class ChannelForm extends React.Component {
       if (field === 'name') {
         const value = e.currentTarget.value;
         const lastChar = value[value.length - 1];
-        if (lastChar !== ' ' && lastChar !== '.' && value.length <= 21) {
+        if (lastChar !== ' ' && lastChar !== '.' && value.length <= 22) {
           this.setState({[field]: e.currentTarget.value.toLowerCase()});
         }
       } else {
@@ -67,7 +73,7 @@ class ChannelForm extends React.Component {
                 onChange={this.updateInput('name')} />
             </label>
             <p className="form-info">
-              Names must be 21 characters or less, lowercase, and cannot contain spaces or periods.
+              Names must be lowercase, less than 22 characters, and cannot contain spaces or periods.
             </p>
 
             <label className="channel-form-label">Purpose (optional)
