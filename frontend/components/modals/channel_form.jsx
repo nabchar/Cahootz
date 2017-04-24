@@ -1,6 +1,27 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
 import ErrorList from '../shared/errors';
+import { connect } from 'react-redux';
+import {  createChannel,
+          subscribeToChannel,
+          fetchChannel } from '../../actions/channel_actions';
+import { clearErrors } from '../../actions/shared/error_actions';
+
+const mapStateToProps = ({errors, session}) => {
+  return {
+    errors,
+    currentUser: session.currentUser
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    create: (channel) => dispatch(createChannel(channel)),
+    subscribe: (channelId) => dispatch(subscribeToChannel(channelId)),
+    fetch: (id) => dispatch(fetchChannel(id)),
+    clearErrors: () => dispatch(clearErrors())
+  };
+};
 
 class ChannelForm extends React.Component {
   constructor(props) {
@@ -21,15 +42,15 @@ class ChannelForm extends React.Component {
     let url;
     let channelId;
     const channel = this.state;
-    const { currentUser, subscribeToChannel, fetchChannel } = this.props;
+    const { currentUser, subscribe, fetch } = this.props;
 
-    this.props.createChannel(channel)
+    this.props.create(channel)
       .then(res => {
         channelId = res.channel.id;
         url = '/messages/' + channelId;
-        return subscribeToChannel(channelId);
+        return subscribe(channelId);
       }).then(res => {
-        return fetchChannel(channelId);
+        return fetch(channelId);
       })
       .then(res => {
         hashHistory.push(url);
@@ -37,7 +58,7 @@ class ChannelForm extends React.Component {
   }
 
   handleClick(e) {
-    this.props.closeModal();
+    this.props.closeModal().then(() => this.props.clearErrors());
   }
 
   updateInput(field) {
@@ -56,6 +77,7 @@ class ChannelForm extends React.Component {
 
   render() {
     let { errors } = this.props;
+    debugger
 
     return(
       <div className="channel-form-main">
@@ -74,7 +96,7 @@ class ChannelForm extends React.Component {
                 placeholder="# e.g new_schemes"
                 onChange={this.updateInput('name')} />
             </label>
-            <ErrorList error={errors.name} />
+            <ErrorList errors={errors.name} errorType={'Name '} />
 
             <p className="form-info">
               Names must be lowercase, less than 22 characters, and cannot contain spaces or periods.
@@ -104,4 +126,6 @@ class ChannelForm extends React.Component {
   }
 }
 
-export default ChannelForm;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps)(ChannelForm);

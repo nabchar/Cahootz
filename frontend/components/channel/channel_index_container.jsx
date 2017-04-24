@@ -2,10 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter, hashHistory} from 'react-router';
 import { logOut } from '../../actions/session_actions';
-import { createChannel,  } from '../../actions/channel_actions';
 import Modal from 'react-modal';
 import { allChannels } from '../../reducers/selectors';
-import { subscribeToChannel, fetchChannel } from '../../actions/channel_actions';
+import {  createChannel, subscribeToChannel, fetchChannel } from '../../actions/channel_actions';
 
 import UserNav from './user_nav';
 import ChannelList from './channel_list';
@@ -15,6 +14,7 @@ import ChannelSearch from '../modals/channel_search';
 const mapStateToProps = ({session, errors, channels}) => {
   // channels user is subscribed
   const userChannels = session.subscriptions.map( sub => channels[sub.id]);
+  debugger
   return {
     session,
     channels: Object.values(channels),
@@ -82,13 +82,7 @@ class ChannelSidebar extends React.Component {
     this.setState({
       showModal: true,
       modalContent: (
-        <ChannelForm
-          createChannel={this.props.createChannel}
-          closeModal={this.closeModal}
-          currentUser={this.props.session.currentUser}
-          subscribeToChannel={this.props.subscribeToChannel}
-          fetchChannel={this.props.fetchChannel}
-          errors={this.props.errors}/>
+        <ChannelForm closeModal={this.closeModal}/>
       ),
     });
   }
