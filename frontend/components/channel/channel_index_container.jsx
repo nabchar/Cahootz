@@ -14,7 +14,6 @@ import ChannelSearch from '../modals/channel_search';
 const mapStateToProps = ({session, errors, channels}) => {
   // channels user is subscribed
   const userChannels = session.subscriptions.map( sub => channels[sub.id]);
-  debugger
   return {
     session,
     channels: Object.values(channels),

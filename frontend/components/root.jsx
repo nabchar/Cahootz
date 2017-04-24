@@ -35,7 +35,7 @@ export const Root = ({ store }) => {
           <Route path='/signup'
                  component={ SessionFormContainer }
                  onEnter={_redirectIfLoggedIn} />
-               <Route path='/messages/:channelId'
+          <Route path='/messages/:channelId'
                  component={ MainChat }
                  onEnter={_redirectIfLoggedOut} />
         </Route>

@@ -77,7 +77,6 @@ class ChannelForm extends React.Component {
 
   render() {
     let { errors } = this.props;
-    debugger
 
     return(
       <div className="channel-form-main">

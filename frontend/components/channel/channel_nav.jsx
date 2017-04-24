@@ -48,7 +48,7 @@ class ChannelNav extends React.Component {
         top: 65,
         left: 300,
         width: 250,
-        height: 90,
+        height: 110,
         zIndex: 11,
         borderRadius: 6,
         border: '1px solid rgba(0,0,0,.15)',
@@ -119,11 +119,11 @@ class ChannelNav extends React.Component {
           style={this.style}
           contentLabel='channelUtil'>
 
-          <section className="sidebar-dropdown">
+          <section className="channel-nav-dropdown">
             <div>
-              <h2>{currentChannel.name}</h2>
+              <h2># {currentChannel.name}</h2>
             </div>
-            <div className='unsubscribe'
+            <div className='dropdown-action'
                  onClick={this.handleClick(modalAction)}>
               <span>{modalContent}</span>
             </div>

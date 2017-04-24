@@ -290,6 +290,8 @@ div.messages-main {
   width: 100%;
 }
 
+// CHANNEL NAV
+
 header.messages-header {
   display: flex;
   justify-content: space-between;
@@ -342,6 +344,32 @@ header.messages-header {
     height: 100%;
   }
 }
+
+section.channel-nav-dropdown {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+  }
+
+}
+div.dropdown-action {
+  display: flex;
+  justify-content: center;
+  border-radius: .25rem;
+  padding: 5px;
+  cursor: pointer;
+}
+
+div.dropdown-action:hover {
+  background: #38978D;
+  color: white;
+}
+
+//
 
 div.channel-nav {
   display: flex;
