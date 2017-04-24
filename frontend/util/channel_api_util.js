@@ -53,9 +53,9 @@ export const subscribeToChannel = channelId => {
   });
 };
 
-export const unsubscribeFromChannel = channelId => (
+export const unsubscribeFromChannel = id => (
   $.ajax({
-    url: `api/subscriptions/${channelId}`,
+    url: `api/subscriptions/${id}`,
     method: 'DELETE'
   })
 );

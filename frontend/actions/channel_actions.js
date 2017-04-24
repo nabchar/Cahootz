@@ -6,7 +6,7 @@ import { receiveErrors } from './shared/error_actions';
 export const RECEIVE_ALL_CHANNELS = "RECEIVE_ALL_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
-export const FETCH_CHANNELS = "REQUEST_CHANNELS";
+export const FETCH_CHANNELS = "FETCH_CHANNELS";
 
 
 //ACTIONS

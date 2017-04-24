@@ -40,7 +40,7 @@ const ChannelSearchItem = ({ channel, subscribeToChannel, closeModal, subscribed
         </div>
       </div>
       <span className="channel-search-info">
-        Created by <b>{channel.creator.currentUser.username}</b> on {timestamp}
+        Created by <b>{channel.creator.username}</b> on {timestamp}
       </span>
       <p className='channel-purpose'>{channel.purpose}</p>
     </li>
