@@ -5,8 +5,8 @@
   else
     json.set! channel.id do
       json.extract! channel, :id, :name, :purpose, :private, :created_at
-      json.set! :creator do
-        json.partial! 'api/users/user', user: channel.creator
+      json.creator do
+        json.extract! channel.creator, :id, :username
       end
       json.memberCount @memberCount
     end
