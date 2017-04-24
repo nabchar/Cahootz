@@ -21,7 +21,6 @@ const ChannelSearchItem = ({ channel, subscribeToChannel, closeModal, subscribed
 
   let timestamp = new Date(channel.created_at);
   timestamp = timestamp.toLocaleDateString();
-  debugger
 
   return(
     <li onClick={handleSubscribe} className={"channel-search-item "}>

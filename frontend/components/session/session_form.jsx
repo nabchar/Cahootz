@@ -87,7 +87,8 @@ class SessionForm extends React.Component {
                   Enter your <strong> username </strong> and <strong> password</strong>.
               </p>
 
-              <ErrorList errors={errors.base} />
+              <ErrorList errors={errors.base}
+                         errorType={''}/>
 
               <input className='auth-input'
                 type="text"
@@ -95,7 +96,8 @@ class SessionForm extends React.Component {
                 value={this.state.username}
                 placeholder='you@cahootz.com'/>
 
-              <ErrorList errors={errors.username} />
+              <ErrorList errors={errors.username}
+                         errorType={'Username '}/>
 
 
               <input className="auth-input"
@@ -104,7 +106,8 @@ class SessionForm extends React.Component {
                 value={this.state.password}
                 placeholder="password"/>
 
-              <ErrorList errors={errors.password} />
+              <ErrorList errors={errors.password}
+                         errorType={'Password '}/>
 
               <input className="session-submit" type="submit" value={formType} />
             </section>

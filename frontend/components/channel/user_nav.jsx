@@ -25,8 +25,8 @@ class UserNav extends React.Component {
       content: {
         padding: 0,
         position: 'absolute',
-        top: 56,
-        left: 10,
+        top: 60,
+        left: 20,
         width: 250,
         height: 90,
         zIndex: 11,
@@ -37,20 +37,20 @@ class UserNav extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
-    this.closeDropdown = this.closeDropdown.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
-  openDropdown() {
+  openModal() {
     this.setState({showModal: true});
   }
 
-  closeDropdown() {
+  closeModal() {
     this.setState({showModal: false});
   }
 
   handleClick() {
     this.props.logOut()
-      .then(() => this.closeDropdown())
+      .then(() => this.closeModal())
       .then(() => hashHistory.push('/signin'));
   }
 
@@ -63,7 +63,7 @@ class UserNav extends React.Component {
 
     return (
       <div className={"user-nav" + (this.state.showModal ? " open" : "")}
-           onClick={this.openDropdown.bind(this)}>
+           onClick={this.openModal.bind(this)}>
         <div className="nav-header">
           <p>
             <i className="fa fa-slack" aria-hidden="true"></i>
@@ -77,7 +77,7 @@ class UserNav extends React.Component {
 
         <Modal
           isOpen={this.state.showModal}
-          onRequestClose={this.closeDropdown}
+          onRequestClose={this.closeModal}
           style={this.style}
           contentLabel='userNav'>
 

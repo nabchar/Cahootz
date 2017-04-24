@@ -82,13 +82,14 @@ div.channel-list-outer {
 
 i.add-channel {
   color: #AB9BA9;
-  font-size: 1rem;
+  font-size: 16px;
   position: absolute;
   top: 70px;
   left: 180px;
 }
 
 .add-channel:hover {
+  font-size: 18px;
   color: $active-item-text;
 }
 
@@ -309,16 +310,28 @@ header.messages-header {
     }
     span.member-count {
       border-right: solid 1px #717274;
-      padding-right: 5px;
+      padding-right: 8px;
     }
 
     span.purpose {
       padding-left: 5px;
+      padding-right: 8px;
+      border-right: solid 1px #717274;
     }
 
     i.fa-user-o {
       font-size: 12px;
       padding-right: 5px;
+    }
+
+    i.fa-cog {
+      font-size: 14px;
+      padding-left: 8px;
+    }
+
+    i.fa-cog:hover {
+      font-size: 16px;
+      background: $hover-text;
     }
   }
 
@@ -329,8 +342,6 @@ header.messages-header {
     height: 100%;
   }
 }
-
-
 
 div.channel-nav {
   display: flex;

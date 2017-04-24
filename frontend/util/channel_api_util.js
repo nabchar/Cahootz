@@ -46,7 +46,6 @@ export const fetchSubscribedChannels = () => (
 );
 
 export const subscribeToChannel = channelId => {
-  debugger
   return $.ajax({
     url: `api/subscriptions`,
     method: 'POST',
@@ -56,7 +55,7 @@ export const subscribeToChannel = channelId => {
 
 export const unsubscribeFromChannel = channelId => (
   $.ajax({
-    url: `api/subscriptons/${channelId}`,
+    url: `api/subscriptions/${channelId}`,
     method: 'DELETE'
   })
 );

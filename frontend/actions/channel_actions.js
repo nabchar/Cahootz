@@ -1,5 +1,6 @@
 import * as ChannelApiUtil from '../util/channel_api_util';
 import { receiveCurrentUser } from './session_actions';
+import { receiveErrors } from './shared/error_actions';
 
 //CONSTANTS
 export const RECEIVE_ALL_CHANNELS = "RECEIVE_ALL_CHANNELS";
@@ -39,12 +40,14 @@ export const fetchChannel = id => dispatch => (
 
 export const createChannel = channel => dispatch => (
   ChannelApiUtil.createChannel(channel)
-    .then(res => dispatch(receiveChannel(res)))
+    .then(res => dispatch(receiveChannel(res)),
+      err => dispatch(receiveErrors(err.responseJSON)))
 );
 
 export const updateChannel = channel => dispatch => (
   ChannelApiUtil.updateChannel(channel)
-    .then(res => dispatch(receiveChannel(res)))
+    .then(res => dispatch(receiveChannel(res)),
+      err => dispatch(receiveErrors(err.responseJSON)))
 );
 
 export const deleteChannel = id => dispatch => (
@@ -55,5 +58,10 @@ export const deleteChannel = id => dispatch => (
 // update current user after they subscribe to new channel
 export const subscribeToChannel = channelId => dispatch => (
   ChannelApiUtil.subscribeToChannel(channelId)
+    .then(res => dispatch(receiveCurrentUser(res)))
+);
+
+export const unsubscribeFromChannel = channelId => dispatch => (
+  ChannelApiUtil.unsubscribeFromChannel(channelId)
     .then(res => dispatch(receiveCurrentUser(res)))
 );

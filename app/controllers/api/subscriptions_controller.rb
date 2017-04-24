@@ -18,10 +18,9 @@ class Api::SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @channel = Channel.find(params[:channelId])
+    @channel = Channel.find(params[:id])
     @channel.members.delete(current_user)
-
-    @subscribed_channels = current_user.subscribed_channels
-    render :index
+    @user = current_user
+    render 'api/users/show'
   end
 end

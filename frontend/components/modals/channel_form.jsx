@@ -1,5 +1,6 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
+import ErrorList from '../shared/errors';
 
 class ChannelForm extends React.Component {
   constructor(props) {
@@ -28,7 +29,6 @@ class ChannelForm extends React.Component {
         url = '/messages/' + channelId;
         return subscribeToChannel(channelId);
       }).then(res => {
-        debugger
         return fetchChannel(channelId);
       })
       .then(res => {
@@ -55,6 +55,8 @@ class ChannelForm extends React.Component {
   }
 
   render() {
+    let { errors } = this.props;
+
     return(
       <div className="channel-form-main">
         <section className="channel-form">
@@ -72,6 +74,8 @@ class ChannelForm extends React.Component {
                 placeholder="# e.g new_schemes"
                 onChange={this.updateInput('name')} />
             </label>
+            <ErrorList error={errors.name} />
+
             <p className="form-info">
               Names must be lowercase, less than 22 characters, and cannot contain spaces or periods.
             </p>

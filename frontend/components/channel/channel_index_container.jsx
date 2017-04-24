@@ -12,13 +12,14 @@ import ChannelList from './channel_list';
 import ChannelForm from '../modals/channel_form';
 import ChannelSearch from '../modals/channel_search';
 
-const mapStateToProps = ({session, channels}) => {
+const mapStateToProps = ({session, errors, channels}) => {
   // channels user is subscribed
   const userChannels = session.subscriptions.map( sub => channels[sub.id]);
   return {
     session,
     channels: Object.values(channels),
-    userChannels
+    userChannels,
+    errors
   };
 };
 
@@ -86,7 +87,8 @@ class ChannelSidebar extends React.Component {
           closeModal={this.closeModal}
           currentUser={this.props.session.currentUser}
           subscribeToChannel={this.props.subscribeToChannel}
-          fetchChannel={this.props.fetchChannel}/>
+          fetchChannel={this.props.fetchChannel}
+          errors={this.props.errors}/>
       ),
     });
   }
