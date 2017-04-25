@@ -3,7 +3,11 @@ import { Link, withRouter, hashHistory } from 'react-router';
 
 
 const ChannelList = (props) => {
-  let { userChannels, openChannelForm, openChannelSearch, currentUser } = props;
+  let { userChannels,
+        openChannelForm,
+        openChannelSearch,
+        currentUser,
+        fetchMessages } = props;
   let { channelId } = props.params;
 
   const userChannelList = userChannels.map(channel => {
@@ -11,7 +15,8 @@ const ChannelList = (props) => {
                         'current' : 'non-current';
       const handleClick = () => {
         let url = '/messages/' + channel.id;
-        return () => hashHistory.push(url);
+        return () => fetchMessages(channel.id)
+                      .then(() => hashHistory.push(url));
       };
 
       return (

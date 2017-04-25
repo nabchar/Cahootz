@@ -24,9 +24,9 @@ class MessageIndexItem extends React.Component {
       </div>
       <div className='message-content'>
         <p>
-          <span>{message.author.username}</span>
-          <span>{timestamp}</span>
-          <p>{message.content}</p>
+          <span className="m-author">{message.author.username}</span>
+          <span className='m-time'>{timestamp}</span>
+          <p className='m-content'>{message.content}</p>
         </p>
       </div>
 

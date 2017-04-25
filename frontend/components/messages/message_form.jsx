@@ -4,7 +4,8 @@ import { createMessage } from '../../actions/message_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    currentChannelId: ownProps.currentChannelId
+    currentChannelId: ownProps.currentChannelId,
+    currentChannel: state.channels[ownProps.currentChannelId]
   };
 };
 
@@ -21,6 +22,7 @@ class MessageForm extends React.Component {
     this.state = {content: ''};
     this.updateInput = this.updateInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearForm = this.clearForm.bind(this);
   }
 
   updateInput(e) {
@@ -32,17 +34,25 @@ class MessageForm extends React.Component {
     e.preventDefault();
     let { currentChannelId } = this.props;
     currentChannelId = parseInt(currentChannelId);
-    this.props.createMessage(this.state, currentChannelId);
+    this.props.createMessage(this.state, currentChannelId)
+      .then(() => this.clearForm());
+  }
+
+  clearForm() {
+    this.setState({content: ''});
   }
 
   render() {
+    let {currentChannel} = this.props;
     return (
       <footer className='message-input-outer'>
         <div className='message-input-inner'>
-          <form onSubmit={this.handleSubmit}>
+          <form className='m-form'
+                onSubmit={this.handleSubmit}>
             <input type='text'
                    value={this.state.content}
-                   onChange={this.updateInput}/>
+                   onChange={this.updateInput}
+                   placeholder={'Message  #' + currentChannel.name}/>
             <input type='submit' />
           </form>
         </div>

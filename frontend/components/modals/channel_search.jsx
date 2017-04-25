@@ -9,7 +9,11 @@ class ChannelSearch extends React.Component {
   }
 
   render () {
-    let {allChannels, subscribeToChannel, subscribedChannels, closeModal} = this.props;
+    let { allChannels,
+          subscribeToChannel,
+          subscribedChannels,
+          closeModal,
+          fetchMessages } = this.props;
 
     const channelSearchItems = allChannels.map((channel) => {
       return (
@@ -18,7 +22,8 @@ class ChannelSearch extends React.Component {
           channel={channel}
           subscribeToChannel={subscribeToChannel}
           closeModal={closeModal}
-          subscribedChannels={subscribedChannels}/>
+          subscribedChannels={subscribedChannels}
+          fetchMessages />
         );
       });
 
@@ -33,7 +38,6 @@ class ChannelSearch extends React.Component {
         </div>
     );
   }
-
 }
 
 export default ChannelSearch;

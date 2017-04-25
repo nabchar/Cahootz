@@ -1,21 +1,27 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
 
-const ChannelSearchItem = ({ channel, subscribeToChannel, closeModal, subscribedChannels }) => {
+const ChannelSearchItem = ({ channel,
+                             subscribeToChannel,
+                             closeModal,
+                             subscribedChannels,
+                             fetchMessages }) => {
 
   const handleSubscribe = () => {
     let url = '/messages/' + channel.id;
 
     for (let i = 0; i < subscribedChannels.length; i++) {
       if (subscribedChannels[i].id === channel.id) {
-        hashHistory.push(url);
-        closeModal();
+        fetchMessages(channel.id)
+          .then(() => hashHistory.push(url))
+          .then(() => closeModal());
         return;
       }
     }
 
     return subscribeToChannel(channel.id)
       .then(() => closeModal())
+      .then(() => fetchMessages(channel.id))
       .then(() => hashHistory.push(url));
   };
 

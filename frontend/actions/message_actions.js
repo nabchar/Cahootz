@@ -15,7 +15,7 @@ export const receiveMessages = messages => ({
 });
 
 export const receiveMessage = message => ({
-  type: RECEIVE_MESSAGES,
+  type: RECEIVE_MESSAGE,
   message
 });
 
@@ -35,7 +35,6 @@ export const fetchMessages = (channelId) => dispatch => {
 export const createMessage = (message, channelId) => dispatch => (
   MessageApiUtil.createMessage(message, channelId)
     .then(res => {
-      debugger
       return dispatch(receiveMessage(res));
     }, err => dispatch(receiveErrors(err.responseJSON)))
 );
