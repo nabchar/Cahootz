@@ -173,11 +173,12 @@ div.channel-search-main {
   height: 100vh;
   display: flex;
   justify-content: center;
-  margin-top: 150px;
   min-width: 800px;
 
   section.channel-search {
     min-width: 675px;
+    height: 100vh;
+    padding-top: 150px;
     h1 {
       font-weight: 900;
       margin-bottom: 20px;
@@ -187,7 +188,8 @@ div.channel-search-main {
     ul {
       height: auto;
       // overflow: hidden;
-      // overflow-y: scroll;
+      overflow-y: scroll;
+      min-width: 800px;
 
       ::-webkit-scrollbar {
         width: 2em;

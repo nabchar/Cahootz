@@ -36,6 +36,13 @@ class MessageIndex extends React.Component {
     channel.bind('message_published', (data) => {
       this.props.fetchMessages(currentChannel.id);
     });
+    channel.bind('message_updated', (data) => {
+      this.props.fetchMessages(currentChannel.id);
+    });
+    channel.bind('message_deleted', (data) => {
+      this.props.fetchMessages(currentChannel.id);
+    });
+
   }
 
   componentDidUpdate() {
