@@ -7,12 +7,15 @@ import MainChat from './channel/main_chat';
 import Splash from './splash/splash';
 import ChannelIndexContainer from './channel/channel_index_container';
 
-export const Root = ({ store }) => {
+export const Root = ({ store}) => {
 
   function _redirectIfLoggedIn(nextState, replace) {
     const loggedIn = Boolean(store.getState().session.currentUser);
+    debugger
+    let url = '/messages/' +
+      store.getState().session.currentUser.previous_channel_id;
     if (loggedIn) {
-      replace('/messages/3');
+      replace(url);
     }
   }
 
