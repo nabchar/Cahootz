@@ -68,6 +68,7 @@ class UserNav extends React.Component {
           <p>
             <i className="fa fa-slack" aria-hidden="true"></i>
             <span>Cahootz</span>
+            <i className="fa fa-angle-down" aria-hidden="true"></i>
           </p>
         </div>
         <div className="username">

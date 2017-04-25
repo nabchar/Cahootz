@@ -50,6 +50,16 @@ div.nav-header p  {
   i.fa-slack {
     font-size: 1.125rem;
   }
+
+  i.fa-angle-down {
+    color: #AB9BA9;
+    padding-left: 8px;
+  }
+
+  i.fa-angle-down:hover {
+    color: white;
+  }
+
 }
 
 .username {
@@ -286,6 +296,7 @@ section.sidebar-dropdown {
 // MESSAGES
 div.messages-main {
   width: 100%;
+  min-width: 400px;
 }
 
 section.message-index {
@@ -326,12 +337,20 @@ div.message-index-item {
 
 div.message-index-item:hover {
   background: #F9F9F9;
+  div.m-actions {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  div.hide {
+    display: none;
+  }
 }
 
 div.avatar-outer {
-  text-align: right;
+  text-align: right;padding: 5px;
   position: absolute;
-  top: 0;
+  top: 4px;
   left: 0;
   width: 72px;
   padding-right: 10px;
@@ -342,6 +361,33 @@ img {
   height: 36px;
 }
 
+div.m-actions {
+  position: absolute;
+  top: -3px;
+  right: 18px;
+  width: 80px;
+  border-radius: .25rem;
+  border: 1px solid #9e9ea6;
+  display: none;
+
+  i {
+    color: #9e9ea6;
+    padding: 5px 10px 5px 10px;
+  }
+
+  i.fa-pencil-square-o {
+    border-right: 1px solid #9e9ea6;
+    padding-right: 13px;
+  }
+
+  i:hover {
+    color: black;
+    font-size: 17px;
+    cursor: pointer;
+  }
+}
+
+
 div.message-content {
   margin-left: 72px;
   margin-top: 1px;
@@ -350,6 +396,7 @@ div.message-content {
   line-height: 22px;
   user-select: text;
   word-wrap: break-word;
+  min-width: 150px;
 
   span.m-author {
     font-weight: bold;
@@ -363,6 +410,58 @@ div.message-content {
     line-height: 18px;
     opacity: 1;
   }
+
+  form {
+    width: 100%;
+
+    input[type="text"] {
+      font-size: .9375rem;
+      line-height: 1.2rem;
+      color: #555459;
+      width: 100%;
+      font-family: Lato, sans-serif;
+      margin: 6px 0 5px 0;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      padding: 9px 30px 10px 9px;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+    }
+
+    input[type="submit"] {
+      font-size: 14px;
+      width: 30%;
+      text-align: center;
+      margin-top: 2px;
+      padding: 5px;
+    }
+
+    button {
+      background: rgb(251, 251, 250);
+      font-family: Lato, sans-serif;
+      line-height: 1.2rem;
+      font-weight: 900;
+      border-radius: .25rem;
+      width: 25%;
+      font-size: 14px;
+      border: 1px solid #C7CACD;
+      cursor: pointer;
+      margin-right: 5px;
+      text-align: center;
+      color: #555459;
+      padding: 5px;
+    }
+
+    button:focus {
+      outline: none;
+    }
+  }
+}
+
+.hide {
+  display: none;
 }
 
 //Message Input
@@ -503,37 +602,3 @@ section.messages-container {
   display: flex;
   flex-direction: column;
 }
-
-
-
-//
-// section.main-section {
-//   display: flex;
-//   justify-content: space-between;
-//   width: 100%;
-//   height: 100vh;
-// }
-//
-//
-// section.message-outer {
-//   display: flex;
-//   justify-content: space-between;
-//   flex-direction: column;
-//   width: 80%;
-//   min-width: 550px;
-//   padding-left: 20px;
-//   border: solid 1px red;
-//   padding: 0 5px 0 5px;
-// }
-//
-// div.message-input-outer {
-//   min-height: 64px;
-//   max-height: 14%;
-//   border: solid 1px red;
-//
-// }
-//
-// section.messages-container {
-//   border: solid 1px red;
-//   height: 86%;
-// }

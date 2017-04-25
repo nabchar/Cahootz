@@ -24,7 +24,7 @@ class Api::MessagesController < ApplicationController
 
   def update
     @message = Message.find(params[:id])
-    if @message.update_attribtue(message_params)
+    if @message.update(message_params)
       render :show
     else
       render json: @message.errors
@@ -34,8 +34,9 @@ class Api::MessagesController < ApplicationController
   def destroy
     @message = current_user.messages.find(params[:id])
     if @message
+      id = @message.id
       @message.destroy
-      render json: {}
+      render json: {id: id}
     else
       render json: { base: "Cannot delete someone else's message" }
     end
