@@ -70,8 +70,12 @@ class MessageIndexItem extends React.Component {
 
     let showForm = this.state.showEdit ? 'show' : 'hide';
     let showContent = (showForm === 'show') ? 'hide' : 'show';
-    let showActions = (message.author.id ===
-      this.props.currentUser.id) ? 'show' : 'hide';
+
+    let showActions;
+    if (this.props.currentUser) {
+      showActions = (message.author.id ===
+        this.props.currentUser.id) ? 'show' : 'hide';
+    }
 
     return (
 

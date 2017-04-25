@@ -53,6 +53,7 @@ class MessageIndex extends React.Component {
   }
 
   render () {
+
     let messageList = this.props.messages.map(message => {
       return (<MessageIndexItem key={message.id}
                                 message={message} />);

@@ -11,10 +11,9 @@ export const Root = ({ store}) => {
 
   function _redirectIfLoggedIn(nextState, replace) {
     const loggedIn = Boolean(store.getState().session.currentUser);
-    debugger
-    let url = '/messages/' +
-      store.getState().session.currentUser.previous_channel_id;
     if (loggedIn) {
+      let url = '/messages/' +
+      store.getState().session.currentUser.previous_channel_id;
       replace(url);
     }
   }
