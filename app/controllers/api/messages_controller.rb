@@ -12,6 +12,9 @@ class Api::MessagesController < ApplicationController
     @message.user_id = current_user.id
 
     if @message.save
+      #publish event
+      Pusher.trigger("channel_#{@message.channel_id}",'message_published', {})
+
       render :show
     else
       render json: @message.errors
@@ -25,6 +28,8 @@ class Api::MessagesController < ApplicationController
   def update
     @message = Message.find(params[:id])
     if @message.update(message_params)
+      #publish event
+      Pusher.trigger('channel_' + @message.channel_id.to_s,'message_published', {})
       render :show
     else
       render json: @message.errors

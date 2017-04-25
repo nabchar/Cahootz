@@ -1,7 +1,9 @@
+/* globals Pusher */
 import React from 'react';
 import { connect } from 'react-redux';
 import { allMessages } from '../../reducers/selectors';
 import MessageIndexItem from './message_index_item';
+import { fetchMessages } from '../../actions/message_actions';
 
 const mapStateToProps = ({ channels, messages }) => {
   return {
@@ -10,18 +12,36 @@ const mapStateToProps = ({ channels, messages }) => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchMessages: (channelId) => dispatch(fetchMessages(channelId))
+  };
+};
 
 class MessageIndex extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  render() {
+  componentDidMount() {
+    let currentChannel = this.props.channels[this.props.currentChannel];
+
+    this.pusher = new Pusher('a9c970bf3597377db826', {
+      encrypted: true
+    });
+
+    let channel = this.pusher.subscribe('channel_' + currentChannel.id);
+    channel.bind('message_published', (data) => {
+      this.props.fetchMessages(currentChannel.id);
+    });
+  }
+
+  componentWillUnmount() {
+    let currentChannel = this.props.channels[this.props.currentChannel];
+    this.pusher.unsubscribe('channel_' + currentChannel.id);
+  }
+
+  render () {
     let messageList = this.props.messages.map(message => {
       return (<MessageIndexItem key={message.id}
                                 message={message} />);
@@ -54,5 +74,5 @@ class MessageIndex extends React.Component {
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(MessageIndex);
