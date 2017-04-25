@@ -1,5 +1,6 @@
 /* globals Pusher */
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { allMessages } from '../../reducers/selectors';
 import MessageIndexItem from './message_index_item';
@@ -24,6 +25,7 @@ class MessageIndex extends React.Component {
   }
 
   componentDidMount() {
+    this.scrollToBottom();
     let currentChannel = this.props.channels[this.props.currentChannel];
 
     this.pusher = new Pusher('a9c970bf3597377db826', {
@@ -36,9 +38,18 @@ class MessageIndex extends React.Component {
     });
   }
 
+  componentDidUpdate() {
+      this.scrollToBottom();
+  }
+
   componentWillUnmount() {
     let currentChannel = this.props.channels[this.props.currentChannel];
     this.pusher.unsubscribe('channel_' + currentChannel.id);
+  }
+
+  scrollToBottom() {
+    const node = ReactDOM.findDOMNode(this.messagesEnd);
+    node.scrollIntoView({behavior: "smooth"});
   }
 
   render () {
@@ -66,6 +77,7 @@ class MessageIndex extends React.Component {
             <p>Purpose: {purpose}</p>
           </div>
           { messageList }
+          <div ref={(el) => {this.messagesEnd = el; }}></div>
         </section>
       </div>
     );
