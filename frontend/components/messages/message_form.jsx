@@ -34,8 +34,12 @@ class MessageForm extends React.Component {
     e.preventDefault();
     let { currentChannelId } = this.props;
     currentChannelId = parseInt(currentChannelId);
-    this.props.createMessage(this.state, currentChannelId)
+    if (this.state.content === '') {
+      return;
+    } else {
+      this.props.createMessage(this.state, currentChannelId)
       .then(() => this.clearForm());
+    }
   }
 
   clearForm() {
