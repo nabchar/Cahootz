@@ -5,7 +5,6 @@ import App from './app';
 import SessionFormContainer from './session/session_form_container';
 import MainChat from './channel/main_chat';
 import Splash from './splash/splash';
-import ChannelIndexContainer from './channel/channel_index_container';
 
 export const Root = ({ store}) => {
 

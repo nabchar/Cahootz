@@ -59,3 +59,17 @@ export const unsubscribeFromChannel = id => (
     method: 'DELETE'
   })
 );
+
+export const fetchDirectMessages = () => (
+  $.ajax({
+    method: 'GET',
+    url: `api/direct_messages`
+  })
+);
+
+export const createDirectMessage = (dm, members ) => (
+  $.ajax({
+    method: 'POST',
+    url: 'api/direct_messages'
+  })
+);

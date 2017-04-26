@@ -38,7 +38,7 @@ class Api::ChannelsController < ApplicationController
       Pusher.trigger("channels", "channel_deleted", {})
       render :show
     else
-      render json: @channel.errors.full_messages, status: 422
+      render json: @channel.errors, status: 422
     end
   end
 

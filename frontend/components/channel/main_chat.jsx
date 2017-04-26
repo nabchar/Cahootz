@@ -4,7 +4,7 @@ import { hashHistory } from 'react-router';
 import {fetchChannels} from '../../actions/channel_actions';
 import { fetchMessages } from '../../actions/message_actions';
 import { fetchUsers } from '../../actions/session_actions';
-import ChannelSidebar from './channel_index_container';
+import ChannelSidebar from './channel_sidebar';
 import { logOut } from '../../actions/session_actions';
 import ChannelNav from './channel_nav';
 import MessageIndex from '../messages/message_index';

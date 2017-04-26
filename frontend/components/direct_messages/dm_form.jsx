@@ -26,8 +26,14 @@ class DMForm extends React.Component {
         <section className='dm-form'>
           <h1>Direct Messages</h1>
           <form >
-
+            <input type='text' value=''/>
+            <input type='submit' value='Go' />
           </form>
+          <ul>
+            <li>member</li>
+            <li>member</li>
+            <li>member</li>
+          </ul>
         </section>
       </div>
     );
