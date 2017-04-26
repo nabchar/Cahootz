@@ -7,6 +7,7 @@ import { allChannels } from '../../reducers/selectors';
 import {  createChannel, subscribeToChannel, fetchChannel } from '../../actions/channel_actions';
 import { fetchMessages } from '../../actions/message_actions';
 
+import DMForm from '../direct_messages/dm_form';
 import UserNav from './user_nav';
 import ChannelList from './channel_list';
 import ChannelForm from '../modals/channel_form';
@@ -68,6 +69,7 @@ class ChannelSidebar extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.openChannelForm = this.openChannelForm.bind(this);
     this.openChannelSearch = this.openChannelSearch.bind(this);
+    this.openDMForm = this.openDMForm.bind(this);
     this.handleClick = this.handleClick.bind(this); // to remove
   }
 
@@ -102,6 +104,15 @@ class ChannelSidebar extends React.Component {
     });
   }
 
+  openDMForm() {
+    this.setState({
+      showModal: true,
+      modalContent: (
+        <DMForm closeModal={this.closeModal}/>
+      ),
+    });
+  }
+
   handleClick () {
     this.props.logOut().then(() => hashHistory.push('/signin'));
   }
@@ -117,8 +128,10 @@ class ChannelSidebar extends React.Component {
         <ChannelList userChannels={userChannels}
                      openChannelForm={this.openChannelForm}
                      openChannelSearch={this.openChannelSearch}
+                     openDMForm={this.openDMForm}
                      currentUser={currentUser}
-                     fetchMessages={this.props.fetchMessages}/>
+                     fetchMessages={this.props.fetchMessages}
+                     channels={this.props.channels}/>
 
 
         <Modal

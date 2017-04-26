@@ -91,9 +91,7 @@ div.channel-list-outer {
 i.add-channel {
   color: #AB9BA9;
   font-size: 16px;
-  position: absolute;
-  top: 70px;
-  left: 180px;
+  padding-left: 75px;
 }
 
 .add-channel:hover {
@@ -142,14 +140,13 @@ div.dm-list-outer {
 
 i.add-dm {
   color: #AB9BA9;
-  font-size: 1rem;
-  position: absolute;
-  top: 180px;
-  left: 180px;
+  font-size: 16px;;
+  padding-left: 46px;
 }
 
 i.add-dm:hover {
   color: $active-item-text;
+  font-size: 18px;
 }
 
 ul.dm-list {
@@ -189,7 +186,7 @@ div.channel-search-main {
       height: auto;
       // overflow: hidden;
       overflow-y: scroll;
-      min-width: 800px;
+      min-width: 700px;
 
       ::-webkit-scrollbar {
         width: 2em;
@@ -200,6 +197,22 @@ div.channel-search-main {
         background: #edf7fd;
         border: 1px solid #d3ecfa;
         border-radius: 6px;
+
+        div.member-count {
+          display: none;
+        }
+
+        div.hover-message {
+          display: flex;
+          flex-direction: row;
+          padding-top: 10px;
+          padding-right: 50px;
+          color: steelblue;
+          p {
+            padding-right: 5px;
+          }
+        }
+
       }
 
       li {
@@ -224,13 +237,9 @@ div.channel-search-main {
           padding-right: 10px;
 
         }
-        // div.member-count:hover {
-        //   display: none;
-        // }
 
         div.hover-message {
           display:none;
-
         }
 
         div.hover-message:hover {

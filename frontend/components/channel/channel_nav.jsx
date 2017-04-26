@@ -87,7 +87,7 @@ class ChannelNav extends React.Component {
 
     for (let i = 0; i <subscriptions.length; i++) {
       if (subscriptions[i].id === currentChannel.id) {
-        modalContent = 'Leave this Channel';
+        modalContent = 'Unsubscribe';
         modalAction = unsubscribe;
         break;
       } else {

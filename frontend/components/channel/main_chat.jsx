@@ -3,16 +3,18 @@ import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 import {fetchChannels} from '../../actions/channel_actions';
 import { fetchMessages } from '../../actions/message_actions';
+import { fetchUsers } from '../../actions/session_actions';
 import ChannelSidebar from './channel_index_container';
 import { logOut } from '../../actions/session_actions';
 import ChannelNav from './channel_nav';
 import MessageIndex from '../messages/message_index';
 import MessageForm from '../messages/message_form';
 
-const mapStateToProps = ( {channels, messages} ) => {
+const mapStateToProps = ( {users, channels, messages} ) => {
   return {
     channels,
-    messages
+    messages,
+    users
   };
 };
 
@@ -20,6 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchChannels: () => dispatch(fetchChannels()),
     fetchMessages: (id) => dispatch(fetchMessages(id)),
+    fetchUsers: () => dispatch(fetchUsers()),
     logOut: () => dispatch(logOut())
   };
 };
@@ -35,7 +38,8 @@ class MainChat extends React.Component {
     channelId = parseInt(channelId);
 
     this.props.fetchChannels()
-      .then(() => this.props.fetchMessages(channelId));
+      .then(() => this.props.fetchMessages(channelId))
+      .then(() => this.props.fetchUsers());
   }
 
   handleClick () {
@@ -45,8 +49,8 @@ class MainChat extends React.Component {
   }
 
   render () {
-    let { channels, messages } = this.props;
-    if (channels.isFetching || messages.isFetching) {
+    let { channels, messages, users } = this.props;
+    if (channels.isFetching || messages.isFetching || users.isFetching) {
       return (<div>Loading</div>);
     } else {
       let currentChannel = this.props.params.channelId;

@@ -7,7 +7,8 @@ const ChannelList = (props) => {
         openChannelForm,
         openChannelSearch,
         currentUser,
-        fetchMessages } = props;
+        fetchMessages,
+        channels } = props;
   let { channelId } = props.params;
 
   const userChannelList = userChannels.map(channel => {
@@ -27,14 +28,16 @@ const ChannelList = (props) => {
       );
     });
 
+  let totalNumChannels = channels.length;
   return (
     <aside className='channel-index'>
       <div className='channel-list-outer'>
         <p className='list-header'>
-          <span onClick={openChannelSearch}>Channels</span>
-          <i className="fa fa-plus-circle add-channel"
+          <span onClick={openChannelSearch}>Channels ({totalNumChannels})</span>
+          <span><i className="fa fa-plus-circle add-channel"
              aria-hidden="true"
              onClick={openChannelForm}></i>
+          </span>
         </p>
 
         <ul className='channel-list'>
@@ -44,8 +47,9 @@ const ChannelList = (props) => {
 
       <div className='dm-list-outer'>
         <p className='dm-header'>
-          Direct Messages
-          <i aria-hidden="true"></i>
+          <span>Direct Messages</span>
+          <span><i className="fa fa-plus-circle add-dm"
+             aria-hidden="true"></i></span>
         </p>
 
         <ul className='dm-list'>

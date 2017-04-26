@@ -10,9 +10,14 @@ class Api::UsersController < ApplicationController
 		if @user.save
 			login(@user)
 
+      #subscribe User to general upon account creation
       default_channel = Channel.first.id
       @user.previous_channel_id = default_channel
       Subscription.create(user_id: @user.id, channel_id: default_channel)
+
+      #set their status to active
+      @user.active = true;
+
       @user.save
 
 			render "api/users/show"

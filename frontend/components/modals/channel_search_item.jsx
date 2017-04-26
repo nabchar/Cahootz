@@ -20,13 +20,24 @@ const ChannelSearchItem = ({ channel,
     }
 
     return subscribeToChannel(channel.id)
-      .then(() => closeModal())
       .then(() => fetchMessages(channel.id))
-      .then(() => hashHistory.push(url));
+      .then(() => hashHistory.push(url))
+      .then(() => closeModal());
   };
 
   let timestamp = new Date(channel.created_at);
   timestamp = timestamp.toLocaleDateString();
+
+  // Setup hover-message
+  let hoverMessage;
+  for (let i = 0; i < subscribedChannels.length; i++) {
+    if (subscribedChannels[i].id === channel.id) {
+      hoverMessage = 'Open Channel';
+      break;
+    }
+    hoverMessage = 'Join Channel';
+  }
+
 
   return(
     <li onClick={handleSubscribe} className={"channel-search-item "}>
@@ -39,10 +50,12 @@ const ChannelSearchItem = ({ channel,
           <span>{channel.memberCount}</span>
         </div>
         <div className='hover-message'>
-          <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
           <p>
-            Join or Open
+            {hoverMessage}
           </p>
+          <span>
+            <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+          </span>
         </div>
       </div>
       <span className="channel-search-info">

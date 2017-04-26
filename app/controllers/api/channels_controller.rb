@@ -13,7 +13,7 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.new(channel_params)
 
     if @channel.save
-      # Subscription.create!(user_id: current_user.id, channel_id: @channel.id)
+      Pusher.trigger("channels", "channel_created", {})
 
       render :show
     else
@@ -24,6 +24,7 @@ class Api::ChannelsController < ApplicationController
   def update
     @channel.find_by(params[:id])
     if @channel.update(channel_params)
+      Pusher.trigger("channels", "channel_updated", {})
       render :show
     else
       render json: @channel.errors, status: 422
@@ -34,6 +35,7 @@ class Api::ChannelsController < ApplicationController
     @channel = Channel.find(params[:id])
 
     if @channel.destroy
+      Pusher.trigger("channels", "channel_deleted", {})
       render :show
     else
       render json: @channel.errors.full_messages, status: 422

@@ -7,6 +7,9 @@ class Api::SessionsController < ApplicationController
 
     if @user
 			login(@user)
+      #set status to active
+      @user.active = true;
+
 			render "api/users/show"
 		else
 			render(
@@ -19,6 +22,9 @@ class Api::SessionsController < ApplicationController
 	def destroy
 		@user = current_user
 		if @user
+      #set status to inactive
+      @user.active = false;
+
 			logout
 			render json: {}
 		else
