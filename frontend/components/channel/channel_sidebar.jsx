@@ -15,7 +15,9 @@ import ChannelSearch from '../modals/channel_search';
 
 const mapStateToProps = ({session, users, errors, channels}) => {
   // channels user is subscribed
-  const userChannels = session.subscriptions.map( sub => channels[sub.id]);
+  let userChannels = session.subscriptions.map( sub => channels[sub.id]);
+  userChannels = userChannels.filter(channel => channel !== undefined);
+
   return {
     session,
     channels: Object.values(channels),

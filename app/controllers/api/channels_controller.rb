@@ -2,7 +2,7 @@ class Api::ChannelsController < ApplicationController
   before_action :ensure_user!
 
   def index
-    @channels = Channel.includes(:members).includes(:creator).all
+    @channels = Channel.includes(:members).includes(:creator).where(private: false)
   end
 
   def show

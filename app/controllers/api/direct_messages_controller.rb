@@ -1,8 +1,7 @@
 class Api::DirectMessagesController < ApplicationController
 
   def index
-    subs = current_user.subscribed_channels
-    @channels = subs.select { |channel| channel.private == true }
+    @channels = current_user.subscribed_channels.includes(:members).includes(:creator).where(private: true)
     render 'api/channels/index'
   end
 

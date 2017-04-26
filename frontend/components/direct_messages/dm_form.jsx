@@ -13,7 +13,7 @@ const mapStateToProps = ({session, errors, users}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    
   };
 };
 
@@ -21,10 +21,13 @@ class DMForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {members: [], user_id: this.props.currentUser.id};
+    this.state = { members: [],
+                   user_id: this.props.currentUser.id,
+                   disabled: true};
 
     this.addMember = this.addMember.bind(this);
     this.removeMember = this.removeMember.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   addMember(e) {
@@ -33,6 +36,7 @@ class DMForm extends React.Component {
     let newMember = this.props.users[newMemberId];
     updateMembers.push(newMember);
     this.setState({members: updateMembers});
+    this.setState({disabled: false});
   }
 
   removeMember(e) {
@@ -40,6 +44,14 @@ class DMForm extends React.Component {
     let memberId = parseInt(e.currentTarget.getAttribute('value'));
     let newMemberList = memberList.filter(member => member.id !== memberId);
     this.setState({members: newMemberList});
+
+    if (newMemberList.length < 1) {
+      this.setState({disabled: true});
+    }
+  }
+
+  handleSubmit() {
+
   }
 
   render() {
@@ -63,7 +75,9 @@ class DMForm extends React.Component {
       return (
         <span key={member.id}
                 onClick={this.removeMember}
-                value={member.id}>{member.username} x</span>
+                value={member.id}>{member.username}
+              <i className="fa fa-times" aria-hidden="true"></i>
+        </span>
       );
     });
 
@@ -71,10 +85,12 @@ class DMForm extends React.Component {
       <div className='dm-main'>
         <section className='dm-form'>
           <h1>Direct Messages</h1>
-          <form>
+          <h3>Start a conversation!</h3>
+          <div>
             <p placeholder='Find or start a conversation'>{membersList}</p>
-            <input type='submit' value='GO' />
-          </form>
+            <button onClick={this.handleSubmit}
+                    disabled={this.state.disabled}>Go</button>
+          </div>
           <ul>
             {usersList}
           </ul>

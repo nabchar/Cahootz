@@ -12,6 +12,7 @@ const ChannelList = (props) => {
         channels } = props;
   let { channelId } = props.params;
 
+  debugger
   const userChannelList = userChannels.map(channel => {
       let channelType = (channel.id === parseInt(channelId)) ?
                         'current' : 'non-current';

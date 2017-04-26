@@ -7,7 +7,11 @@ export const RECEIVE_ALL_CHANNELS = "RECEIVE_ALL_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
 export const FETCH_CHANNELS = "FETCH_CHANNELS";
+export const FETCH_DIRECT_MESSAGES = "FETCH_DIRECT_MESSAGES";
 
+
+export const RECEIVE_DIRECT_MESSAGES = "RECEIVE_DIRECT_MESSAGES";
+export const RECEIVE_DIRECT_MESSAGE = "RECEIVE_DIRECT_MESSAGE";
 
 //ACTIONS
 const receiveAllChannels = channels => ({
@@ -25,6 +29,15 @@ const removeChannel = channel => ({
   channel
 });
 
+const receiveDirectMessages = dms => ({
+  type: RECEIVE_DIRECT_MESSAGES,
+  dms
+});
+
+const receiveDirectMessage = dm => ({
+  type: RECEIVE_DIRECT_MESSAGE,
+  dm
+});
 
 //THUNK ACTIONS
 export const fetchChannels = () => dispatch => {
@@ -64,4 +77,16 @@ export const subscribeToChannel = channelId => dispatch => (
 export const unsubscribeFromChannel = channelId => dispatch => (
   ChannelApiUtil.unsubscribeFromChannel(channelId)
     .then(res => dispatch(receiveCurrentUser(res)))
+);
+
+export const fetchDirectMessages = () => dispatch => {
+  dispatch({type: FETCH_DIRECT_MESSAGES});
+  return ChannelApiUtil.fetchDirectMessages()
+    .then(res => dispatch(receiveDirectMessages(res)));
+};
+
+export const createDirectMessage = channel => dispatch => (
+  ChannelApiUtil.createChannel(channel)
+    .then(res => dispatch(receiveDirectMessage(res)),
+      err => dispatch(receiveErrors(err.responseJSON)))
 );

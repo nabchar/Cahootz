@@ -1,20 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
-import {fetchChannels} from '../../actions/channel_actions';
+import { fetchChannels,
+         fetchDirectMessages } from '../../actions/channel_actions';
 import { fetchMessages } from '../../actions/message_actions';
-import { fetchUsers } from '../../actions/session_actions';
+import { fetchUsers, logOut } from '../../actions/session_actions';
+
 import ChannelSidebar from './channel_sidebar';
-import { logOut } from '../../actions/session_actions';
 import ChannelNav from './channel_nav';
 import MessageIndex from '../messages/message_index';
 import MessageForm from '../messages/message_form';
 
-const mapStateToProps = ( {users, channels, messages} ) => {
+const mapStateToProps = ( {users, channels, messages, direct_messages} ) => {
   return {
     channels,
     messages,
-    users
+    users,
+    direct_messages
   };
 };
 
@@ -23,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchChannels: () => dispatch(fetchChannels()),
     fetchMessages: (id) => dispatch(fetchMessages(id)),
     fetchUsers: () => dispatch(fetchUsers()),
+    fetchDirectMessages: () => dispatch(fetchDirectMessages()),
     logOut: () => dispatch(logOut())
   };
 };
@@ -38,6 +41,7 @@ class MainChat extends React.Component {
     channelId = parseInt(channelId);
 
     this.props.fetchChannels()
+      .then(() => this.props.fetchDirectMessages())
       .then(() => this.props.fetchMessages(channelId))
       .then(() => this.props.fetchUsers());
   }
@@ -49,8 +53,9 @@ class MainChat extends React.Component {
   }
 
   render () {
-    let { channels, messages, users } = this.props;
-    if (channels.isFetching || messages.isFetching || users.isFetching) {
+    let { channels, messages, users, direct_messages } = this.props;
+    if ( channels.isFetching || messages.isFetching ||
+         users.isFetching || direct_messages.isFetching ) {
       return (<div>Loading</div>);
     } else {
       let currentChannel = this.props.params.channelId;

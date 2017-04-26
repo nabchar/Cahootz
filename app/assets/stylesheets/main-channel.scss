@@ -133,9 +133,6 @@ div.dm-list-outer {
   p.dm-header {
     padding-left: 20px;
   }
-  p.dm-header:hover {
-    color: $active-item-text;
-  }
 }
 
 i.add-dm {
@@ -242,15 +239,6 @@ div.channel-search-main {
           display:none;
         }
 
-        div.hover-message:hover {
-          display: flex;
-          flex-direction: column;
-          background: #edf7fd;
-          color: #d3ecfa;
-          font-size: 14px;
-          font-weight: bold;
-        }
-
 
         span.channel-search-info {
           font-style: italic;
@@ -283,7 +271,7 @@ div.dm-main {
     height: 100vh;
     padding-top: 150px;
 
-    form {
+    div {
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
@@ -300,17 +288,39 @@ div.dm-main {
         span {
           color: white;
           background: steelblue;
-          padding: 10px;
+          padding: 6px;
           border-radius: .25rem;
           cursor: pointer;
           margin-right: 5px;
+
+          i {
+            padding-left: 3px;
+          }
         }
 
       }
 
-      input[type="submit"] {
+      button {
         width: 20%;
         text-align: center;
+        margin-left: 10px;
+        margin-top: 0;
+        background: #2ab27b;
+        color: #fff;
+        font-family: Lato, sans-serif;
+        line-height: 1.2rem;
+        font-weight: 900;
+        border-radius: .25rem;
+        border: none;
+        font-size: 20px;
+        padding: 10px;
+      }
+
+      button:disabled {
+        background: silver;
+        color: gray;
+        font-size: 20px;
+        padding: 10px;
       }
     }
 
