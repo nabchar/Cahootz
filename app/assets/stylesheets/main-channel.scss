@@ -271,6 +271,78 @@ div.channel-search-main {
   }
 }
 
+// DIRECT MESSAGE FORM
+div.dm-main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  min-width: 800px;
+
+  section.dm-form {
+    min-width: 675px;
+    height: 100vh;
+    padding-top: 150px;
+
+    form {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      margin-top: 20px;
+
+      p {
+        border: 2px solid lightgray;
+        border-radius: .25rem;
+        width: 100%;
+        padding: 5px;
+        display: flex;
+        justify-content: flex-start;
+
+        span {
+          color: white;
+          background: steelblue;
+          padding: 10px;
+          border-radius: .25rem;
+          cursor: pointer;
+          margin-right: 5px;
+        }
+
+      }
+
+      input[type="submit"] {
+        width: 20%;
+        text-align: center;
+      }
+    }
+
+    ul {
+      height: auto;
+      // overflow: hidden;
+      overflow-y: scroll;
+      min-width: 700px;
+
+      ::-webkit-scrollbar {
+        width: 2em;
+        height: 2em
+      }
+
+      li {
+        border-top: 1px solid lightgray;
+        padding: 12px 0;
+        padding-right: 20px;
+        min-height: 50px;
+        padding-left: 10px;
+        cursor: pointer;
+
+      }
+    }
+  }
+}
+
+
+
+
+
+
 // USER Nav
 section.sidebar-dropdown {
   padding: 20px;

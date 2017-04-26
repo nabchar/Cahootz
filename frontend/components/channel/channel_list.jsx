@@ -6,6 +6,7 @@ const ChannelList = (props) => {
   let { userChannels,
         openChannelForm,
         openChannelSearch,
+        openDMForm,
         currentUser,
         fetchMessages,
         channels } = props;
@@ -48,7 +49,7 @@ const ChannelList = (props) => {
       <div className='dm-list-outer'>
         <p className='dm-header'>
           <span>Direct Messages</span>
-          <span><i className="fa fa-plus-circle add-dm"
+          <span onClick={openDMForm}><i className="fa fa-plus-circle add-dm"
              aria-hidden="true"></i></span>
         </p>
 
