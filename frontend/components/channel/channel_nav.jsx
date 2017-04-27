@@ -115,7 +115,7 @@ class ChannelNav extends React.Component {
       //Handle self, 1-1, and multi person DM setup
       if ((currentChannel.memberCount - 1) === 0) {
         currentChannel.purpose = 'private direct messaging';
-        header = (<h2>{`@${currentUser.username} (you_)`}</h2>);
+        header = (<h2>{`@${currentUser.username} (you)`}</h2>);
       } else if ((currentChannel.memberCount - 1) === 1){
         let member = currentChannel.members.filter(user => user.id !== currentUser.id);
         currentChannel.purpose = 'private direct messaging';

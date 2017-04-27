@@ -81,7 +81,7 @@ class MessageIndexItem extends React.Component {
 
     <div className='message-index-item'>
       <div className='avatar-outer'>
-        <img className='avatar'></img>
+        <img src={message.author.avatar_url} className='avatar' />
       </div>
       <div className='message-content'>
         <p>

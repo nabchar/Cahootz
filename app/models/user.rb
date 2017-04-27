@@ -10,6 +10,10 @@
 #  updated_at          :datetime         not null
 #  previous_channel_id :integer
 #  active              :boolean          default("false")
+#  avatar_file_name    :string
+#  avatar_content_type :string
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 #
 
 class User < ApplicationRecord
@@ -20,6 +24,9 @@ class User < ApplicationRecord
   has_many :channels
   has_many :subscriptions
   has_many :messages, dependent: :destroy
+
+  has_attached_file :avatar, default_url: "owl_icon.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   has_many :subscribed_channels,
     through: :subscriptions,
