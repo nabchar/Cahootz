@@ -5,6 +5,7 @@ import { allUsers } from '../../reducers/selectors';
 import { createDirectMessage,
          subscribeToChannel,
          fetchDirectMessage } from '../../actions/channel_actions';
+import { fetchMessages } from '../../actions/message_actions';
 
 const mapStateToProps = ({session, errors, users, direct_messages}) => {
   return {
@@ -20,7 +21,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     create: (members) => dispatch(createDirectMessage(members)),
     subscribe: (channelId) => dispatch(subscribeToChannel(channelId)),
-    fetch: (id) => dispatch(fetchDirectMessage(id))
+    fetch: (id) => dispatch(fetchDirectMessage(id)),
+    fetchMessages: (id) => dispatch(fetchMessages(id))
   };
 };
 
@@ -70,7 +72,7 @@ class DMForm extends React.Component {
         return subscribe(channelId);
       }).then(res => {
         return fetch(channelId);
-      })
+      }).then(res => this.props.fetchMessages(channelId))
       .then(res => {
         hashHistory.push(url);
       }).then(() => this.props.closeModal());
