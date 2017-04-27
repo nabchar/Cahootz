@@ -22,8 +22,10 @@ class MessageIndexItem extends React.Component {
 
 
     this.state = { content: props.message.content,
-                  showEdit: false,
-                  showActions: false };
+                   showEdit: false,
+                   showActions: false,
+                   validMessage: true,
+                   originalContent: props.message.content };
 
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -38,6 +40,7 @@ class MessageIndexItem extends React.Component {
 
   handleUpdate() {
     if (this.state.showEdit) {
+      this.setState({content: this.state.originalContent});
       this.setState({showEdit: false});
     } else {
     this.setState({showEdit: true});
@@ -47,6 +50,9 @@ class MessageIndexItem extends React.Component {
   updateInput(e) {
     let value = e.currentTarget.value;
     this.setState({content: value});
+    if (this.state.content === '') {
+      this.setState({validMessage: false});
+    }
   }
 
   handleSubmit(e) {
@@ -99,8 +105,10 @@ class MessageIndexItem extends React.Component {
             <input type="text"
                    value={this.state.content}
                    onChange={this.updateInput}/>
-                 <button onClick={this.handleUpdate}>Cancel</button>
-            <input type='submit' value="Edit"/>
+            <button onClick={this.handleUpdate}>Cancel</button>
+            <input type='submit'
+                   disabled={this.state.validMessage}
+                   value="Edit"/>
           </form>
         </p>
       </div>
