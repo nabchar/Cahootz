@@ -6,6 +6,7 @@ import {  createChannel,
           subscribeToChannel,
           fetchChannel } from '../../actions/channel_actions';
 import { clearErrors } from '../../actions/shared/error_actions';
+import { fetchMessages } from '../../actions/message_actions';
 
 const mapStateToProps = ({errors, session}) => {
   return {
@@ -19,7 +20,8 @@ const mapDispatchToProps = (dispatch) => {
     create: (channel) => dispatch(createChannel(channel)),
     subscribe: (channelId) => dispatch(subscribeToChannel(channelId)),
     fetch: (id) => dispatch(fetchChannel(id)),
-    clearErrors: () => dispatch(clearErrors())
+    clearErrors: () => dispatch(clearErrors()),
+    fetchMessages: (channelId) => dispatch(fetchMessages(channelId))
   };
 };
 
@@ -43,22 +45,33 @@ class ChannelForm extends React.Component {
     let channelId;
     const channel = this.state;
     const { currentUser, subscribe, fetch } = this.props;
-
+    debugger
     this.props.create(channel)
-      .then(res => {
-        channelId = res.channel.id;
-        url = '/messages/' + channelId;
-        return subscribe(channelId);
-      }).then(res => {
-        return fetch(channelId);
-      })
-      .then(res => {
-        hashHistory.push(url);
-      }).then(() => this.props.closeModal());
+      .then(
+        res => {
+          channelId = res.channel.id;
+          url = '/messages/' + channelId;
+          return subscribe(channelId);
+        }
+      )
+      .then(
+        res => fetch(channelId)
+      )
+      .then(
+        res => this.props.fetchMessages(channelId)
+      )
+      .then(
+        res => {
+          hashHistory.push(url);
+          this.props.closeModal();
+        }
+      );
   }
 
   handleClick(e) {
-    this.props.closeModal().then(() => this.props.clearErrors());
+    debugger
+    this.props.closeModal();
+    this.props.clearErrors();
   }
 
   updateInput(field) {
@@ -112,8 +125,8 @@ class ChannelForm extends React.Component {
             </p>
 
             <div className='channel-form-buttons'>
-              <button className='cancelButton'
-                      onClick={this.handleClick}>Cancel</button>
+              <div className='cancel-button'
+                      onClick={this.handleClick}>Cancel</div>
               <input className="channel-form-submit"
                      type="submit"
                      value="Create channel"/>

@@ -31,9 +31,11 @@ class ChannelSearch extends React.Component {
         <div className="channel-search-main">
           <section className="channel-search">
             <h1>Browse all channels</h1>
-            <ul>
-              {channelSearchItems}
-            </ul>
+            <div className='channel-search-scroll'>  
+              <ul>
+                {channelSearchItems}
+              </ul>
+            </div>
           </section>
         </div>
     );

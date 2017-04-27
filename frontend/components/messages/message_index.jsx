@@ -28,6 +28,11 @@ class MessageIndex extends React.Component {
 
   componentDidMount() {
     this.scrollToBottom();
+
+    this.instantiatePusher();
+  }
+
+  instantiatePusher() {
     let currentChannel = this.props.channels[this.props.currentChannelId];
     if (currentChannel === undefined) {
       currentChannel = this.props.direct_messages[this.props.currentChannelId];
@@ -47,7 +52,10 @@ class MessageIndex extends React.Component {
     channel.bind('message_deleted', (data) => {
       this.props.fetchMessages(currentChannel.id);
     });
+  }
 
+  componentWillUpdate() {
+    this.instantiatePusher();
   }
 
   componentDidUpdate() {

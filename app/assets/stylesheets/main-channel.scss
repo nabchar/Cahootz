@@ -213,16 +213,17 @@ div.channel-search-main {
       margin-bottom: 20px;
     }
 
-
-    ul {
-      height: auto;
-      // overflow: hidden;
+    .channel-search-scroll {
+      height: 500px;
+      width: 700px;
       overflow-y: scroll;
-      min-width: 700px;
-
       ::-webkit-scrollbar {
         width: 2em;
         height: 2em
+      }
+
+    ul {
+
       }
 
       li:hover {
@@ -368,7 +369,8 @@ div.dm-main {
       height: auto;
       // overflow: hidden;
       overflow-y: scroll;
-      min-width: 700px;
+      height: 500px;
+      width: 700px;
 
       ::-webkit-scrollbar {
         width: 2em;
@@ -435,6 +437,7 @@ section.sidebar-dropdown {
     border-radius: .25rem;
     padding: 10px;
     span {
+      font-weight: bold;
       padding-right: 5px;
     }
   }

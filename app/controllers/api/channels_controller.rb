@@ -23,8 +23,9 @@ class Api::ChannelsController < ApplicationController
 
   def update
     @channel.find_by(params[:id])
+    id = channel.id
     if @channel.update(channel_params)
-      Pusher.trigger("channels", "channel_updated", {})
+      Pusher.trigger("channels", "channel_updated", {id: id})
       render :show
     else
       render json: @channel.errors, status: 422
@@ -33,7 +34,7 @@ class Api::ChannelsController < ApplicationController
 
   def destroy
     @channel = Channel.find(params[:id])
-
+    id = channel.id
     if @channel.destroy
       Pusher.trigger("channels", "channel_deleted", {})
       render :show

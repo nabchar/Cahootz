@@ -1,8 +1,10 @@
+/* globals Pusher */
 import React from 'react';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 import { fetchChannels,
-         fetchDirectMessages } from '../../actions/channel_actions';
+         fetchDirectMessages,
+         fetchChannel } from '../../actions/channel_actions';
 import { fetchMessages } from '../../actions/message_actions';
 import { fetchUsers, logOut } from '../../actions/session_actions';
 
@@ -27,7 +29,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchMessages: (id) => dispatch(fetchMessages(id)),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchDirectMessages: () => dispatch(fetchDirectMessages()),
-    logOut: () => dispatch(logOut())
+    logOut: () => dispatch(logOut()),
+    fetchChannel: (id) => dispatch(fetchChannel(id))
   };
 };
 
@@ -40,6 +43,21 @@ class MainChat extends React.Component {
   componentDidMount () {
     let { channelId } = this.props.params;
     channelId = parseInt(channelId);
+
+    this.pusher = new Pusher('a9c970bf3597377db826', {
+      encrypted: true
+    });
+
+    let channels = this.pusher.subscribe('channels');
+    channels.bind('channel_created', (data) => {
+      this.props.fetchChannels();
+    });
+    channels.bind('channel_updated', (data) => {
+      this.props.fetchChannel(data.id);
+    });
+    channels.bind('channel_deleted', (data) => {
+      this.props.fetchChannels();
+    });
 
     this.props.fetchChannels()
       .then(() => this.props.fetchDirectMessages())
