@@ -23,7 +23,7 @@ class ChannelSearch extends React.Component {
           subscribeToChannel={subscribeToChannel}
           closeModal={closeModal}
           subscribedChannels={subscribedChannels}
-          fetchMessages />
+          fetchMessages={fetchMessages} />
         );
       });
 

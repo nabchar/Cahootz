@@ -30,6 +30,22 @@ channels.each do |channel|
   end
 end
 
+dm0 = Channel.create!(user_id: user1.id, private: true, name: 'dm0')
+dm1 = Channel.create!(user_id: user1.id, private: true, name: 'dm1')
+dm2 = Channel.create!(user_id: user1.id, private: true, name: 'dm2')
+dm3 = Channel.create!(user_id: user1.id, private: true, name: 'dm3')
+
+#subscribe guest to dm with themselves
+Subscription.create!(user_id: user1.id, channel_id: dm0.id)
+
+dms = [dm1, dm2, dm3]
+dms.each do |dm|
+  Subscription.create!(user_id: user1.id, channel_id: dm.id)
+end
+Subscription.create!(user_id: user2.id, channel_id: dm1.id)
+Subscription.create!(user_id: user3.id, channel_id: dm2.id)
+Subscription.create!(user_id: user4.id, channel_id: dm3.id)
+
 generalChannel = Channel.first.id
 users.each do |user|
   user.previous_channel_id = generalChannel;

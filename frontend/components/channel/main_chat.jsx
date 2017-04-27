@@ -67,7 +67,7 @@ class MainChat extends React.Component {
               <ChannelNav
                 currentChannel={currentChannel}/>
             </header>
-              <MessageIndex currentChannel={currentChannel}/>
+              <MessageIndex currentChannelId={parseInt(currentChannel)}/>
               <MessageForm currentChannelId={currentChannel}/>
           </div>
         </div>

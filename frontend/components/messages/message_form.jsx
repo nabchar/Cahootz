@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createMessage } from '../../actions/message_actions';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({channels, direct_messages, session}, ownProps) => {
   return {
     currentChannelId: ownProps.currentChannelId,
-    currentChannel: state.channels[ownProps.currentChannelId]
+    channels,
+    direct_messages,
+    currentUser: session.currentUser
   };
 };
 
@@ -47,7 +49,22 @@ class MessageForm extends React.Component {
   }
 
   render() {
-    let {currentChannel} = this.props;
+    let channelName;
+    let currentChannel = this.props.channels[this.props.currentChannelId];
+    if (currentChannel) {
+      channelName = `#${currentChannel.name}`;
+    } else {
+      let dm = this.props.direct_messages[this.props.currentChannelId];
+      if ((dm.memberCount - 1) === 0) {
+        channelName = `yourself`;
+      } else if ((dm.memberCount - 1) === 1){
+        let member = dm.members.filter(user => user.id !== this.props.currentUser.id);
+        channelName = `@${member[0].username}`;
+      } else {
+        return;
+      }
+    }
+
     return (
       <footer className='message-input-outer'>
         <div className='message-input-inner'>
@@ -56,7 +73,7 @@ class MessageForm extends React.Component {
             <input type='text'
                    value={this.state.content}
                    onChange={this.updateInput}
-                   placeholder={'Message  #' + currentChannel.name}/>
+                   placeholder={'Message  ' + channelName}/>
             <input type='submit' />
           </form>
         </div>

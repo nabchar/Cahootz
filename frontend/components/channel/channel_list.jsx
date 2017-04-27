@@ -9,10 +9,11 @@ const ChannelList = (props) => {
         openDMForm,
         currentUser,
         fetchMessages,
-        channels } = props;
+        channels,
+        directMessages
+        } = props;
   let { channelId } = props.params;
 
-  debugger
   const userChannelList = userChannels.map(channel => {
       let channelType = (channel.id === parseInt(channelId)) ?
                         'current' : 'non-current';
@@ -31,6 +32,42 @@ const ChannelList = (props) => {
     });
 
   let totalNumChannels = channels.length;
+
+  const userDMList = directMessages.map(dm => {
+    let channelType = (dm.id === parseInt(channelId)) ?
+                      'current' : 'non-current';
+    const handleClick = () => {
+      let url = '/messages/' + dm.id;
+      return () => fetchMessages(dm.id)
+                    .then(() => hashHistory.push(url));
+    };
+
+    let dmName;
+    let dmIcon;
+    //Handle self, 1-1, and multi person DM setup
+    if ((dm.memberCount - 1) === 0) {
+      dmName = `${currentUser.username} (you)`;
+      dmIcon =  (<span className='user-status' />);
+    } else if ((dm.memberCount - 1) === 1){
+      let member = dm.members.filter(user => user.id !== currentUser.id);
+      dmName = `${member[0].username}`;
+      dmIcon =  (<span className='status' />);
+    } else {
+      return;
+    }
+
+    return (
+      <li className={'list-item ' + channelType}
+          onClick={handleClick()}
+          key={ dm.id }>
+          <p>
+            <span>{dmIcon}</span>
+            <span>{dmName}</span>
+          </p>
+      </li>
+    );
+  });
+
   return (
     <aside className='channel-index'>
       <div className='channel-list-outer'>
@@ -55,15 +92,7 @@ const ChannelList = (props) => {
         </p>
 
         <ul className='dm-list'>
-          <li className='list-item'>
-            <p><i><div className='status'></div><span>currentUser (you)</span></i></p>
-          </li>
-          <li className='list-item'>
-            <p><i><div className='status'></div><span>rona</span></i></p>
-          </li>
-          <li className='list-item'>
-            <p><i><div className='status'></div><span>mbones</span></i></p>
-          </li>
+          {userDMList}
         </ul>
       </div>
     </aside>

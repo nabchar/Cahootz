@@ -6,10 +6,12 @@ import { allMessages } from '../../reducers/selectors';
 import MessageIndexItem from './message_index_item';
 import { fetchMessages } from '../../actions/message_actions';
 
-const mapStateToProps = ({ channels, messages }) => {
+const mapStateToProps = ({ channels, direct_messages, messages, session }, ownProps) => {
   return {
     messages: allMessages(messages),
-    channels
+    channels,
+    direct_messages,
+    currentUser: session.currentUser
   };
 };
 
@@ -26,7 +28,10 @@ class MessageIndex extends React.Component {
 
   componentDidMount() {
     this.scrollToBottom();
-    let currentChannel = this.props.channels[this.props.currentChannel];
+    let currentChannel = this.props.channels[this.props.currentChannelId];
+    if (currentChannel === undefined) {
+      currentChannel = this.props.direct_messages[this.props.currentChannelId];
+    }
 
     this.pusher = new Pusher('a9c970bf3597377db826', {
       encrypted: true
@@ -51,6 +56,10 @@ class MessageIndex extends React.Component {
 
   componentWillUnmount() {
     let currentChannel = this.props.channels[this.props.currentChannel];
+    if (currentChannel === undefined) {
+      currentChannel = this.props.direct_messages[this.props.currentChannelId];
+    }
+
     this.pusher.unsubscribe('channel_' + currentChannel.id);
   }
 
@@ -65,30 +74,64 @@ class MessageIndex extends React.Component {
       return (<MessageIndexItem key={message.id}
                                 message={message} />);
     });
-    let { name,
-          creator,
-          purpose,
-          description,
-          created_at } = this.props.channels[this.props.currentChannel];
 
-    let timestamp = new Date(created_at);
-    timestamp = timestamp.toLocaleDateString();
+    //Render Messages for Direct Message Channel
+    if (this.props.channels[this.props.currentChannelId] === undefined) {
+      let { currentUser } = this.props;
+      let dm = this.props.direct_messages[this.props.currentChannelId];
+      let dmName, content;
+      if ((dm.memberCount - 1) === 0) {
+        dmName = `@${currentUser.username}`;
+        content =  <p><b>This is your space</b>. Draft messages, list you to-dos, plot away. You can also talk to <italic>yourself</italic> here but please bear in mind you'll have to supply both sides of the conversation.</p>;
+      } else if ((dm.memberCount - 1) === 1){
+        let member = dm.members.filter(user => user.id !== currentUser.id);
+        dmName = `@${member[0].username}`;
+        content =  (<p>This if you direct message history with <span>{member[0].username}.</span></p>);
+      } else {
+        return;
+      }
 
-    return (
-      <div className='message-index-outer'>
-        <section className='message-index'>
-          <div className='ch-info'>
-            <h1>#{name}</h1>
-            <p>
-              <span>{creator.username}</span> created this channel on {timestamp}
-            </p>
-            <p>Purpose: {purpose}</p>
-          </div>
-          { messageList }
-          <div ref={(el) => {this.messagesEnd = el; }}></div>
-        </section>
-      </div>
-    );
+      return (
+        <div className='message-index-outer'>
+          <section className='message-index'>
+            <div className='ch-info'>
+              <h1>{dmName}</h1>
+              <p>{content}</p>
+            </div>
+            { messageList }
+            <div ref={(el) => {this.messagesEnd = el; }}></div>
+          </section>
+        </div>
+      );
+    }
+
+    //Render Messages for Regular Channel
+    else {
+      let { name,
+            creator,
+            purpose,
+            description,
+            created_at } = this.props.channels[this.props.currentChannelId];
+
+      let timestamp = new Date(created_at);
+      timestamp = timestamp.toLocaleDateString();
+
+      return (
+        <div className='message-index-outer'>
+          <section className='message-index'>
+            <div className='ch-info'>
+              <h1>#{name}</h1>
+              <p>
+                <span>{creator.username}</span> created this channel on {timestamp}
+              </p>
+              <p>Purpose: {purpose}</p>
+            </div>
+            { messageList }
+            <div ref={(el) => {this.messagesEnd = el; }}></div>
+          </section>
+        </div>
+      );
+    }
   }
 }
 

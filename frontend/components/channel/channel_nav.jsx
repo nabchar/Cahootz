@@ -2,16 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {withRouter, hashHistory} from 'react-router';
 import Modal from 'react-modal';
-import { unsubscribeFromChannel, subscribeToChannel, fetchChannel } from '../../actions/channel_actions';
+import { unsubscribeFromChannel,
+         subscribeToChannel,
+         fetchChannel } from '../../actions/channel_actions';
 
 
 
 
 const mapStateToProps = (state, ownProps) => {
   let currentChannel = state.channels[ownProps.currentChannel];
+  if (currentChannel === undefined) {
+    currentChannel = state.direct_messages[ownProps.currentChannel];
+  }
+
   return {
     currentChannel,
-    subscriptions: state.session.subscriptions
+    subscriptions: state.session.subscriptions,
+    currentUser: state.session.currentUser
   };
 };
 
@@ -80,26 +87,38 @@ class ChannelNav extends React.Component {
 
 
   render() {
-    let {currentChannel, subscriptions, unsubscribe, subscribe} = this.props;
+    let { currentChannel,
+          subscriptions,
+          unsubscribe,
+          subscribe,
+          currentUser} = this.props;
 
-    let modalContent;
-    let modalAction;
+    let modalContent = 'Leave this chat';
+    let modalAction = unsubscribe;
+    let header;
 
-    for (let i = 0; i <subscriptions.length; i++) {
-      if (subscriptions[i].id === currentChannel.id) {
-        modalContent = 'Unsubscribe';
-        modalAction = unsubscribe;
-        break;
+    if (currentChannel.name === undefined) {
+      let channelName;
+      let channelIcon;
+      //Handle self, 1-1, and multi person DM setup
+      if ((currentChannel.memberCount - 1) === 0) {
+        currentChannel.purpose = 'private direct messaging';
+        header = (<h2>{`@${currentUser.username}  `}<span>(you)</span></h2>);
+      } else if ((currentChannel.memberCount - 1) === 1){
+        let member = currentChannel.members.filter(user => user.id !== currentUser.id);
+        currentChannel.purpose = 'private direct messaging';
+        header = (<h2>{`@${member[0].username}`}</h2>);
       } else {
-        modalContent = 'Join this Channel';
-        modalAction = subscribe;
+        return;
       }
+    } else {
+      header = (<h2># {currentChannel.name}</h2>);
     }
 
     return (
       <div className='channel-nav'>
         <div className='channel-info'>
-          <h2># {currentChannel.name}</h2>
+          {header}
           <p>
             <i className="fa fa-user-o" aria-hidden="true"></i>
             <span className='member-count'>{currentChannel.memberCount}</span>

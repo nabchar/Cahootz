@@ -13,7 +13,7 @@ import ChannelList from './channel_list';
 import ChannelForm from '../modals/channel_form';
 import ChannelSearch from '../modals/channel_search';
 
-const mapStateToProps = ({session, users, errors, channels}) => {
+const mapStateToProps = ({session, users, errors, channels, direct_messages}) => {
   // channels user is subscribed
   let userChannels = session.subscriptions.map( sub => channels[sub.id]);
   userChannels = userChannels.filter(channel => channel !== undefined);
@@ -23,7 +23,8 @@ const mapStateToProps = ({session, users, errors, channels}) => {
     channels: Object.values(channels),
     users,
     userChannels,
-    errors
+    errors,
+    directMessages: Object.values(direct_messages)
   };
 };
 
@@ -134,7 +135,8 @@ class ChannelSidebar extends React.Component {
                      openDMForm={this.openDMForm}
                      currentUser={currentUser}
                      fetchMessages={this.props.fetchMessages}
-                     channels={this.props.channels}/>
+                     channels={this.props.channels}
+                     directMessages={this.props.directMessages}/>
 
 
         <Modal

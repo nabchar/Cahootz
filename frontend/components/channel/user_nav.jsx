@@ -70,7 +70,7 @@ class UserNav extends React.Component {
           </p>
         </div>
         <div className="username">
-          <div className="status"></div>
+          <div className="user-status"></div>
           <span>{ userHandle }</span>
         </div>
 
