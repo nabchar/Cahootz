@@ -129,6 +129,7 @@ i.add-channel {
 }
 
 ul.channel-list {
+  max-height: 250px;
 
   li {
     margin-right: 18px;
@@ -172,6 +173,8 @@ i.add-dm:hover {
 }
 
 ul.dm-list {
+  max-height: 250px;
+
   li {
     margin-right: 18px;
     border-top-right-radius: .25rem;

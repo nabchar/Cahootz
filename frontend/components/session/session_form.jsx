@@ -22,13 +22,16 @@ class SessionForm extends React.Component {
   }
 
   handleGuest() {
-    this.props.signInGuest()
-      .then((res) => {
-        let prevChannelId = res.user.currentUser.previous_channel_id;
-        let rootPath = '/messages/' + prevChannelId;
-        return hashHistory.push(rootPath);
-      }
-    ).then( () => this.clearForm());
+
+    hashHistory.push('/try');
+    this.clearForm();
+    // this.props.signInGuest()
+    //   .then((res) => {
+    //     let prevChannelId = res.user.currentUser.previous_channel_id;
+    //     let rootPath = '/messages/' + prevChannelId;
+    //     return hashHistory.push(rootPath);
+    //   }
+    // ).then( () => this.clearForm());
   }
 
   handleSubmit(e) {

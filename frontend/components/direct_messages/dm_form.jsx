@@ -75,7 +75,9 @@ class DMForm extends React.Component {
       }).then(res => this.props.fetchMessages(channelId))
       .then(res => {
         hashHistory.push(url);
-      }).then(() => this.props.closeModal());
+      });
+
+    this.props.closeModal();
   }
 
   render() {

@@ -112,4 +112,60 @@ p.error-message {
 
 div.session-main {
   height: 100vh;
+
+}
+
+div.link-container {
+  width: 230px;
+  display: flex;
+  justify-content: space-between;
+}
+
+section.guest-outer {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+h1.guest-h {
+  margin-top: 50px;
+}
+
+p.guest-sub {
+  margin-top: 10px;
+}
+
+div.guest {
+  color: white;
+  border: 2px solid white;
+  border-radius: .5rem;
+  cursor: pointer;
+  padding: 10px 25px 10px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+
+.creden1 {
+  background: steelblue;
+  margin-right: 50px;
+}
+
+.creden2 {
+  background: #2ab27b;
+}
+
+.creden1:hover {
+
+}
+
+.creden2:hover {
+
+}
+
+strong {
+  font-weight: bold;
 }

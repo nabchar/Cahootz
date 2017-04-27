@@ -5,6 +5,7 @@ import App from './app';
 import SessionFormContainer from './session/session_form_container';
 import MainChat from './channel/main_chat';
 import Splash from './splash/splash';
+import GuestPage from './session/guest';
 
 export const Root = ({ store}) => {
 
@@ -36,6 +37,9 @@ export const Root = ({ store}) => {
           <Route path='/signup'
                  component={ SessionFormContainer }
                  onEnter={_redirectIfLoggedIn} />
+          <Route path='/try'
+                 component={ GuestPage }
+                 onEnter={_redirectIfLoggedIn}/>
           <Route path='/messages/:channelId'
                  component={ MainChat }
                  onEnter={_redirectIfLoggedOut} />

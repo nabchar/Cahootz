@@ -45,7 +45,6 @@ class ChannelForm extends React.Component {
     let channelId;
     const channel = this.state;
     const { currentUser, subscribe, fetch } = this.props;
-    debugger
     this.props.create(channel)
       .then(
         res => {
@@ -69,7 +68,6 @@ class ChannelForm extends React.Component {
   }
 
   handleClick(e) {
-    debugger
     this.props.closeModal();
     this.props.clearErrors();
   }
@@ -79,7 +77,7 @@ class ChannelForm extends React.Component {
       if (field === 'name') {
         const value = e.currentTarget.value;
         const lastChar = value[value.length - 1];
-        if (lastChar !== ' ' && lastChar !== '.' && value.length <= 22) {
+        if (lastChar !== ' ' && lastChar !== '.' && value.length <= 18) {
           this.setState({[field]: e.currentTarget.value.toLowerCase()});
         }
       } else {
@@ -111,7 +109,7 @@ class ChannelForm extends React.Component {
             <ErrorList errors={errors.name} errorType={'Name '} />
 
             <p className="form-info">
-              Names must be lowercase, less than 22 characters, and cannot contain spaces or periods.
+              Names must be lowercase, less than 18 characters, and cannot contain spaces or periods.
             </p>
 
             <label className="channel-form-label">Purpose (optional)
