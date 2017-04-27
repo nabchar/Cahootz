@@ -5,16 +5,20 @@ class Api::DirectMessagesController < ApplicationController
     render 'api/channels/index'
   end
 
+  def show
+    @channel = Channel.find(params[:id])
+    render 'api/channels/show'
+  end
+
   def create
-    @dm = Channel.new(dm_params);
-    @dm.private = true;
+    dmCode = SecureRandom::urlsafe_base64(10);
+    @dm = Channel.new(user_id: current_user.id, name: dmCode, private: true);
 
     if @dm.save
-      members = params[:members];
+      members = params[:members].values;
       members.each do |member|
-        Subscription.create(user_id: member.id, channel_id: dm.id)
+        Subscription.create(user_id: member[:id].to_i, channel_id: @dm.id)
       end
-      Subscription.create(user_id: current_user.id, channel_id: dm.id)
 
       @channel = @dm
       render 'api/channels/show'

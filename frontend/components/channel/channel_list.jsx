@@ -53,7 +53,9 @@ const ChannelList = (props) => {
       dmName = `${member[0].username}`;
       dmIcon =  (<span className='status' />);
     } else {
-      return;
+      let members = dm.members.filter(user => user.id !== currentUser.id);
+      dmName = `${members[0].username}, ${members[1].username}...`;
+      dmIcon = (<span className='multi-dm'>{dm.memberCount - 1}</span>);
     }
 
     return (
@@ -61,7 +63,7 @@ const ChannelList = (props) => {
           onClick={handleClick()}
           key={ dm.id }>
           <p>
-            <span>{dmIcon}</span>
+            <span className='icon-outer'>{dmIcon}</span>
             <span>{dmName}</span>
           </p>
       </li>

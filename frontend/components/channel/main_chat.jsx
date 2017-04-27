@@ -11,12 +11,13 @@ import ChannelNav from './channel_nav';
 import MessageIndex from '../messages/message_index';
 import MessageForm from '../messages/message_form';
 
-const mapStateToProps = ( {users, channels, messages, direct_messages} ) => {
+const mapStateToProps = ( {users, channels, messages, direct_messages, session} ) => {
   return {
     channels,
     messages,
     users,
-    direct_messages
+    direct_messages,
+    session
   };
 };
 
@@ -53,11 +54,11 @@ class MainChat extends React.Component {
   }
 
   render () {
-    let { channels, messages, users, direct_messages } = this.props;
+    let { channels, messages, users, direct_messages, session } = this.props;
     if ( channels.isFetching || messages.isFetching ||
          users.isFetching || direct_messages.isFetching ) {
       return (<div>Loading</div>);
-    } else {
+    } else if (session.currentUser) {
       let currentChannel = this.props.params.channelId;
       return (
         <div className='channel-main'>
@@ -65,12 +66,16 @@ class MainChat extends React.Component {
           <div className='messages-main'>
             <header className='messages-header'>
               <ChannelNav
-                currentChannel={currentChannel}/>
+                currentChannel={parseInt(currentChannel)}/>
             </header>
-              <MessageIndex currentChannelId={parseInt(currentChannel)}/>
-              <MessageForm currentChannelId={currentChannel}/>
+            <MessageIndex currentChannelId={parseInt(currentChannel)}/>
+            <MessageForm currentChannelId={currentChannel}/>
           </div>
         </div>
+      );
+    } else {
+      return (
+        <div>Goodbye</div>
       );
     }
   }

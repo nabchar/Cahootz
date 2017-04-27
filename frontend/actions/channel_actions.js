@@ -85,8 +85,13 @@ export const fetchDirectMessages = () => dispatch => {
     .then(res => dispatch(receiveDirectMessages(res)));
 };
 
-export const createDirectMessage = channel => dispatch => (
-  ChannelApiUtil.createChannel(channel)
+export const fetchDirectMessage = (id) => dispatch => {
+  return ChannelApiUtil.fetchDirectMessages(id)
+    .then(res => dispatch(receiveDirectMessages(res)));
+};
+
+export const createDirectMessage = members => dispatch => (
+  ChannelApiUtil.createDirectMessage(members)
     .then(res => dispatch(receiveDirectMessage(res)),
       err => dispatch(receiveErrors(err.responseJSON)))
 );

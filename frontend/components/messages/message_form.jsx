@@ -61,7 +61,7 @@ class MessageForm extends React.Component {
         let member = dm.members.filter(user => user.id !== this.props.currentUser.id);
         channelName = `@${member[0].username}`;
       } else {
-        return;
+        channelName = 'the group';
       }
     }
 

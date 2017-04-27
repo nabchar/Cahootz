@@ -5,6 +5,9 @@ $active-presence: #38978D;
 $active-item-text: #FFFFFF;
 $hover-text: #F9F9F9;
 
+button {
+  cursor: pointer
+}
 
 div.channel-main {
   height: 100vh;
@@ -31,6 +34,7 @@ aside.channel-list {
 // USER NAV
 div.user-nav:hover {
   background: $hover-item;
+  cursor: pointer;
 }
 
 div.user-nav {
@@ -93,6 +97,7 @@ div.channel-list-outer {
 
   p.list-header:hover {
     color: $active-item-text;
+    cursor: pointer;
   }
 }
 
@@ -105,6 +110,7 @@ i.add-channel {
 .add-channel:hover {
   font-size: 18px;
   color: $active-item-text;
+  cursor: pointer;
 }
 
 
@@ -115,6 +121,7 @@ i.add-channel {
 .current:hover {
   background-color: $active-item;
   color: $active-item-text;
+  cursor: pointer;
 }
 
 ul.channel-list {
@@ -135,6 +142,7 @@ ul.channel-list {
 
   li.non-current:hover {
     background: $hover-item;
+    cursor: pointer;
   }
 
 }
@@ -156,6 +164,7 @@ i.add-dm {
 i.add-dm:hover {
   color: $active-item-text;
   font-size: 18px;
+  cursor: pointer;
 }
 
 ul.dm-list {
@@ -166,11 +175,21 @@ ul.dm-list {
 
     p {
       padding-left: 20px;
+
+      span.multi-dm {
+        font-size: 12px;
+        margin-right: 5px;
+      }
+
+      span.icon-outer {
+      }
+
     }
   }
 
   li.non-current:hover {
     background: $hover-item;
+    cursor: pointer;
   }
 }
 
@@ -355,6 +374,26 @@ div.dm-main {
         padding-left: 10px;
         cursor: pointer;
 
+        p {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .hover-message {
+          display: none;
+        }
+
+      }
+
+      li:hover {
+        background: #edf7fd;
+        border: 1px solid #d3ecfa;
+        border-radius: 6px;
+
+        .hover-message {
+          display: inline-block;
+          color: steelblue;
+        }
       }
     }
   }
@@ -392,10 +431,9 @@ section.sidebar-dropdown {
   }
   div.signout:hover {
     background: #F9F9F9;
+    cursor: pointer;
   }
 }
-
-
 
 
 // MESSAGES
@@ -421,7 +459,7 @@ div.ch-info {
     font-weight: bolder;
     font-size: 30px;
     line-height: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   p {
     font-weight: 400;
@@ -622,7 +660,6 @@ footer.message-input-outer {
 
 
 // CHANNEL NAV
-
 header.messages-header {
   display: flex;
   justify-content: space-between;
@@ -666,6 +703,7 @@ header.messages-header {
     i.fa-cog:hover {
       font-size: 18px;
       background: $hover-text;
+      cursor: pointer;
     }
   }
 
@@ -699,9 +737,8 @@ div.dropdown-action {
 div.dropdown-action:hover {
   background: #38978D;
   color: white;
+  cursor: pointer;
 }
-
-//
 
 div.channel-nav {
   display: flex;

@@ -49,7 +49,9 @@ class UserNav extends React.Component {
   }
 
   handleClick() {
-    this.props.logOut().then(() => hashHistory.push('/signin'));
+    this.props.logOut().then(() => {
+      return hashHistory.push('/signin');
+    });
   }
 
   render() {

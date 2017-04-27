@@ -1,19 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import { allUsers } from '../../reducers/selectors';
+import { createDirectMessage,
+         subscribeToChannel,
+         fetchDirectMessage } from '../../actions/channel_actions';
 
-const mapStateToProps = ({session, errors, users}) => {
+const mapStateToProps = ({session, errors, users, direct_messages}) => {
   return {
     errors,
     usersArray: allUsers(users),
     users,
-    currentUser: session.currentUser
+    currentUser: session.currentUser,
+    direct_messages
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+    create: (members) => dispatch(createDirectMessage(members)),
+    subscribe: (channelId) => dispatch(subscribeToChannel(channelId)),
+    fetch: (id) => dispatch(fetchDirectMessage(id))
   };
 };
 
@@ -50,8 +57,23 @@ class DMForm extends React.Component {
     }
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    let url;
+    let channelId;
+    let members = this.state.members;
+    const { subscribe, fetch } = this.props;
 
+    this.props.create(members)
+      .then(res => {
+        channelId = res.dm.id;
+        url = '/messages/' + channelId;
+        return subscribe(channelId);
+      }).then(res => {
+        return fetch(channelId);
+      })
+      .then(res => {
+        hashHistory.push(url);
+      }).then(() => this.props.closeModal());
   }
 
   render() {
@@ -66,7 +88,7 @@ class DMForm extends React.Component {
             onClick={this.addMember}
             value={user.id}
             key={user.id}>
-          <p><span>{user.username}</span></p>
+          <p><span>@{user.username}</span><span className='hover-message'>Add User</span></p>
         </li>
       );
     });

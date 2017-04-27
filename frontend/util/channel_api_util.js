@@ -67,9 +67,17 @@ export const fetchDirectMessages = () => (
   })
 );
 
-export const createDirectMessage = (dm, members ) => (
+export const fetchDirectMessage = (id) => (
   $.ajax({
-    method: 'POST',
-    url: 'api/direct_messages'
+    method: 'GET',
+    url: `api/direct_messages/${id}`
   })
 );
+
+export const createDirectMessage = (members ) => {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/direct_messages',
+    data: {members}
+  });
+};

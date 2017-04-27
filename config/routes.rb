@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     resources :messages, only: [:update, :destroy]
     resources :subscriptions, only: [:create, :index, :destroy]
 
-    resources :direct_messages, only: [:index, :create]
+    resources :direct_messages, only: [:index, :create, :show]
   end
 end

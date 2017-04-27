@@ -10,3 +10,7 @@ export function allMessages(messages) {
 export function allUsers(users) {
   return Object.values(users);
 }
+
+export function allDMs(direct_messages) {
+  return Object.values(direct_messages);
+}

@@ -55,7 +55,7 @@ class MessageIndex extends React.Component {
   }
 
   componentWillUnmount() {
-    let currentChannel = this.props.channels[this.props.currentChannel];
+    let currentChannel = this.props.channels[this.props.currentChannelId];
     if (currentChannel === undefined) {
       currentChannel = this.props.direct_messages[this.props.currentChannelId];
     }
@@ -80,15 +80,25 @@ class MessageIndex extends React.Component {
       let { currentUser } = this.props;
       let dm = this.props.direct_messages[this.props.currentChannelId];
       let dmName, content;
+
       if ((dm.memberCount - 1) === 0) {
         dmName = `@${currentUser.username}`;
         content =  <p><b>This is your space</b>. Draft messages, list you to-dos, plot away. You can also talk to <italic>yourself</italic> here but please bear in mind you'll have to supply both sides of the conversation.</p>;
-      } else if ((dm.memberCount - 1) === 1){
+      }
+      else if ((dm.memberCount - 1) === 1){
         let member = dm.members.filter(user => user.id !== currentUser.id);
         dmName = `@${member[0].username}`;
         content =  (<p>This if you direct message history with <span>{member[0].username}.</span></p>);
-      } else {
-        return;
+      }
+      else {
+          let members = dm.members.filter(user => user.id !== currentUser.id);
+          content = 'This is your direct message history with ';
+          for (let i = 0; i < members.length - 1; i++) {
+            content += `@${members[i].username},  `;
+          }
+          content += `and @${members[members.length - 1].username}.`;
+          dmName = 'Private Group Chat';
+
       }
 
       return (

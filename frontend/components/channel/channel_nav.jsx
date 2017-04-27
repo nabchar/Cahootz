@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { unsubscribeFromChannel,
          subscribeToChannel,
          fetchChannel } from '../../actions/channel_actions';
+import {allDMs} from '../../reducers/selectors';
 
 
 
@@ -12,7 +13,7 @@ import { unsubscribeFromChannel,
 const mapStateToProps = (state, ownProps) => {
   let currentChannel = state.channels[ownProps.currentChannel];
   if (currentChannel === undefined) {
-    currentChannel = state.direct_messages[ownProps.currentChannel];
+    currentChannel= state.direct_messages[ownProps.currentChannel]
   }
 
   return {
@@ -94,8 +95,17 @@ class ChannelNav extends React.Component {
           subscribe,
           currentUser} = this.props;
 
-    let modalContent = 'Leave this chat';
-    let modalAction = unsubscribe;
+    let modalContent = 'Join the conversation';
+    let modalAction = subscribe;
+
+    for (let i = 0; i < subscriptions.length; i++) {
+      if (subscriptions[i].id === currentChannel.id) {
+        modalContent = 'Leave this chat';
+        modalAction = unsubscribe;
+        break;
+      }
+    }
+
 
     let header;
 
@@ -111,7 +121,13 @@ class ChannelNav extends React.Component {
         currentChannel.purpose = 'private direct messaging';
         header = (<h2>{`@${member[0].username}`}</h2>);
       } else {
-        return;
+        currentChannel.purpose = 'private direct messaging';
+        let members = currentChannel.members.filter(user => user.id !== currentUser.id);
+        header = '';
+        for (let i = 0; i < members.length - 1; i++) {
+          header += `@${members[i].username},  `;
+        }
+        header += `@${members[members.length - 1].username}.`;
       }
     } else {
       header = (<h2># {currentChannel.name}</h2>);
@@ -120,7 +136,7 @@ class ChannelNav extends React.Component {
     return (
       <div className='channel-nav'>
         <div className='channel-info'>
-          {header}
+          <h2>{header}</h2>
           <p>
             <i className="fa fa-user-o" aria-hidden="true"></i>
             <span className='member-count'>{currentChannel.memberCount}</span>
