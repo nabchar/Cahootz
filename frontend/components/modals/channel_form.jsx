@@ -83,7 +83,7 @@ class ChannelForm extends React.Component {
         <section className="channel-form">
           <h1>Create a new channel</h1>
           <span className="sub-header">
-            Channels are where you communicate with. They are best
+            Channels are where you communicate with other members of Cahootz. They are best
             organized around a topic.
           </span>
 

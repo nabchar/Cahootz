@@ -46,7 +46,7 @@ const ChannelList = (props) => {
     let dmIcon;
     //Handle self, 1-1, and multi person DM setup
     if ((dm.memberCount - 1) === 0) {
-      dmName = `${currentUser.username} (you)`;
+      dmName = `${currentUser.username}`;
       dmIcon =  (<span className='user-status' />);
     } else if ((dm.memberCount - 1) === 1){
       let member = dm.members.filter(user => user.id !== currentUser.id);

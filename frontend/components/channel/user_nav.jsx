@@ -88,13 +88,12 @@ class UserNav extends React.Component {
               <h3>@{userHandle}</h3>
             </div>
             <div className='signout'
-                 onClick={this.handleClick}>
+              onClick={this.handleClick}>
               <span>Sign out</span>
               <i className="fa fa-sign-out" aria-hidden="true"></i>
             </div>
           </section>
         </Modal>
-
       </div>
     );
   }

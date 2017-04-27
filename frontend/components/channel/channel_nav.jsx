@@ -115,7 +115,7 @@ class ChannelNav extends React.Component {
       //Handle self, 1-1, and multi person DM setup
       if ((currentChannel.memberCount - 1) === 0) {
         currentChannel.purpose = 'private direct messaging';
-        header = (<h2>{`@${currentUser.username}  `}<span>(you)</span></h2>);
+        header = (<h2>{`@${currentUser.username} (you_)`}</h2>);
       } else if ((currentChannel.memberCount - 1) === 1){
         let member = currentChannel.members.filter(user => user.id !== currentUser.id);
         currentChannel.purpose = 'private direct messaging';
@@ -136,7 +136,7 @@ class ChannelNav extends React.Component {
     return (
       <div className='channel-nav'>
         <div className='channel-info'>
-          <h2>{header}</h2>
+          {header}
           <p>
             <i className="fa fa-user-o" aria-hidden="true"></i>
             <span className='member-count'>{currentChannel.memberCount}</span>
@@ -161,7 +161,7 @@ class ChannelNav extends React.Component {
               <h2># {currentChannel.name}</h2>
             </div>
             <div className='dropdown-action'
-                 onClick={this.handleClick(modalAction)}>
+              onClick={this.handleClick(modalAction)}>
               <span>{modalContent}</span>
             </div>
           </section>

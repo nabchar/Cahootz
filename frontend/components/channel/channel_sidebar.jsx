@@ -137,22 +137,20 @@ class ChannelSidebar extends React.Component {
                      fetchMessages={this.props.fetchMessages}
                      channels={this.props.channels}
                      directMessages={this.props.directMessages}/>
+       <Modal
+         isOpen={this.state.showModal}
+         onRequestClose={this.closeModal}
+         style={this.modalStyle}
+         contentLabel='channelModal'>
 
-
-        <Modal
-          isOpen={this.state.showModal}
-          onRequestClose={this.closeModal}
-          style={this.modalStyle}
-          contentLabel='channelModal'>
-
-          {this.state.modalContent}
-          <button
-            className="modal-close"
-            onClick={this.closeModal}>
-            <span className="modal-close-icon">✕</span>
-            <span className="modal-close-text">esc</span>
-          </button>
-        </Modal>
+         {this.state.modalContent}
+         <button
+           className="modal-close"
+           onClick={this.closeModal}>
+           <span className="modal-close-icon">✕</span>
+           <span className="modal-close-text">esc</span>
+         </button>
+       </Modal>
       </div>
     );
   }

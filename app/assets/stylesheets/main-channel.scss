@@ -9,6 +9,10 @@ button {
   cursor: pointer
 }
 
+body {
+  overflow: hidden;
+}
+
 div.channel-main {
   height: 100vh;
   display: flex;
@@ -302,6 +306,10 @@ div.dm-main {
     height: 100vh;
     padding-top: 150px;
 
+    h1 {
+      font-weight: 900;
+    }
+
     div {
       display: flex;
       justify-content: space-between;
@@ -352,6 +360,7 @@ div.dm-main {
         color: gray;
         font-size: 20px;
         padding: 10px;
+        cursor: default;
       }
     }
 
