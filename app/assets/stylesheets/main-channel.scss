@@ -171,7 +171,7 @@ ul.dm-list {
 
   li.non-current:hover {
     background: $hover-item;
-  }  
+  }
 }
 
 // CHANNEL SEARCH
@@ -650,6 +650,7 @@ header.messages-header {
       padding-left: 5px;
       padding-right: 8px;
       border-right: solid 1px #717274;
+      font-size: 13px;
     }
 
     i.fa-user-o {
@@ -658,12 +659,12 @@ header.messages-header {
     }
 
     i.fa-cog {
-      font-size: 14px;
+      font-size: 16px;
       padding-left: 8px;
     }
 
     i.fa-cog:hover {
-      font-size: 16px;
+      font-size: 18px;
       background: $hover-text;
     }
   }

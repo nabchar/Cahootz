@@ -79,8 +79,9 @@ class ChannelNav extends React.Component {
   handleClick(modalAction) {
     return () => {
       let { currentChannel } = this.props;
+      let url = '/messages/' + this.props.currentUser.previous_channel_id;
       modalAction(currentChannel.id)
-        .then(() => fetchChannel(currentChannel.id))
+        .then(() => hashHistory.push(currentChannel.id))
         .then(() => this.closeModal());
     };
   }
@@ -95,6 +96,7 @@ class ChannelNav extends React.Component {
 
     let modalContent = 'Leave this chat';
     let modalAction = unsubscribe;
+
     let header;
 
     if (currentChannel.name === undefined) {
