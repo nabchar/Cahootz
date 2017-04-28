@@ -460,6 +460,7 @@ div.messages-main {
 section.message-index {
   height: calc(100vh - 132px);
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 div.ch-info {
@@ -604,6 +605,13 @@ div.message-content {
       margin-top: 2px;
       padding: 5px;
     }
+
+    input[type="submit"]:disabled {
+      background: rgb(251, 251, 250);
+      color: #555459;
+      cursor: default;
+    }
+
 
     button {
       background: rgb(251, 251, 250);
