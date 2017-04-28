@@ -20,6 +20,10 @@ class Api::DirectMessagesController < ApplicationController
         Subscription.create(user_id: member[:id].to_i, channel_id: @dm.id)
       end
 
+      members.each do |member|
+        Pusher.trigger("dm_#{member[:id]}", "dm_created", {id: @dm.id})
+      end
+
       @channel = @dm
       render 'api/channels/show'
     else

@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 import { fetchChannels,
          fetchDirectMessages,
-         fetchChannel } from '../../actions/channel_actions';
+         fetchChannel,
+         fetchDirectMessage} from '../../actions/channel_actions';
 import { fetchMessages } from '../../actions/message_actions';
 import { fetchUsers, logOut } from '../../actions/session_actions';
 
@@ -29,6 +30,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchMessages: (id) => dispatch(fetchMessages(id)),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchDirectMessages: () => dispatch(fetchDirectMessages()),
+    fetchDirectMessage: (id) => dispatch(fetchDirectMessage(id)),
     logOut: () => dispatch(logOut()),
     fetchChannel: (id) => dispatch(fetchChannel(id))
   };
@@ -58,6 +60,13 @@ class MainChat extends React.Component {
     channels.bind('channel_deleted', (data) => {
       this.props.fetchChannels();
     });
+
+    let userId = this.props.session.currentUser.id;
+    let dm = this.pusher.subscribe(`dm_${userId}`);
+    dm.bind('dm_created', (data) => {
+      this.props.fetchDirectMessage(data.id);
+    });
+
 
     this.props.fetchChannels()
       .then(() => this.props.fetchDirectMessages())

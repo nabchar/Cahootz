@@ -12,9 +12,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     signInGuest1: () => dispatch(
-        signIn({user: {username: 'guest', password: 'password' }})),
+        signIn({user: {username: 'pinky', password: 'password' }})),
     signInGuest2: () => dispatch(
-        signIn({user: {username: 'guest', password: 'password' }}))
+        signIn({user: {username: 'the_brain', password: 'password' }}))
   };
 };
 
@@ -67,16 +67,16 @@ class GuestPage extends React.Component {
           <form className='session-form'>
           <h1 className='align-center guest-h'>Try out Cahootz</h1>
           <p className='align-center guest-sub'>
-              Select from one of following personas.
+              Select from one of following personalities.
           </p>
             <section className='session guest-outer'>
               <div onClick={this.loginGuest1}
                    className='guest creden1'>
-                Guest 1
+                Pinky
               </div>
               <div onClick={this.loginGuest2}
                    className='guest creden2'>
-                Guest 2
+                The Brain
               </div>
             </section>
             <p className='align-center guest-post-sub'>or open up both to test out <strong>live chat</strong> and get the full experience.</p>

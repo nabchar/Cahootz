@@ -29,6 +29,7 @@ class MessageIndex extends React.Component {
   componentDidMount() {
     this.scrollToBottom();
 
+
     this.instantiatePusher();
   }
 
@@ -41,7 +42,6 @@ class MessageIndex extends React.Component {
     this.pusher = new Pusher('a9c970bf3597377db826', {
       encrypted: true
     });
-
     let channel = this.pusher.subscribe('channel_' + currentChannel.id);
     channel.bind('message_published', (data) => {
       this.props.fetchMessages(currentChannel.id);

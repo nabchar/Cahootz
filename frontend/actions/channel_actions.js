@@ -86,8 +86,8 @@ export const fetchDirectMessages = () => dispatch => {
 };
 
 export const fetchDirectMessage = (id) => dispatch => {
-  return ChannelApiUtil.fetchDirectMessages(id)
-    .then(res => dispatch(receiveDirectMessages(res)));
+  return ChannelApiUtil.fetchDirectMessage(id)
+    .then(res => dispatch(receiveDirectMessage(res)));
 };
 
 export const createDirectMessage = members => dispatch => (
