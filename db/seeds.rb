@@ -60,7 +60,7 @@ Subscription.create!(user_id: user2.id, channel_id: dm1.id)
 Subscription.create!(user_id: user3.id, channel_id: dm2.id)
 
 Subscription.create!(user_id: user4.id, channel_id: dm4.id)
-Subscription.create!(user_id: user5.id, channel_id: dm5.id)
+Subscription.create!(user_id: user3.id, channel_id: dm5.id)
 
 
 #setup auto login to #general for every user.
