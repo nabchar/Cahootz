@@ -2,6 +2,8 @@
 
 Cahootz is collaborative live messaging platform inspired by Slack and was built end-to-end in 2 weeks.
 
+Live Site:[https://cahootz.herokuapp.com/#/]
+
 ## Implementation
 
 Cahootz's UI and single-page architecture were built with React.js and Ruby on Rails. Messaging data is stored in a Postgres database, while AWS hosts all user images.
