@@ -13,6 +13,7 @@ import ChannelSidebar from './channel_sidebar';
 import ChannelNav from './channel_nav';
 import MessageIndex from '../messages/message_index';
 import MessageForm from '../messages/message_form';
+import LoadingPage from '../shared/loading_page';
 
 const mapStateToProps = ( {users, channels, messages, direct_messages, session} ) => {
   return {
@@ -84,7 +85,7 @@ class MainChat extends React.Component {
     let { channels, messages, users, direct_messages, session } = this.props;
     if ( channels.isFetching || messages.isFetching ||
          users.isFetching || direct_messages.isFetching ) {
-      return (<div>Loading</div>);
+      return (<LoadingPage />);
     } else if (session.currentUser) {
       let currentChannel = this.props.params.channelId;
       return (

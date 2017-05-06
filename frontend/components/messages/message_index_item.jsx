@@ -95,7 +95,7 @@ class MessageIndexItem extends React.Component {
         <img src={message.author.avatar_url} className='avatar' />
       </div>
       <div className='message-content'>
-        <p>
+        <div>
           <span className={"m-author " +  showContent}>
             {message.author.username}
           </span>
@@ -115,7 +115,7 @@ class MessageIndexItem extends React.Component {
                    disabled={this.state.disabled}
                    value="Edit"/>
           </form>
-        </p>
+        </div>
       </div>
       <div className={"m-actions " + showActions}>
         <i onClick={this.handleUpdate}
