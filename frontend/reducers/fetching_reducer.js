@@ -6,6 +6,8 @@ import {
 
 import { RECEIVE_MESSAGES,
          FETCH_MESSAGES,
+         FETCH_MESSAGE,
+         RECEIVE_MESSAGE,
          RECEIVE_DIRECT_MESSAGES,
          FETCH_DIRECT_MESSAGES} from '../actions/message_actions';
 
@@ -18,6 +20,8 @@ const fetchingReducer = (oldState = _defaultState, action) => {
       return true;
     case FETCH_MESSAGES:
       return true;
+    case FETCH_MESSAGE:
+      return true;
     case FETCH_USERS:
       return true;
     case FETCH_DIRECT_MESSAGES:
@@ -27,6 +31,8 @@ const fetchingReducer = (oldState = _defaultState, action) => {
     case RECEIVE_ALL_CHANNELS:
       return false;
     case RECEIVE_MESSAGES:
+      return false;
+    case RECEIVE_MESSAGE:
       return false;
     case RECEIVE_USERS:
       return false;

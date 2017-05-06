@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { allMessages } from '../../reducers/selectors';
 import MessageIndexItem from './message_index_item';
-import { fetchMessages } from '../../actions/message_actions';
+import { fetchMessages, fetchMessage, removeMessage } from '../../actions/message_actions';
 
 const mapStateToProps = ({ channels, direct_messages, messages, session }, ownProps) => {
   return {
@@ -17,13 +17,20 @@ const mapStateToProps = ({ channels, direct_messages, messages, session }, ownPr
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchMessages: (channelId) => dispatch(fetchMessages(channelId))
+    fetchMessages: (channelId) => dispatch(fetchMessages(channelId)),
+    fetchMessage: (id, channelId) => dispatch(fetchMessage(id, channelId)),
+    deleteMessage: (message) => dispatch(removeMessage(message))
   };
 };
 
 class MessageIndex extends React.Component {
   constructor(props) {
     super(props);
+    let channel = this.props.channels[this.props.currentChannelId];
+    this.pusher = new Pusher('a9c970bf3597377db826', {
+      encrypted: true
+    });
+    this.state = { channel };
   }
 
   componentDidMount() {
@@ -39,15 +46,16 @@ class MessageIndex extends React.Component {
       currentChannel = this.props.direct_messages[this.props.currentChannelId];
     }
 
-    this.pusher = new Pusher('a9c970bf3597377db826', {
-      encrypted: true
-    });
+    if (currentChannel.id != this.state.channel.id) {
+      this.pusher.unsubscribe('channel_' + this.state.channel.id)
+    }
+
     let channel = this.pusher.subscribe('channel_' + currentChannel.id);
     channel.bind('message_published', (data) => {
-      this.props.fetchMessages(currentChannel.id);
+      this.props.fetchMessage(data.id, currentChannel.id);
     });
     channel.bind('message_updated', (data) => {
-      this.props.fetchMessages(currentChannel.id);
+      this.props.fetchMessage(data.id, currentChannel.id);
     });
     channel.bind('message_deleted', (data) => {
       this.props.fetchMessages(currentChannel.id);
@@ -59,16 +67,11 @@ class MessageIndex extends React.Component {
   }
 
   componentDidUpdate() {
-      this.scrollToBottom();
+    this.scrollToBottom();
   }
 
   componentWillUnmount() {
-    let currentChannel = this.props.channels[this.props.currentChannelId];
-    if (currentChannel === undefined) {
-      currentChannel = this.props.direct_messages[this.props.currentChannelId];
-    }
-
-    this.pusher.unsubscribe('channel_' + currentChannel.id);
+    this.pusher.disconnect();
   }
 
   scrollToBottom() {

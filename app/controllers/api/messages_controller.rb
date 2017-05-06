@@ -13,7 +13,7 @@ class Api::MessagesController < ApplicationController
 
     if @message.save
       #publish event
-      Pusher.trigger("channel_#{@message.channel_id}",'message_published', {})
+      Pusher.trigger("channel_#{@message.channel_id}",'message_published', {id: @message.id})
 
       render :show
     else
@@ -22,14 +22,14 @@ class Api::MessagesController < ApplicationController
   end
 
   def show
-
+    @message = Message.find(params[:id])
   end
 
   def update
     @message = Message.find(params[:id])
     if @message.update(message_params)
       #publish event
-      Pusher.trigger("channel_#{@message.channel_id}",'message_updated', {})
+      Pusher.trigger("channel_#{@message.channel_id}",'message_updated', {id: @message.id})
       render :show
     else
       render json: @message.errors
@@ -42,7 +42,7 @@ class Api::MessagesController < ApplicationController
       channel_id = @message.channel_id;
       id = @message.id
       @message.destroy
-      Pusher.trigger("channel_#{channel_id}",'message_deleted', {})
+      Pusher.trigger("channel_#{channel_id}",'message_deleted', {id: id})
       render json: {id: id}
     else
       render json: { base: "Cannot delete someone else's message" }

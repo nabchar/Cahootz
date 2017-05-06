@@ -5,6 +5,13 @@ export const fetchMessages = (channelId) => {
   });
 };
 
+export const fetchMessage = (id, channelId) => {
+  return $.ajax({
+    method: 'GET',
+    url: `api/channels/${channelId}/messages/${id}`
+  });
+};
+
 export const createMessage = (message, channelId) => {
   return $.ajax({
     url: `api/channels/${channelId}/messages`,

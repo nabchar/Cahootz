@@ -7,6 +7,7 @@ export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 export const REMOVE_MESSAGE = "REMOVE_MESSAGE";
 export const FETCH_MESSAGES = "FETCH_MESSAGES";
+export const FETCH_MESSAGE = "FETCH_MESSAGE";
 
 //ACTIONS
 export const receiveMessages = messages => ({
@@ -30,6 +31,12 @@ export const fetchMessages = (channelId) => dispatch => {
   dispatch({type: FETCH_MESSAGES});
   return MessageApiUtil.fetchMessages(channelId)
     .then(res => dispatch(receiveMessages(res)));
+};
+
+export const fetchMessage = (id, channelId) => dispatch => {
+  dispatch({type: FETCH_MESSAGE});
+  return MessageApiUtil.fetchMessage(id, channelId)
+    .then(res => dispatch(receiveMessage(res)));
 };
 
 export const createMessage = (message, channelId) => dispatch => (
