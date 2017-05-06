@@ -114,7 +114,7 @@ class MessageIndex extends React.Component {
           <section className='message-index'>
             <div className='ch-info'>
               <h1>{dmName}</h1>
-              <p>{content}</p>
+              <div>{content}</div>
             </div>
             { messageList }
             <div ref={(el) => {this.messagesEnd = el; }}></div>
