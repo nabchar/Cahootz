@@ -2,7 +2,7 @@
 
 Cahootz is collaborative live messaging platform inspired by Slack and was built end-to-end in 2 weeks.
 
-Live Site:[https://cahootz.herokuapp.com/#/]
+[Live Site](https://cahootz.herokuapp.com/#/)
 
 ## Implementation
 
