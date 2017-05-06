@@ -13,7 +13,7 @@ import {allDMs} from '../../reducers/selectors';
 const mapStateToProps = (state, ownProps) => {
   let currentChannel = state.channels[ownProps.currentChannel];
   if (currentChannel === undefined) {
-    currentChannel= state.direct_messages[ownProps.currentChannel]
+    currentChannel= state.direct_messages[ownProps.currentChannel];
   }
 
   return {

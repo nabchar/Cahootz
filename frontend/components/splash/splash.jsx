@@ -17,8 +17,13 @@ const Splash = () => {
             <strong>cahootz</strong>
           </Link>
         </div>
-        <div>
-          <Link className='splash-header-link' to={'/signin'}>Sign In</Link>
+        <div className='link-container'>
+          <div>
+            <Link className='splash-header-link' to={'/signin'}>Sign In</Link>
+          </div>
+          <div>
+            <Link className='splash-header-link demo' to={'/try'}>Demo</Link>
+          </div>
         </div>
       </header>
 
