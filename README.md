@@ -21,8 +21,6 @@ In addition, the app also utilizes the following technologies:
 
 The application is composed of the following main features:
 
-[Authentication](###Authentication)
-
 ### Authentication
 
 Cahootz hand-rolls user authentication via BCrypt by hashing user passwords and saving only the encrypted user-data to the server. A cookie storing a hashed token keeps track of the user's current session.  Without a matching session token, the user is redirected to the login page for authentication.  
