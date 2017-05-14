@@ -14,10 +14,11 @@
 #  avatar_content_type :string
 #  avatar_file_size    :integer
 #  avatar_updated_at   :datetime
+#  email               :string           default("you@cahootz.com")
 #
 
 class User < ApplicationRecord
-  validates :username, :password_digest, :session_token, presence: true
+  validates :username, :password_digest, :session_token, :email, presence: true
   validates :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 8, allow_nil: true }
 
