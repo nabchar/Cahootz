@@ -7,7 +7,7 @@ import ErrorList from '../shared/errors';
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {username: "", password: ""};
+    this.state = {username: "", password: "", email: ""};
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -25,13 +25,6 @@ class SessionForm extends React.Component {
 
     hashHistory.push('/try');
     this.clearForm();
-    // this.props.signInGuest()
-    //   .then((res) => {
-    //     let prevChannelId = res.user.currentUser.previous_channel_id;
-    //     let rootPath = '/messages/' + prevChannelId;
-    //     return hashHistory.push(rootPath);
-    //   }
-    // ).then( () => this.clearForm());
   }
 
   handleSubmit(e) {
@@ -62,10 +55,22 @@ class SessionForm extends React.Component {
     let newPath = (formType === "Sign in") ? '/signup' : '/signin';
     let linkName = (newPath === '/signin') ? 'Sign In' : 'Sign Up';
     let guestAccountMessage = '';
+    let emailInput = (<div></div>);
+
     if (formType === 'Sign up') {
       guestAccountMessage =
       (<p className='guest-message align-center'>or give it a <span onClick={this.handleGuest}>try</span>.</p>);
+      emailInput = (
+        <input className='auth-input'
+        type="text"
+        onChange={this.handleChange('email')}
+        value={this.state.email}
+        placeholder='you@cahootz.com'/>
+
+      );
     }
+
+
 
     return (
       <div className="session-main">
@@ -97,11 +102,14 @@ class SessionForm extends React.Component {
                 type="text"
                 onChange={this.handleChange('username')}
                 value={this.state.username}
-                placeholder='you@cahootz.com'/>
+                placeholder='username'/>
 
               <ErrorList errors={errors.username}
                          errorType={'Username '}/>
 
+              {emailInput}
+              <ErrorList errors={errors.email}
+                errorType={'Email '}/>
 
               <input className="auth-input"
                 type="password"
