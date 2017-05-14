@@ -14,7 +14,6 @@ import ChannelForm from '../modals/channel_form';
 import ChannelSearch from '../modals/channel_search';
 
 const mapStateToProps = ({session, users, errors, channels, direct_messages}) => {
-  // channels user is subscribed
   let userChannels = session.subscriptions.map( sub => channels[sub.id]);
   userChannels = userChannels.filter(channel => channel !== undefined);
 

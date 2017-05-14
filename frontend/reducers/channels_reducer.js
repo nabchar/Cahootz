@@ -11,7 +11,6 @@ const ChannelsReducer = (oldState = _defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_ALL_CHANNELS:
-      //action is dispatched once, upon inital render of main chat container
       return Object.assign({}, action.channels);
 
     case RECEIVE_CHANNEL:

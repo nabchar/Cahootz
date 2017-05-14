@@ -28,7 +28,6 @@ const ChannelSearchItem = ({ channel,
   let timestamp = new Date(channel.created_at);
   timestamp = timestamp.toLocaleDateString();
 
-  // Setup hover-message
   let hoverMessage;
   for (let i = 0; i < subscribedChannels.length; i++) {
     if (subscribedChannels[i].id === channel.id) {

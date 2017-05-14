@@ -68,7 +68,6 @@ export const deleteChannel = id => dispatch => (
     .then(res => dispatch(removeChannel(res)))
 );
 
-// update current user after they subscribe to new channel
 export const subscribeToChannel = channelId => dispatch => (
   ChannelApiUtil.subscribeToChannel(channelId)
     .then(res => dispatch(receiveCurrentUser(res)))

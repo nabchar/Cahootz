@@ -16,8 +16,6 @@ export const receiveUsers = users => ({
   users
 });
 
-
-// thunk actions
 export const signUp = user => dispatch => (
   APIUtil.signUp(user)
     .then(res => dispatch(receiveCurrentUser(res)),
