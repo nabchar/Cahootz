@@ -45,12 +45,12 @@ form.session-form {
   border: 1px solid #E8E8E8;
   width: 46.3%;
   margin-top: 80px;
-  margin-bottom: 120px;
+  margin-bottom: 100px;
   max-width: 635px;
   border-radius: .25em;
   box-shadow: 0 1px 0 rgba(0,0,0,.25);
   min-height: 400px;
-  max-height: 450px;
+  max-height: 470px;
 }
 
 section.session {
@@ -103,11 +103,10 @@ p.guest-message span {
 
 p.error-message {
   color: red;
-  padding: 8px 0 8px 0;
   width: 100%;
   text-align: center;
   border: solid 1px red;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 div.session-main {
