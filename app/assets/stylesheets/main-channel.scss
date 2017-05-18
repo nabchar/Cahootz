@@ -417,18 +417,31 @@ div.dm-main {
 
 // USER Nav
 section.sidebar-dropdown {
-  padding: 20px;
+  padding: 10px;
   display: flex;
-  justify-content: space-around;
-  h2 {
-    font-weight: bold;
-    line-height: 1.4;
+  justify-content: center;
+  flex-direction: column;
+
+  div.user-outer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
   }
-  h3 {
-    color: silver;
-    font-weight: lighter;
-    font-size: 14px;
-    line-height: 1.4;
+
+  div.user-info-outer {
+    margin-left: 72px;
+    margin-top: 5px;
+
+    h2 {
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    h3 {
+      color: silver;
+      font-weight: lighter;
+      font-size: 14px;
+      line-height: 1.4;
+    }
   }
 
   div.signout {
@@ -436,13 +449,15 @@ section.sidebar-dropdown {
     cursor: pointer;
     border-radius: .25rem;
     padding: 10px;
+    margin-top: 10px;
+    text-align: center;
     span {
       font-weight: bold;
       padding-right: 5px;
     }
   }
   div.signout:hover {
-    background: #F9F9F9;
+    background: $active-presence;
     cursor: pointer;
   }
 }

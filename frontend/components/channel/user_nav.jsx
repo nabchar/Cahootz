@@ -28,7 +28,7 @@ class UserNav extends React.Component {
         top: 60,
         left: 20,
         width: 250,
-        height: 90,
+        height: 125,
         zIndex: 11,
         borderRadius: 6,
         border: '1px solid rgba(0,0,0,.15)',
@@ -60,6 +60,7 @@ class UserNav extends React.Component {
     if (currentUser) {
       userHandle = currentUser.username;
     }
+    let userAvatar = currentUser.avatar_url;
 
     return (
       <div className={"user-nav" + (this.state.showModal ? " open" : "")}
@@ -83,13 +84,18 @@ class UserNav extends React.Component {
           contentLabel='userNav'>
 
           <section className="sidebar-dropdown">
-            <div>
-              <h2>{userHandle}</h2>
-              <h3>@{userHandle}</h3>
+            <div className='user-outer'>
+              <div className='avatar-outer'>
+                <img src={userAvatar} className='avatar' />
+              </div>
+              <div className='user-info-outer'>
+                <h2>{userHandle}</h2>
+                <h3>@{userHandle}</h3>
+              </div>
             </div>
             <div className='signout'
               onClick={this.handleClick}>
-              <span>Sign out</span>
+              <span>SIGN OUT</span>
               <i className="fa fa-sign-out" aria-hidden="true"></i>
             </div>
           </section>
