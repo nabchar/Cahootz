@@ -27,6 +27,9 @@ class MessageIndex extends React.Component {
   constructor(props) {
     super(props);
     let channel = this.props.channels[this.props.currentChannelId];
+    if (!channel) {
+      channel = this.props.direct_messages[this.props.currentChannelId];
+    }
     this.pusher = new Pusher('a9c970bf3597377db826', {
       encrypted: true
     });

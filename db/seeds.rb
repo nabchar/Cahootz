@@ -35,12 +35,16 @@ channels2.each do |channel|
   end
 end
 
-dm0 = Channel.create!(user_id: brain.id, private: true, name: 'dm0')
-dm1 = Channel.create!(user_id: brain.id, private: true, name: 'dm1')
-dm2 = Channel.create!(user_id: brain.id, private: true, name: 'dm2')
-dm3 = Channel.create!(user_id: pinky.id, private: true, name: 'dm3')
-dm4 = Channel.create!(user_id: pinky.id, private: true, name: 'dm4')
-dm5 = Channel.create!(user_id: pinky.id, private: true, name: 'dm5')
+def generate_dm_code
+  SecureRandom::urlsafe_base64(10) + "private";
+end
+
+dm0 = Channel.create!(user_id: brain.id, private: true, name: generate_dm_code)
+dm1 = Channel.create!(user_id: brain.id, private: true, name: generate_dm_code)
+dm2 = Channel.create!(user_id: brain.id, private: true, name: generate_dm_code)
+dm3 = Channel.create!(user_id: pinky.id, private: true, name: generate_dm_code)
+dm4 = Channel.create!(user_id: pinky.id, private: true, name: generate_dm_code)
+dm5 = Channel.create!(user_id: pinky.id, private: true, name: generate_dm_code)
 
 #subscribe guest accounts to dm with themselves
 Subscription.create!(user_id: brain.id, channel_id: dm0.id)

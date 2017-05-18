@@ -109,9 +109,7 @@ class ChannelNav extends React.Component {
 
     let header;
 
-    if (currentChannel.name === undefined) {
-      let channelName;
-      let channelIcon;
+    if (currentChannel.name === undefined || currentChannel.name.slice(14) === 'private') {
       //Handle self, 1-1, and multi person DM setup
       if ((currentChannel.memberCount - 1) === 0) {
         currentChannel.purpose = 'private direct messaging';

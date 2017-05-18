@@ -11,7 +11,7 @@ class Api::DirectMessagesController < ApplicationController
   end
 
   def create
-    dmCode = SecureRandom::urlsafe_base64(10);
+    dmCode = SecureRandom::urlsafe_base64(10) + "private";
     @dm = Channel.new(user_id: current_user.id, name: dmCode, private: true);
 
     if @dm.save
