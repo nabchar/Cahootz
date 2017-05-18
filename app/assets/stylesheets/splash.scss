@@ -4,6 +4,7 @@ header.splash-header {
     padding: 20px;
     border-bottom: solid 1px lightgray;
     background: white;
+    min-width: 430px;
 }
 
 a.splash-logo {
@@ -32,6 +33,8 @@ section.splash-outer {
 
 section.splash-content {
   margin-top: 125px;
+  margin-left: 50px;
+  min-width: 330px;
 }
 
 p.splash-subtag {
