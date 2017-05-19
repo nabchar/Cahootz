@@ -69,9 +69,16 @@ The app's collaborative real-time messaging is organized in topically-themed cha
 
 ### Direct Messages
 
-Cahootz allows for multi-person private, direct messaging.
+Cahootz also allows for 1-1 and multi-person private, direct messaging.
+
+Direct Messages share much of the same functionality as Channels. They are both platforms for conversation with a variable number of members. However, DM's are not public and are not available for all users to subscribe to.
+
+Instead, DM's were designed as 'private' channels, where only the creator and recipients of the direct message are subscribed.
+
+Keeping DM's as a subset of Channels was a design decision that both helped to streamline the backend, as well as keep code DRY.
 
 ## Future Release
+This is still very much an ongoing project; one that is also open to collaboration. The following are a list of features that I plan to implement going forward. If anyone is interested in contributing to any of these features, please feel free to contact me at nicholas.ab.char@gmail.com.
 
 * [X] User Avatar Upload
 * [X] Notifications
