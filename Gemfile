@@ -21,17 +21,12 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'font-awesome-sass'
-
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
 gem 'pusher'
 gem "paperclip", '~> 5.0.0'
 gem 'aws-sdk', '>= 2.0'
